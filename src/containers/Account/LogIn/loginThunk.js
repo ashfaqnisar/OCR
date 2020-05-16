@@ -15,8 +15,7 @@ export const loginUser = (email, password) => async dispatch => {
     .then(async res => {
       axios({
         method: 'get',
-        url: '/customers',
-        params: { uid: res.user.uid }
+        url: `/users/${res.user.uid}`
       })
         .then(customer => {
           const user = {
