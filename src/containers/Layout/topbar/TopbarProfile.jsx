@@ -2,15 +2,14 @@ import React, { PureComponent } from 'react';
 import DownIcon from 'mdi-react/ChevronDownIcon';
 import { Collapse } from 'reactstrap';
 import TopbarMenuLink from './TopbarMenuLink';
-import { UserProps, AuthOProps } from '../../../shared/prop-types/ReducerProps';
+import { UserProps } from '../../../shared/prop-types/ReducerProps';
 import { hookAuth0 } from '../../../shared/components/auth/withAuth0';
 
 const Ava = `${process.env.PUBLIC_URL}/img/ava.png`;
 
 class TopbarProfile extends PureComponent {
   static propTypes = {
-    user: UserProps.isRequired,
-    auth0: AuthOProps.isRequired
+    user: UserProps.isRequired
   };
 
   state = {
@@ -22,11 +21,11 @@ class TopbarProfile extends PureComponent {
   };
 
   logout = () => {
-    localStorage.removeItem('easydev');
+    localStorage.removeItem('esocr');
   };
 
   render() {
-    const { user, auth0 } = this.props;
+    const { user } = this.props;
     const { collapse } = this.state;
 
     return (
@@ -39,7 +38,7 @@ class TopbarProfile extends PureComponent {
           >
             <img
               className="topbar__avatar-img"
-              src={(auth0.user && auth0.user.picture) || user.avatar || Ava}
+              src={user.avatar || Ava}
               alt="avatar"
             />
             <p className="topbar__avatar-name">
