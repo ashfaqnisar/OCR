@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import useSWR from 'swr';
 import axios from 'axios';
-import { Grid, Button } from '@material-ui/core';
-import { Col, Row, Container } from 'reactstrap';
+import { Grid, Button, Container, Card, CardContent } from '@material-ui/core';
+import { Col, Row } from 'reactstrap';
 
 const ApplicationForms = () => {
   const { uid } = useSelector(state => state.user.data);
@@ -18,66 +18,79 @@ const ApplicationForms = () => {
   const fetchPreviousDocument = () => {};
 
   return (
-    <Grid container className="dashboard container" direction={'column'}>
-      <Grid
-        item
-        container
-        justify={'space-between'}
-        alignItems={'center'}
-        direction={'row'}
-      >
-        <Grid item xs={10} sm={10} md={10} lg={11} xl={11}>
-          <h3 className="page-title">Application Forms</h3>
-        </Grid>
-        <Grid item xs={12} sm={2} md={2} lg={1} xl={1}>
-          <Button color="primary" onClick={uploadDocument}>
-            New Form
-          </Button>
-        </Grid>
-      </Grid>
-      <Grid item container>
-        {error ? (
-          <>
-            <Grid item>
-              <p>Error: {error.message}</p>
-            </Grid>
-          </>
-        ) : !documents ? (
-          <Grid item>
-            <p>Loading</p>
+    <Container maxWidth={'xl'}>
+      <Grid container className="dashboard" direction={'column'} spacing={2}>
+        <Grid
+          item
+          container
+          justify={'space-between'}
+          alignItems={'center'}
+          direction={'row'}
+          spacing={1}
+        >
+          <Grid item xs={10} sm={9} md={10} lg={10} xl={11}>
+            <h3 className="page-title">Application Forms</h3>
           </Grid>
-        ) : (
-          <Grid item xl={12}>
-            <Container>
-              <Row>
-                {documents.data.map(doc => (
-                  <Col lg={3} key={doc.ocrId}>
-                    <div>
-                      <p>{doc.input}</p>
-                    </div>
-                  </Col>
-                ))}
-              </Row>
-            </Container>
+          <Grid item xs={12} sm={3} md={2} lg={2} xl={1}>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={uploadDocument}
+            >
+              New Form
+            </Button>
           </Grid>
-
-          /*<Grid
-            container
-            justify="space-between"
-            alignItems={'center'}
-            direction="row"
-          >
-            {documents.data.map(doc => (
-              <Grid item xs={6} sm={6} md={4} lg={4} xl={3} key={doc.ocrId}>
-                <div>
-                  <p>{doc.input}</p>
-                </div>
+        </Grid>
+        <Grid item container>
+          {error ? (
+            <>
+              <Grid item>
+                <p>Error: {error.message}</p>
               </Grid>
-            ))}
-          </Grid>*/
-        )}
+            </>
+          ) : !documents ? (
+            <Grid item>
+              <p>Loading</p>
+            </Grid>
+          ) : (
+            <Grid item md sm xs lg xl>
+              <Card>
+                <CardContent>
+                  <Grid
+                    container
+                    item
+                    justify="space-between"
+                    alignItems={'center'}
+                    direction="row"
+                    spacing={2}
+                  >
+                    {documents.data.map(doc => (
+                      <Grid
+                        item
+                        container
+                        alignItems={'center'}
+                        justify="center"
+                        direction="column"
+                        xs={12}
+                        sm={6}
+                        md={4}
+                        lg={4}
+                        xl={2}
+                        key={doc.ocrId}
+                      >
+                        <div>
+                          <p>{doc.input}</p>
+                        </div>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </CardContent>
+              </Card>
+            </Grid>
+          )}
+        </Grid>
       </Grid>
-    </Grid>
+    </Container>
 
     /*<div>
           <Container className="dashboard">
