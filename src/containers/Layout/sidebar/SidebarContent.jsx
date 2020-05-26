@@ -20,6 +20,13 @@ const SidebarContent = props => {
         />
 
         <SidebarLink
+          title={'Forms'}
+          icon={'file-empty'}
+          route={'/forms'}
+          onClick={hideSidebar}
+        />
+
+        <SidebarLink
           title={'Current Outstandings'}
           icon={'cart'}
           route={'/outstanding'}

@@ -1,5 +1,7 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import firebaseSecret from './firebaseSecret.json';
+import 'firebase/firestore';
+import 'firebase/auth';
 
 firebase.initializeApp(firebaseSecret);
 

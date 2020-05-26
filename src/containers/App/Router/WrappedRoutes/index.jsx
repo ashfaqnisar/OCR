@@ -11,6 +11,7 @@ import Invoices from '../../../Dashboards/Invoices';
 import InvoiceDetail from '../../../Dashboards/InvoiceDetail';
 import InvoicePayment from '../../../Dashboards/InvoicePayment';
 import Wallet from '../../../Dashboards/Wallet';
+import ApplicationForms from '../../../Dashboards/Forms';
 
 export default () => (
   <div>
@@ -19,6 +20,7 @@ export default () => (
       <Switch>
         <Route path="/home" component={HomeDashboard} />
         <Route path={'/outstanding'} component={OutstandingDashboard} />
+        <Route path="/forms" component={ApplicationForms} />
         <Route path={'/payment/dues'} component={PaymentDues} />
         <Route path={'/payment/history'} component={PaymentHistory} />
         <Route
