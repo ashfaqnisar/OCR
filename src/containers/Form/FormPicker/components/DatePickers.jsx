@@ -20,10 +20,7 @@ const DatePickers = ({ handleSubmit, t }) => (
           <div className="form__form-group">
             <span className="form__form-group-label">Default Date Picker</span>
             <div className="form__form-group-field">
-              <Field
-                name="default_date"
-                component={renderDatePickerField}
-              />
+              <Field name="default_date" component={renderDatePickerField} />
               <div className="form__form-group-icon">
                 <CalendarBlankIcon />
               </div>
@@ -32,10 +29,7 @@ const DatePickers = ({ handleSubmit, t }) => (
           <div className="form__form-group">
             <span className="form__form-group-label">Date and Time Picker</span>
             <div className="form__form-group-field">
-              <Field
-                name="date_time"
-                component={renderDateTimePickerField}
-              />
+              <Field name="date_time" component={renderDateTimePickerField} />
               <div className="form__form-group-icon">
                 <TimetableIcon />
               </div>
@@ -58,9 +52,9 @@ const DatePickers = ({ handleSubmit, t }) => (
 
 DatePickers.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default reduxForm({
-  form: 'date_picker_form', // a unique identifier for this form
+  form: 'date_picker_form' // a unique identifier for this form
 })(withTranslation('common')(DatePickers));

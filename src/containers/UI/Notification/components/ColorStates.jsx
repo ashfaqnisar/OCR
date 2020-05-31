@@ -1,8 +1,8 @@
-import React, { PureComponent } from "react";
-import { Button, ButtonToolbar, Card, CardBody, Col } from "reactstrap";
-import PropTypes from "prop-types";
-import { withTranslation } from "react-i18next";
-import { BasicNotification } from "../../../../shared/components/Notification";
+import React, { PureComponent } from 'react';
+import { Button, ButtonToolbar, Card, CardBody, Col } from 'reactstrap';
+import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
+import { BasicNotification } from '../../../../shared/components/Notification';
 
 class ColorStates extends PureComponent {
   static propTypes = {
@@ -21,7 +21,7 @@ class ColorStates extends PureComponent {
                                        She enabled invited exposed him another."
         />
       ),
-      position: "right-up"
+      position: 'right-up'
     });
   };
 
@@ -34,10 +34,10 @@ class ColorStates extends PureComponent {
           <CardBody>
             <div className="card__title">
               <h5 className="bold-text">
-                {t("ui_elements.notifications.color_notifications")}
+                {t('ui_elements.notifications.color_notifications')}
               </h5>
               <h5 className="subhead">
-                Use BasicNotification with class{" "}
+                Use BasicNotification with class{' '}
                 <span className="red-text">primary</span>,
                 <span className="red-text"> success</span>,
                 <span className="red-text"> warning</span>,
@@ -45,16 +45,16 @@ class ColorStates extends PureComponent {
               </h5>
             </div>
             <ButtonToolbar>
-              <Button color="primary" onClick={() => this.show("primary")}>
+              <Button color="primary" onClick={() => this.show('primary')}>
                 Primary
               </Button>
-              <Button color="success" onClick={() => this.show("success")}>
+              <Button color="success" onClick={() => this.show('success')}>
                 Success
               </Button>
-              <Button color="warning" onClick={() => this.show("warning")}>
+              <Button color="warning" onClick={() => this.show('warning')}>
                 Warning
               </Button>
-              <Button color="danger" onClick={() => this.show("danger")}>
+              <Button color="danger" onClick={() => this.show('danger')}>
                 Danger
               </Button>
             </ButtonToolbar>
@@ -65,4 +65,4 @@ class ColorStates extends PureComponent {
   }
 }
 
-export default withTranslation("common")(ColorStates);
+export default withTranslation('common')(ColorStates);

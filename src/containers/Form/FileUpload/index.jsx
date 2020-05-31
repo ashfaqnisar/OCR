@@ -11,8 +11,9 @@ const FileUpload = ({ t }) => (
     <Row>
       <Col md={12}>
         <h3 className="page-title">{t('forms.file_upload.title')}</h3>
-        <h3 className="page-subhead subhead">Use this elements, if you want to show some hints or additional
-              information
+        <h3 className="page-subhead subhead">
+          Use this elements, if you want to show some hints or additional
+          information
         </h3>
       </Col>
     </Row>
@@ -24,7 +25,7 @@ const FileUpload = ({ t }) => (
 );
 
 FileUpload.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(FileUpload);

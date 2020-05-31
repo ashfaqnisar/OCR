@@ -9,7 +9,7 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
-  UncontrolledDropdown,
+  UncontrolledDropdown
 } from 'reactstrap';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import { withTranslation } from 'react-i18next';
@@ -20,7 +20,9 @@ const ButtonDropdown = ({ t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('ui_elements.buttons.button_dropdown')}</h5>
+          <h5 className="bold-text">
+            {t('ui_elements.buttons.button_dropdown')}
+          </h5>
         </div>
         <h5 className="bold-text">Basic buttons with dropdown</h5>
         <div className="card__title">
@@ -29,7 +31,9 @@ const ButtonDropdown = ({ t }) => (
         <ButtonToolbar>
           <UncontrolledDropdown>
             <DropdownToggle className="icon icon--right" outline>
-              <p>Dropdown <ChevronDownIcon /></p>
+              <p>
+                Dropdown <ChevronDownIcon />
+              </p>
             </DropdownToggle>
             <DropdownMenu className="dropdown__menu">
               <DropdownItem>Action</DropdownItem>
@@ -41,7 +45,9 @@ const ButtonDropdown = ({ t }) => (
 
           <UncontrolledDropdown>
             <DropdownToggle className="icon icon--right">
-              <p>Dropdown <ChevronDownIcon /></p>
+              <p>
+                Dropdown <ChevronDownIcon />
+              </p>
             </DropdownToggle>
             <DropdownMenu className="dropdown__menu">
               <DropdownItem>Action</DropdownItem>
@@ -52,8 +58,14 @@ const ButtonDropdown = ({ t }) => (
           </UncontrolledDropdown>
 
           <UncontrolledDropdown>
-            <DropdownToggle className="icon icon--right" outline color="primary">
-              <p>Dropdown <ChevronDownIcon /></p>
+            <DropdownToggle
+              className="icon icon--right"
+              outline
+              color="primary"
+            >
+              <p>
+                Dropdown <ChevronDownIcon />
+              </p>
             </DropdownToggle>
             <DropdownMenu className="dropdown__menu">
               <DropdownItem>Action</DropdownItem>
@@ -66,7 +78,10 @@ const ButtonDropdown = ({ t }) => (
 
         <h5 className="bold-text">Buttons with divided dropdown</h5>
         <div className="card__title">
-          <h5 className="subhead">Use default dropdown toggle with <span className="red-text">button</span></h5>
+          <h5 className="subhead">
+            Use default dropdown toggle with{' '}
+            <span className="red-text">button</span>
+          </h5>
         </div>
         <ButtonToolbar>
           <UncontrolledDropdown>
@@ -86,8 +101,14 @@ const ButtonDropdown = ({ t }) => (
 
           <UncontrolledDropdown>
             <ButtonGroup dir="ltr">
-              <Button color="primary" outline>Dropdown</Button>
-              <DropdownToggle color="primary" outline className="icon icon--right">
+              <Button color="primary" outline>
+                Dropdown
+              </Button>
+              <DropdownToggle
+                color="primary"
+                outline
+                className="icon icon--right"
+              >
                 <ChevronDownIcon />
               </DropdownToggle>
             </ButtonGroup>
@@ -101,7 +122,9 @@ const ButtonDropdown = ({ t }) => (
 
           <UncontrolledDropdown>
             <ButtonGroup dir="ltr">
-              <Button color="primary" outline>Dropdown</Button>
+              <Button color="primary" outline>
+                Dropdown
+              </Button>
               <DropdownToggle color="primary" className="icon icon--right">
                 <ChevronDownIcon />
               </DropdownToggle>
@@ -131,8 +154,14 @@ const ButtonDropdown = ({ t }) => (
 
           <UncontrolledDropdown>
             <ButtonGroup dir="ltr">
-              <Button color="primary" disabled>Dropdown</Button>
-              <DropdownToggle disabled color="primary" className="icon icon--right">
+              <Button color="primary" disabled>
+                Dropdown
+              </Button>
+              <DropdownToggle
+                disabled
+                color="primary"
+                className="icon icon--right"
+              >
                 <ChevronDownIcon />
               </DropdownToggle>
             </ButtonGroup>
@@ -150,7 +179,7 @@ const ButtonDropdown = ({ t }) => (
 );
 
 ButtonDropdown.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(ButtonDropdown);

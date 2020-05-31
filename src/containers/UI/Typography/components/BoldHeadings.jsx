@@ -8,8 +8,11 @@ const BoldHeadings = ({ t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('ui_elements.typography.bold_heading')}</h5>
-          <h5 className="subhead">Use tags <span className="red-text">h1 to h6</span> with class
+          <h5 className="bold-text">
+            {t('ui_elements.typography.bold_heading')}
+          </h5>
+          <h5 className="subhead">
+            Use tags <span className="red-text">h1 to h6</span> with class
             <span className="red-text"> bold-text</span>
           </h5>
         </div>
@@ -27,7 +30,7 @@ const BoldHeadings = ({ t }) => (
 );
 
 BoldHeadings.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(BoldHeadings);

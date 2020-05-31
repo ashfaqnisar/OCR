@@ -11,7 +11,9 @@ const DefaultControls = ({ handleSubmit, t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('forms.check_form_controls.default_controls')}</h5>
+          <h5 className="bold-text">
+            {t('forms.check_form_controls.default_controls')}
+          </h5>
           <h5 className="subhead">Checkboxes and radio buttons</h5>
         </div>
         <form className="form form--preview" onSubmit={handleSubmit}>
@@ -207,9 +209,9 @@ const DefaultControls = ({ handleSubmit, t }) => (
 
 DefaultControls.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default reduxForm({
-  form: 'defaults_controls', // a unique identifier for this form
+  form: 'defaults_controls' // a unique identifier for this form
 })(withTranslation('common')(DefaultControls));

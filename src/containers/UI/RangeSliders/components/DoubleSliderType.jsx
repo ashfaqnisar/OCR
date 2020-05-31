@@ -9,11 +9,18 @@ const DoubleSliderType = ({ t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('ui_elements.range_sliders.double_slider_type')}</h5>
+          <h5 className="bold-text">
+            {t('ui_elements.range_sliders.double_slider_type')}
+          </h5>
           <h5 className="subhead">Use default range</h5>
         </div>
         <div dir="ltr">
-          <Range min={0} max={1000} value={[350, 635]} tipFormatter={value => `$${value}`} />
+          <Range
+            min={0}
+            max={1000}
+            value={[350, 635]}
+            tipFormatter={value => `$${value}`}
+          />
         </div>
       </CardBody>
     </Card>
@@ -21,7 +28,7 @@ const DoubleSliderType = ({ t }) => (
 );
 
 DoubleSliderType.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(DoubleSliderType);

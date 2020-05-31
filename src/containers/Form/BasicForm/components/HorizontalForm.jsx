@@ -1,14 +1,14 @@
-import React, { PureComponent } from "react";
-import { Card, CardBody, Col, Button, ButtonToolbar } from "reactstrap";
-import { Field, reduxForm } from "redux-form";
-import EyeIcon from "mdi-react/EyeIcon";
-import EmailIcon from "mdi-react/EmailIcon";
-import AccountSearchIcon from "mdi-react/AccountSearchIcon";
-import { withTranslation } from "react-i18next";
-import PropTypes from "prop-types";
-import renderFileInputField from "../../../../shared/components/form/FileInput";
-import renderSelectField from "../../../../shared/components/form/Select";
-import renderMultiSelectField from "../../../../shared/components/form/MultiSelect";
+import React, { PureComponent } from 'react';
+import { Card, CardBody, Col, Button, ButtonToolbar } from 'reactstrap';
+import { Field, reduxForm } from 'redux-form';
+import EyeIcon from 'mdi-react/EyeIcon';
+import EmailIcon from 'mdi-react/EmailIcon';
+import AccountSearchIcon from 'mdi-react/AccountSearchIcon';
+import { withTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
+import renderFileInputField from '../../../../shared/components/form/FileInput';
+import renderSelectField from '../../../../shared/components/form/Select';
+import renderMultiSelectField from '../../../../shared/components/form/MultiSelect';
 
 class HorizontalForm extends PureComponent {
   static propTypes = {
@@ -39,7 +39,7 @@ class HorizontalForm extends PureComponent {
           <CardBody>
             <div className="card__title">
               <h5 className="bold-text">
-                {t("forms.basic_form.horizontal_form")}
+                {t('forms.basic_form.horizontal_form')}
               </h5>
               <h5 className="subhead">Labels are left from fields</h5>
             </div>
@@ -84,13 +84,13 @@ class HorizontalForm extends PureComponent {
                   <Field
                     name="password"
                     component="input"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="Password"
                   />
                   <button
                     type="button"
                     className={`form__form-group-button${
-                      showPassword ? " active" : ""
+                      showPassword ? ' active' : ''
                     }`}
                     onClick={e => this.showPassword(e)}
                   >
@@ -149,8 +149,8 @@ class HorizontalForm extends PureComponent {
                     name="select"
                     component={renderSelectField}
                     options={[
-                      { value: "one", label: "One" },
-                      { value: "two", label: "Two" }
+                      { value: 'one', label: 'One' },
+                      { value: 'two', label: 'Two' }
                     ]}
                   />
                 </div>
@@ -162,8 +162,8 @@ class HorizontalForm extends PureComponent {
                     name="multiSelect"
                     component={renderMultiSelectField}
                     options={[
-                      { value: "one", label: "One" },
-                      { value: "two", label: "Two" }
+                      { value: 'one', label: 'One' },
+                      { value: 'two', label: 'Two' }
                     ]}
                   />
                 </div>
@@ -196,5 +196,5 @@ class HorizontalForm extends PureComponent {
 }
 
 export default reduxForm({
-  form: "horizontal_form" // a unique identifier for this form
-})(withTranslation("common")(HorizontalForm));
+  form: 'horizontal_form' // a unique identifier for this form
+})(withTranslation('common')(HorizontalForm));

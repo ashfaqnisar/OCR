@@ -1,7 +1,7 @@
-import React from "react";
-import { Card, CardBody, Col } from "reactstrap";
-import { withTranslation } from "react-i18next";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Card, CardBody, Col } from 'reactstrap';
+import { withTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 const SampleText = ({ t }) => (
   <Col md={12} lg={6}>
@@ -9,7 +9,7 @@ const SampleText = ({ t }) => (
       <CardBody>
         <div className="card__title">
           <h5 className="bold-text">
-            {t("ui_elements.typography.sample_text")}
+            {t('ui_elements.typography.sample_text')}
           </h5>
         </div>
         <h4 className="bold-text">This is a sample heading for text part. </h4>
@@ -30,4 +30,4 @@ SampleText.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("common")(SampleText);
+export default withTranslation('common')(SampleText);

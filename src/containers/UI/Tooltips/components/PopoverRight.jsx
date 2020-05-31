@@ -1,6 +1,13 @@
 import React, { PureComponent } from 'react';
 import {
-  ButtonToolbar, Card, CardBody, Col, Button, Popover, PopoverBody, PopoverHeader,
+  ButtonToolbar,
+  Card,
+  CardBody,
+  Col,
+  Button,
+  Popover,
+  PopoverBody,
+  PopoverHeader
 } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -8,13 +15,13 @@ import PropTypes from 'prop-types';
 class PopoverRight extends PureComponent {
   static propTypes = {
     t: PropTypes.func.isRequired,
-    dir: PropTypes.string.isRequired,
+    dir: PropTypes.string.isRequired
   };
 
   constructor() {
     super();
     this.state = {
-      popoverOpen: false,
+      popoverOpen: false
     };
   }
 
@@ -31,11 +38,21 @@ class PopoverRight extends PureComponent {
         <Card>
           <CardBody>
             <div className="card__title">
-              <h5 className="bold-text">{t('ui_elements.tooltips_popovers.popover_on_right')}</h5>
-              <h5 className="subhead">Use popover with placement <span className="red-text">right</span></h5>
+              <h5 className="bold-text">
+                {t('ui_elements.tooltips_popovers.popover_on_right')}
+              </h5>
+              <h5 className="subhead">
+                Use popover with placement{' '}
+                <span className="red-text">right</span>
+              </h5>
             </div>
             <ButtonToolbar className="btn-toolbar--center">
-              <Button id="PopoverRight" onClick={this.toggle} outline className="button-tooltip">
+              <Button
+                id="PopoverRight"
+                onClick={this.toggle}
+                outline
+                className="button-tooltip"
+              >
                 Popover on Right
               </Button>
               <Popover
@@ -46,8 +63,9 @@ class PopoverRight extends PureComponent {
                 dir={dir}
               >
                 <PopoverHeader>Popover on Right</PopoverHeader>
-                <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem
-                  lacinia quam venenatis vestibulum.
+                <PopoverBody>
+                  Sed posuere consectetur est at lobortis. Aenean eu leo quam.
+                  Pellentesque ornare sem lacinia quam venenatis vestibulum.
                 </PopoverBody>
               </Popover>
             </ButtonToolbar>

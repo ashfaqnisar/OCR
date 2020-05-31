@@ -14,8 +14,12 @@ const BasicCarousel = ({ t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('ui_elements.carousel.basic_carousel')}</h5>
-          <h5 className="subhead">Use the component <span className="red-text">CarouselMultiply</span></h5>
+          <h5 className="bold-text">
+            {t('ui_elements.carousel.basic_carousel')}
+          </h5>
+          <h5 className="subhead">
+            Use the component <span className="red-text">CarouselMultiply</span>
+          </h5>
         </div>
         <Carousel>
           <div>
@@ -49,7 +53,7 @@ const BasicCarousel = ({ t }) => (
 );
 
 BasicCarousel.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(BasicCarousel);

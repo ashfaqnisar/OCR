@@ -1,7 +1,7 @@
-import React from "react";
-import { Card, CardBody, Col, Progress } from "reactstrap";
-import { withTranslation } from "react-i18next";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Card, CardBody, Col, Progress } from 'reactstrap';
+import { withTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 const DataProgressBar = ({ t }) => (
   <Col md={12} lg={6}>
@@ -9,7 +9,7 @@ const DataProgressBar = ({ t }) => (
       <CardBody>
         <div className="card__title">
           <h5 className="bold-text">
-            {t("ui_elements.progress_bars.data_progress_bar")}
+            {t('ui_elements.progress_bars.data_progress_bar')}
           </h5>
           <h5 className="subhead">Use default progress with text</h5>
         </div>
@@ -25,4 +25,4 @@ DataProgressBar.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("common")(DataProgressBar);
+export default withTranslation('common')(DataProgressBar);

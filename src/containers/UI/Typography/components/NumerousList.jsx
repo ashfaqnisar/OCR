@@ -1,7 +1,7 @@
-import React from "react";
-import { Card, CardBody, Col } from "reactstrap";
-import { withTranslation } from "react-i18next";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Card, CardBody, Col } from 'reactstrap';
+import { withTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 const NumerousList = ({ t }) => (
   <Col md={12} lg={6}>
@@ -9,7 +9,7 @@ const NumerousList = ({ t }) => (
       <CardBody>
         <div className="card__title">
           <h5 className="bold-text">
-            {t("ui_elements.typography.numerous_list")}
+            {t('ui_elements.typography.numerous_list')}
           </h5>
           <h5 className="subhead">
             Use default <span className="red-text">ol</span>
@@ -35,4 +35,4 @@ NumerousList.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("common")(NumerousList);
+export default withTranslation('common')(NumerousList);

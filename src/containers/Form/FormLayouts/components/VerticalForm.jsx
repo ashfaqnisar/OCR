@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
-import {
-  Card, CardBody, Col, Button, ButtonToolbar,
-} from 'reactstrap';
+import { Card, CardBody, Col, Button, ButtonToolbar } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -13,17 +11,17 @@ class VerticalForm extends PureComponent {
   static propTypes = {
     t: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    reset: PropTypes.func.isRequired,
+    reset: PropTypes.func.isRequired
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      showPassword: false,
+      showPassword: false
     };
   }
 
-  showPassword = (e) => {
+  showPassword = e => {
     e.preventDefault();
     this.setState(prevState => ({ showPassword: !prevState.showPassword }));
   };
@@ -37,7 +35,9 @@ class VerticalForm extends PureComponent {
         <Card>
           <CardBody>
             <div className="card__title">
-              <h5 className="bold-text">{t('forms.form_layouts.vertical_form')}</h5>
+              <h5 className="bold-text">
+                {t('forms.form_layouts.vertical_form')}
+              </h5>
               <h5 className="subhead">Labels are above fields</h5>
             </div>
             <form className="form" onSubmit={handleSubmit}>
@@ -85,9 +85,12 @@ class VerticalForm extends PureComponent {
                   />
                   <button
                     type="button"
-                    className={`form__form-group-button${showPassword ? ' active' : ''}`}
+                    className={`form__form-group-button${
+                      showPassword ? ' active' : ''
+                    }`}
                     onClick={e => this.showPassword(e)}
-                  ><EyeIcon />
+                  >
+                    <EyeIcon />
                   </button>
                 </div>
               </div>
@@ -101,7 +104,9 @@ class VerticalForm extends PureComponent {
                 </div>
               </div>
               <ButtonToolbar className="form__button-toolbar">
-                <Button color="primary" type="submit">Submit</Button>
+                <Button color="primary" type="submit">
+                  Submit
+                </Button>
                 <Button type="button" onClick={reset}>
                   Cancel
                 </Button>
@@ -115,5 +120,5 @@ class VerticalForm extends PureComponent {
 }
 
 export default reduxForm({
-  form: 'vertical_form_layout', // a unique identifier for this form
+  form: 'vertical_form_layout' // a unique identifier for this form
 })(withTranslation('common')(VerticalForm));

@@ -1,8 +1,8 @@
-import React from "react";
-import { Card, CardBody, Col } from "reactstrap";
-import { withTranslation } from "react-i18next";
-import PropTypes from "prop-types";
-import Alert from "../../../../shared/components/Alert";
+import React from 'react';
+import { Card, CardBody, Col } from 'reactstrap';
+import { withTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
+import Alert from '../../../../shared/components/Alert';
 
 const NeutralAlertsWithIcons = ({ t }) => (
   <Col md={12} lg={12} xl={6}>
@@ -10,10 +10,10 @@ const NeutralAlertsWithIcons = ({ t }) => (
       <CardBody>
         <div className="card__title">
           <h5 className="bold-text">
-            {t("ui_elements.alerts.neutral_alerts_with_icons")}
+            {t('ui_elements.alerts.neutral_alerts_with_icons')}
           </h5>
           <h5 className="subhead">
-            Use basic alert with class{" "}
+            Use basic alert with class{' '}
             <span className="red-text">alert--neutral</span>
           </h5>
         </div>
@@ -54,4 +54,4 @@ NeutralAlertsWithIcons.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("common")(NeutralAlertsWithIcons);
+export default withTranslation('common')(NeutralAlertsWithIcons);

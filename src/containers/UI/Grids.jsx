@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Container, Row, Col, CardBody, Card,
-} from 'reactstrap';
+import { Container, Row, Col, CardBody, Card } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
@@ -10,7 +8,8 @@ const Grids = ({ t }) => (
     <Row>
       <Col md={12}>
         <h3 className="page-title">{t('ui_elements.grids.title')}</h3>
-        <h3 className="page-subhead subhead">Here is the examples of grids you can use in any component you need
+        <h3 className="page-subhead subhead">
+          Here is the examples of grids you can use in any component you need
         </h3>
       </Col>
     </Row>
@@ -123,7 +122,7 @@ const Grids = ({ t }) => (
 );
 
 Grids.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(Grids);

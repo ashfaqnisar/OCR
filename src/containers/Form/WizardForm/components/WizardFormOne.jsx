@@ -6,17 +6,17 @@ import PropTypes from 'prop-types';
 
 class WizardFormOne extends PureComponent {
   static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired
   };
 
   constructor() {
     super();
     this.state = {
-      showPassword: false,
+      showPassword: false
     };
   }
 
-  showPassword = (e) => {
+  showPassword = e => {
     e.preventDefault();
     this.setState(prevState => ({ showPassword: !prevState.showPassword }));
   };
@@ -26,7 +26,10 @@ class WizardFormOne extends PureComponent {
     const { showPassword } = this.state;
 
     return (
-      <form className="form form--horizontal wizard__form" onSubmit={handleSubmit}>
+      <form
+        className="form form--horizontal wizard__form"
+        onSubmit={handleSubmit}
+      >
         <h3 className="wizard__title">Fill your personal data</h3>
         <div className="form__form-group">
           <span className="form__form-group-label">Username</span>
@@ -72,16 +75,23 @@ class WizardFormOne extends PureComponent {
             />
             <button
               type="button"
-              className={`form__form-group-button${showPassword ? ' active' : ''}`}
+              className={`form__form-group-button${
+                showPassword ? ' active' : ''
+              }`}
               tabIndex="-1"
               onClick={e => this.showPassword(e)}
-            ><EyeIcon />
+            >
+              <EyeIcon />
             </button>
           </div>
         </div>
         <ButtonToolbar className="form__button-toolbar wizard__toolbar">
-          <Button color="primary" type="button" disabled className="previous">Back</Button>
-          <Button color="primary" type="submit" className="next">Next</Button>
+          <Button color="primary" type="button" disabled className="previous">
+            Back
+          </Button>
+          <Button color="primary" type="submit" className="next">
+            Next
+          </Button>
         </ButtonToolbar>
       </form>
     );
@@ -91,5 +101,5 @@ class WizardFormOne extends PureComponent {
 export default reduxForm({
   form: 'wizard', //                 <------ same form name
   destroyOnUnmount: false, //        <------ preserve form data
-  forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
+  forceUnregisterOnUnmount: true // <------ unregister fields on unmount
 })(WizardFormOne);

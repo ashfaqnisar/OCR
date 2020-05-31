@@ -9,12 +9,16 @@ const Highlight = ({ t }) => (
       <CardBody>
         <div className="card__title">
           <h5 className="bold-text">{t('ui_elements.typography.highlight')}</h5>
-          <h5 className="subhead">Use span with class <span className="red-text">highlight</span></h5>
+          <h5 className="subhead">
+            Use span with class <span className="red-text">highlight</span>
+          </h5>
         </div>
         <p className="typography-message">
-          Nulla tellus elit, varius non <span className="highlight">commodo</span> eget, mattis vel eros.
-              In sed ornare nulla. Nullam quis risuseget urna mollis ornare vel eu leo. Cum sociis natoque
-              penatibus et magnis dis parturient montes,nascetur ridiculus mus.
+          Nulla tellus elit, varius non{' '}
+          <span className="highlight">commodo</span> eget, mattis vel eros. In
+          sed ornare nulla. Nullam quis risuseget urna mollis ornare vel eu leo.
+          Cum sociis natoque penatibus et magnis dis parturient montes,nascetur
+          ridiculus mus.
         </p>
       </CardBody>
     </Card>
@@ -22,7 +26,7 @@ const Highlight = ({ t }) => (
 );
 
 Highlight.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(Highlight);

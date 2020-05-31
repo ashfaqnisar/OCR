@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
-import {
-  Nav, NavItem, NavLink, TabContent, TabPane,
-} from 'reactstrap';
+import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -9,21 +7,21 @@ import Panel from '../../../../shared/components/Panel';
 
 class TabsPanelDivider extends PureComponent {
   static propTypes = {
-    t: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired
   };
 
   constructor() {
     super();
     this.state = {
-      activeTab: '1',
+      activeTab: '1'
     };
   }
 
-  toggle = (tab) => {
+  toggle = tab => {
     const { activeTab } = this.state;
     if (activeTab !== tab) {
       this.setState({
-        activeTab: tab,
+        activeTab: tab
       });
     }
   };
@@ -33,7 +31,13 @@ class TabsPanelDivider extends PureComponent {
     const { activeTab } = this.state;
 
     return (
-      <Panel xs={12} md={12} lg={6} divider title={t('ui_elements.panels.tabs_panel_divider')}>
+      <Panel
+        xs={12}
+        md={12}
+        lg={6}
+        divider
+        title={t('ui_elements.panels.tabs_panel_divider')}
+      >
         <div className="tabs--bordered-bottom">
           <Nav tabs>
             <NavItem>
@@ -80,26 +84,30 @@ class TabsPanelDivider extends PureComponent {
           <TabContent activeTab={activeTab}>
             <TabPane tabId="1">
               <p className="typography-message">
-                Direction has strangers now believing. Respect enjoyed gay far exposed parlors towards. Enjoyment
-                use tolerably dependent listening men.
+                Direction has strangers now believing. Respect enjoyed gay far
+                exposed parlors towards. Enjoyment use tolerably dependent
+                listening men.
               </p>
             </TabPane>
             <TabPane tabId="2">
               <p className="typography-message">
-                Direction has strangers now believing. Respect enjoyed gay far exposed parlors towards. Enjoyment
-                use tolerably dependent listening men. No peculiar in handsome together unlocked do by.
+                Direction has strangers now believing. Respect enjoyed gay far
+                exposed parlors towards. Enjoyment use tolerably dependent
+                listening men. No peculiar in handsome together unlocked do by.
               </p>
             </TabPane>
             <TabPane tabId="3">
               <p className="typography-message">
-                Direction has strangers now believing. Respect enjoyed gay far exposed parlors towards. Enjoyment
-                use tolerably dependent listening men. No peculiar in handsome together unlocked do by.
+                Direction has strangers now believing. Respect enjoyed gay far
+                exposed parlors towards. Enjoyment use tolerably dependent
+                listening men. No peculiar in handsome together unlocked do by.
               </p>
             </TabPane>
             <TabPane tabId="4">
               <p className="typography-message">
-                Enjoyment use tolerably dependent listening men. No peculiar in handsome together unlocked do by.
-                Article concern joy anxious did picture sir her.
+                Enjoyment use tolerably dependent listening men. No peculiar in
+                handsome together unlocked do by. Article concern joy anxious
+                did picture sir her.
               </p>
             </TabPane>
           </TabContent>

@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
-import {
-  Card, CardBody, Col, Button, ButtonToolbar,
-} from 'reactstrap';
+import { Card, CardBody, Col, Button, ButtonToolbar } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import EyeIcon from 'mdi-react/EyeIcon';
@@ -10,11 +8,16 @@ import renderSelectField from '../../../../shared/components/form/Select';
 import validate from './validate';
 
 const renderField = ({
-  input, placeholder, type, meta: { touched, error },
+  input,
+  placeholder,
+  type,
+  meta: { touched, error }
 }) => (
   <div className="form__form-group-input-wrap form__form-group-input-wrap--error-above">
     <input {...input} placeholder={placeholder} type={type} />
-    {touched && error && <span className="form__form-group-error">{error}</span>}
+    {touched && error && (
+      <span className="form__form-group-error">{error}</span>
+    )}
   </div>
 );
 
@@ -24,14 +27,14 @@ renderField.propTypes = {
   type: PropTypes.string,
   meta: PropTypes.shape({
     touched: PropTypes.bool,
-    error: PropTypes.string,
-  }),
+    error: PropTypes.string
+  })
 };
 
 renderField.defaultProps = {
   placeholder: '',
   meta: null,
-  type: 'text',
+  type: 'text'
 };
 
 class HorizontalForm extends PureComponent {
@@ -40,25 +43,23 @@ class HorizontalForm extends PureComponent {
     handleSubmit: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
     pristine: PropTypes.bool.isRequired,
-    submitting: PropTypes.bool.isRequired,
+    submitting: PropTypes.bool.isRequired
   };
 
   constructor() {
     super();
     this.state = {
-      showPassword: false,
+      showPassword: false
     };
   }
 
-  showPassword = (e) => {
+  showPassword = e => {
     e.preventDefault();
     this.setState(prevState => ({ showPassword: !prevState.showPassword }));
   };
 
   render() {
-    const {
-      handleSubmit, pristine, reset, submitting, t,
-    } = this.props;
+    const { handleSubmit, pristine, reset, submitting, t } = this.props;
     const { showPassword } = this.state;
 
     return (
@@ -66,9 +67,15 @@ class HorizontalForm extends PureComponent {
         <Card>
           <CardBody>
             <div className="card__title">
-              <h5 className="bold-text">{t('forms.from_validation.horizontal_form_validate_two')}</h5>
-              <h5 className="subhead">Errors are above fields, use class super
-                <span className="red-text"> form__form-group-input-wrap--error-above</span>
+              <h5 className="bold-text">
+                {t('forms.from_validation.horizontal_form_validate_two')}
+              </h5>
+              <h5 className="subhead">
+                Errors are above fields, use class super
+                <span className="red-text">
+                  {' '}
+                  form__form-group-input-wrap--error-above
+                </span>
               </h5>
             </div>
             <form className="form form--horizontal" onSubmit={handleSubmit}>
@@ -116,10 +123,13 @@ class HorizontalForm extends PureComponent {
                   />
                   <button
                     type="button"
-                    className={`form__form-group-button${showPassword ? ' active' : ''}`}
+                    className={`form__form-group-button${
+                      showPassword ? ' active' : ''
+                    }`}
                     tabIndex="-1"
                     onClick={e => this.showPassword(e)}
-                  ><EyeIcon />
+                  >
+                    <EyeIcon />
                   </button>
                 </div>
               </div>
@@ -133,14 +143,20 @@ class HorizontalForm extends PureComponent {
                     type="text"
                     options={[
                       { value: 'one', label: 'One' },
-                      { value: 'two', label: 'Two' },
+                      { value: 'two', label: 'Two' }
                     ]}
                   />
                 </div>
               </div>
               <ButtonToolbar className="form__button-toolbar">
-                <Button color="primary" type="submit">Validate</Button>
-                <Button type="button" onClick={reset} disabled={pristine || submitting}>
+                <Button color="primary" type="submit">
+                  Validate
+                </Button>
+                <Button
+                  type="button"
+                  onClick={reset}
+                  disabled={pristine || submitting}
+                >
                   Cancel
                 </Button>
               </ButtonToolbar>
@@ -154,5 +170,5 @@ class HorizontalForm extends PureComponent {
 
 export default reduxForm({
   form: 'horizontal_form_validation_two', // a unique identifier for this form
-  validate,
+  validate
 })(withTranslation('common')(HorizontalForm));

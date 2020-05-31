@@ -1,8 +1,6 @@
 /* eslint-disable react/no-children-prop */
 import React from 'react';
-import {
-  Card, CardBody, Col, Button, ButtonToolbar,
-} from 'reactstrap';
+import { Card, CardBody, Col, Button, ButtonToolbar } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,7 +8,11 @@ import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 const renderTextField = ({
-  input, label, meta: { touched, error }, children, select,
+  input,
+  label,
+  meta: { touched, error },
+  children,
+  select
 }) => (
   <TextField
     className="material-form__field"
@@ -19,7 +21,7 @@ const renderTextField = ({
     value={input.value}
     children={children}
     select={select}
-    onChange={(e) => {
+    onChange={e => {
       e.preventDefault();
       input.onChange(e.target.value);
     }}
@@ -31,16 +33,16 @@ renderTextField.propTypes = {
   label: PropTypes.string.isRequired,
   meta: PropTypes.shape({
     touched: PropTypes.bool,
-    error: PropTypes.string,
+    error: PropTypes.string
   }),
   select: PropTypes.bool,
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.arrayOf(PropTypes.element)
 };
 
 renderTextField.defaultProps = {
   meta: null,
   select: false,
-  children: [],
+  children: []
 };
 
 const AnimatedLineFormWithLabels = ({ handleSubmit, reset, t }) => (
@@ -48,8 +50,13 @@ const AnimatedLineFormWithLabels = ({ handleSubmit, reset, t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('forms.floating_labels_form.animated_line_inputs')}</h5>
-          <h5 className="subhead">Material fields with a property <span className="red-text">label</span></h5>
+          <h5 className="bold-text">
+            {t('forms.floating_labels_form.animated_line_inputs')}
+          </h5>
+          <h5 className="subhead">
+            Material fields with a property{' '}
+            <span className="red-text">label</span>
+          </h5>
         </div>
         <form className="material-form" onSubmit={handleSubmit}>
           <div>
@@ -93,8 +100,12 @@ const AnimatedLineFormWithLabels = ({ handleSubmit, reset, t }) => (
               select
               label="Select Option"
             >
-              <MenuItem className="material-form__option" value="one">One</MenuItem>
-              <MenuItem className="material-form__option" value="two">Two</MenuItem>
+              <MenuItem className="material-form__option" value="one">
+                One
+              </MenuItem>
+              <MenuItem className="material-form__option" value="two">
+                Two
+              </MenuItem>
             </Field>
           </div>
           <div>
@@ -108,9 +119,11 @@ const AnimatedLineFormWithLabels = ({ handleSubmit, reset, t }) => (
             />
           </div>
           <ButtonToolbar className="form__button-toolbar">
-            <Button color="primary" type="submit">Submit</Button>
+            <Button color="primary" type="submit">
+              Submit
+            </Button>
             <Button type="button" onClick={reset}>
-                  Cancel
+              Cancel
             </Button>
           </ButtonToolbar>
         </form>
@@ -122,9 +135,9 @@ const AnimatedLineFormWithLabels = ({ handleSubmit, reset, t }) => (
 AnimatedLineFormWithLabels.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default reduxForm({
-  form: 'floating_labels_form', // a unique identifier for this form
+  form: 'floating_labels_form' // a unique identifier for this form
 })(withTranslation('common')(AnimatedLineFormWithLabels));

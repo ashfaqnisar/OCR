@@ -6,9 +6,7 @@ import KeyVariantIcon from 'mdi-react/KeyVariantIcon';
 import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import * as firebase from 'firebase/app';
 import { Alert, Button } from 'reactstrap';
-import renderCheckBoxField from '../../../../shared/components/form/CheckBox';
 import validate from '../../../Form/FormValidation/components/validate';
 
 const renderField = ({
@@ -102,20 +100,9 @@ class LogInForm extends PureComponent {
             >
               <EyeIcon />
             </button>
-            <div className="account__forgot-password">
-              <a href="/">Forgot a password?</a>
-            </div>
           </div>
         </div>
-        <div className="form__form-group">
-          <div className="form__form-group form__form-group-field">
-            <Field
-              name={`remember_me-${form}`}
-              component={renderCheckBoxField}
-              label="Remember me"
-            />
-          </div>
-        </div>
+
         <div className="account__btns">
           <Button
             className="account__btn"

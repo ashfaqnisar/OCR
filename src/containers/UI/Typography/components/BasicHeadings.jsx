@@ -8,8 +8,12 @@ const BasicHeadings = ({ t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('ui_elements.typography.basic_heading')}</h5>
-          <h5 className="subhead">Use tags <span className="red-text">h1 to h6</span> for get necessary heading.
+          <h5 className="bold-text">
+            {t('ui_elements.typography.basic_heading')}
+          </h5>
+          <h5 className="subhead">
+            Use tags <span className="red-text">h1 to h6</span> for get
+            necessary heading.
           </h5>
         </div>
         <div className="typography-card">
@@ -26,7 +30,7 @@ const BasicHeadings = ({ t }) => (
 );
 
 BasicHeadings.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(BasicHeadings);
