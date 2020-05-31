@@ -1,8 +1,8 @@
-import React from "react";
-import { ButtonToolbar, Card, CardBody, Col } from "reactstrap";
-import { withTranslation } from "react-i18next";
-import PropTypes from "prop-types";
-import Modal from "../../../../shared/components/Modal";
+import React from 'react';
+import { ButtonToolbar, Card, CardBody, Col } from 'reactstrap';
+import { withTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
+import Modal from '../../../../shared/components/Modal';
 
 const ColoredModals = ({ t }) => (
   <Col md={12} lg={6} xl={4} xs={12}>
@@ -10,10 +10,10 @@ const ColoredModals = ({ t }) => (
       <CardBody>
         <div className="card__title">
           <h5 className="bold-text">
-            {t("ui_elements.modals.colored_modals")}
+            {t('ui_elements.modals.colored_modals')}
           </h5>
           <h5 className="subhead">
-            Use default modal with property{" "}
+            Use default modal with property{' '}
             <span className="red-text">colored</span>
           </h5>
         </div>
@@ -60,4 +60,4 @@ ColoredModals.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("common")(ColoredModals);
+export default withTranslation('common')(ColoredModals);

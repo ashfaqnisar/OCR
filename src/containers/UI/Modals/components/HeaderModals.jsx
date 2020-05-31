@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  ButtonToolbar, Card, CardBody, Col,
-} from 'reactstrap';
+import { ButtonToolbar, Card, CardBody, Col } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Modal from '../../../../shared/components/Modal';
@@ -12,7 +10,10 @@ const HeaderModals = ({ t }) => (
       <CardBody>
         <div className="card__title">
           <h5 className="bold-text">{t('ui_elements.modals.header_modals')}</h5>
-          <h5 className="subhead">Use default progress with property <span className="red-text">header</span></h5>
+          <h5 className="subhead">
+            Use default progress with property{' '}
+            <span className="red-text">header</span>
+          </h5>
         </div>
         <ButtonToolbar>
           <Modal
@@ -66,7 +67,7 @@ const HeaderModals = ({ t }) => (
 );
 
 HeaderModals.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(HeaderModals);

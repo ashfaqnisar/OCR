@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Card, CardBody, Col, Progress,
-} from 'reactstrap';
+import { Card, CardBody, Col, Progress } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
@@ -10,8 +8,11 @@ const MultisizedProgressBars = ({ t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('ui_elements.progress_bars.multisized_progress_bars')}</h5>
-          <h5 className="subhead">Use default progress with class
+          <h5 className="bold-text">
+            {t('ui_elements.progress_bars.multisized_progress_bars')}
+          </h5>
+          <h5 className="subhead">
+            Use default progress with class
             <span className="red-text"> progress-wrap--small</span>,
             <span className="red-text"> progress-wrap--middle</span>,
             <span className="red-text"> progress-wrap--big</span>
@@ -35,7 +36,7 @@ const MultisizedProgressBars = ({ t }) => (
 );
 
 MultisizedProgressBars.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(MultisizedProgressBars);

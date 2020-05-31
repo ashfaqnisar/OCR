@@ -1,7 +1,7 @@
-import React from "react";
-import { withTranslation } from "react-i18next";
-import PropTypes from "prop-types";
-import Panel from "../../../../shared/components/Panel";
+import React from 'react';
+import { withTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
+import Panel from '../../../../shared/components/Panel';
 
 const SuccessPanel = ({ t }) => (
   <Panel
@@ -9,7 +9,7 @@ const SuccessPanel = ({ t }) => (
     md={12}
     lg={6}
     color="success"
-    title={t("ui_elements.panels.success_panel")}
+    title={t('ui_elements.panels.success_panel')}
   >
     <p className="typography-message">
       Folly words widow one downs few age every seven. If miss part by fact he
@@ -25,4 +25,4 @@ SuccessPanel.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("common")(SuccessPanel);
+export default withTranslation('common')(SuccessPanel);

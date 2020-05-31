@@ -8,11 +8,18 @@ const Blockquote = ({ t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('ui_elements.typography.blockquote')}</h5>
-          <h5 className="subhead">Use default <span className="red-text">blockquote</span></h5>
+          <h5 className="bold-text">
+            {t('ui_elements.typography.blockquote')}
+          </h5>
+          <h5 className="subhead">
+            Use default <span className="red-text">blockquote</span>
+          </h5>
         </div>
         <blockquote>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+            posuere erat a ante.
+          </p>
         </blockquote>
       </CardBody>
     </Card>
@@ -20,7 +27,7 @@ const Blockquote = ({ t }) => (
 );
 
 Blockquote.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(Blockquote);

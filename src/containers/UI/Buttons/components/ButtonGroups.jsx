@@ -1,6 +1,11 @@
 import React from 'react';
 import {
-  Button, ButtonGroup, ButtonToolbar, Card, CardBody, Col,
+  Button,
+  ButtonGroup,
+  ButtonToolbar,
+  Card,
+  CardBody,
+  Col
 } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -14,16 +19,25 @@ const ButtonGroups = ({ t }) => (
         </div>
         <h5 className="bold-text">Icon group</h5>
         <div className="card__title">
-          <h5 className="subhead">Use default button group with class
+          <h5 className="subhead">
+            Use default button group with class
             <span className="red-text"> btn-group--icons</span>
           </h5>
         </div>
         <ButtonToolbar>
           <ButtonGroup className="btn-group--icons" dir="ltr">
-            <Button outline><span className="lnr lnr-pushpin" /></Button>
-            <Button outline><span className="lnr lnr-heart-pulse" /></Button>
-            <Button outline><span className="lnr lnr-cog" /></Button>
-            <Button outline><span className="lnr lnr-magic-wand" /></Button>
+            <Button outline>
+              <span className="lnr lnr-pushpin" />
+            </Button>
+            <Button outline>
+              <span className="lnr lnr-heart-pulse" />
+            </Button>
+            <Button outline>
+              <span className="lnr lnr-cog" />
+            </Button>
+            <Button outline>
+              <span className="lnr lnr-magic-wand" />
+            </Button>
           </ButtonGroup>
         </ButtonToolbar>
         <h5 className="bold-text">Large buttons</h5>
@@ -39,7 +53,8 @@ const ButtonGroups = ({ t }) => (
         </ButtonToolbar>
         <h5 className="bold-text">Justify buttons</h5>
         <div className="card__title">
-          <h5 className="subhead">Use default button group with class
+          <h5 className="subhead">
+            Use default button group with class
             <span className="red-text"> btn-group--justified</span>
           </h5>
         </div>
@@ -56,7 +71,7 @@ const ButtonGroups = ({ t }) => (
 );
 
 ButtonGroups.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(ButtonGroups);

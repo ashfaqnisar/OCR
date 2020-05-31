@@ -12,8 +12,12 @@ const BasicCarouselWithoutCaption = ({ t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('ui_elements.carousel.basic_carousel_without_caption')}</h5>
-          <h5 className="subhead">Use the component <span className="red-text">CarouselSingle</span></h5>
+          <h5 className="bold-text">
+            {t('ui_elements.carousel.basic_carousel_without_caption')}
+          </h5>
+          <h5 className="subhead">
+            Use the component <span className="red-text">CarouselSingle</span>
+          </h5>
         </div>
         <Carousel>
           <div>
@@ -35,7 +39,7 @@ const BasicCarouselWithoutCaption = ({ t }) => (
 );
 
 BasicCarouselWithoutCaption.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(BasicCarouselWithoutCaption);

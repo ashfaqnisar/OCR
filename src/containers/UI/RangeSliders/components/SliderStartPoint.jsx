@@ -9,8 +9,13 @@ const SliderStartPoint = ({ t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('ui_elements.range_sliders.slider_start_point')}</h5>
-          <h5 className="subhead">Use default slider with value of property <span className="red-text">value</span></h5>
+          <h5 className="bold-text">
+            {t('ui_elements.range_sliders.slider_start_point')}
+          </h5>
+          <h5 className="subhead">
+            Use default slider with value of property{' '}
+            <span className="red-text">value</span>
+          </h5>
         </div>
         <div dir="ltr">
           <Slider min={0} max={129} value={34} />
@@ -21,7 +26,7 @@ const SliderStartPoint = ({ t }) => (
 );
 
 SliderStartPoint.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(SliderStartPoint);

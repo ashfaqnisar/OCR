@@ -17,9 +17,12 @@ const TooltipsPopovers = ({ t, rtl }) => (
   <Container>
     <Row>
       <Col md={12}>
-        <h3 className="page-title">{t('ui_elements.tooltips_popovers.title')}</h3>
-        <h3 className="page-subhead subhead">Use this elements, if you want to show some hints or additional
-              information
+        <h3 className="page-title">
+          {t('ui_elements.tooltips_popovers.title')}
+        </h3>
+        <h3 className="page-subhead subhead">
+          Use this elements, if you want to show some hints or additional
+          information
         </h3>
       </Col>
     </Row>
@@ -38,9 +41,9 @@ const TooltipsPopovers = ({ t, rtl }) => (
 
 TooltipsPopovers.propTypes = {
   t: PropTypes.func.isRequired,
-  rtl: RTLProps.isRequired,
+  rtl: RTLProps.isRequired
 };
 
 export default connect(state => ({
-  rtl: state.rtl,
+  rtl: state.rtl
 }))(withTranslation('common')(TooltipsPopovers));

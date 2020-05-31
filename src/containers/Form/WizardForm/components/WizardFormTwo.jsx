@@ -16,7 +16,7 @@ const WizardFormTwo = ({ handleSubmit, previousPage }) => (
           type="text"
           options={[
             { value: 'one', label: 'One' },
-            { value: 'two', label: 'Two' },
+            { value: 'two', label: 'Two' }
           ]}
           placeholder="Select country"
         />
@@ -53,27 +53,32 @@ const WizardFormTwo = ({ handleSubmit, previousPage }) => (
     <div className="form__form-group">
       <span className="form__form-group-label">ZIP Code</span>
       <div className="form__form-group-field">
-        <Field
-          name="zip"
-          component="input"
-          type="text"
-        />
+        <Field name="zip" component="input" type="text" />
       </div>
     </div>
     <ButtonToolbar className="form__button-toolbar wizard__toolbar">
-      <Button color="primary" type="button" className="previous" onClick={previousPage}>Back</Button>
-      <Button color="primary" type="submit" className="next">Next</Button>
+      <Button
+        color="primary"
+        type="button"
+        className="previous"
+        onClick={previousPage}
+      >
+        Back
+      </Button>
+      <Button color="primary" type="submit" className="next">
+        Next
+      </Button>
     </ButtonToolbar>
   </form>
 );
 
 WizardFormTwo.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  previousPage: PropTypes.func.isRequired,
+  previousPage: PropTypes.func.isRequired
 };
 
 export default reduxForm({
   form: 'wizard', //                 <------ same form name
   destroyOnUnmount: false, //        <------ preserve form data
-  forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
+  forceUnregisterOnUnmount: true // <------ unregister fields on unmount
 })(WizardFormTwo);

@@ -6,14 +6,14 @@ import MinimalCollapse from './components/MinimalCollapse';
 import BoxedCollapse from './components/BoxedCollapse';
 import BoxedCollapseFullWidth from './components/BoxedCollapseFullWidth';
 
-
 const Collapse = ({ t }) => (
   <Container>
     <Row>
       <Col md={12}>
         <h3 className="page-title">{t('ui_elements.collapse.title')}</h3>
-        <h3 className="page-subhead subhead">Use this elements, if you want to show some hints or additional
-              information
+        <h3 className="page-subhead subhead">
+          Use this elements, if you want to show some hints or additional
+          information
         </h3>
       </Col>
     </Row>
@@ -26,7 +26,7 @@ const Collapse = ({ t }) => (
 );
 
 Collapse.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(Collapse);

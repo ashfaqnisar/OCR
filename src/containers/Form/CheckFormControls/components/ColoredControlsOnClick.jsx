@@ -11,8 +11,11 @@ const ColoredControlsOnClick = ({ handleSubmit, t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('forms.check_form_controls.colored_controls_on_click')}</h5>
-          <h5 className="subhead">Checkboxes and radio buttons. Use class
+          <h5 className="bold-text">
+            {t('forms.check_form_controls.colored_controls_on_click')}
+          </h5>
+          <h5 className="subhead">
+            Checkboxes and radio buttons. Use class
             <span className="red-text"> colored-click</span>
           </h5>
         </div>
@@ -217,9 +220,9 @@ const ColoredControlsOnClick = ({ handleSubmit, t }) => (
 
 ColoredControlsOnClick.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default reduxForm({
-  form: 'defaults_controls_colored_click', // a unique identifier for this form
+  form: 'defaults_controls_colored_click' // a unique identifier for this form
 })(withTranslation('common')(ColoredControlsOnClick));

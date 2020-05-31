@@ -51,9 +51,9 @@ const ColorPickers = ({ handleSubmit, t }) => (
 
 ColorPickers.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default reduxForm({
-  form: 'color_picker_form', // a unique identifier for this form
+  form: 'color_picker_form' // a unique identifier for this form
 })(withTranslation('common')(ColorPickers));

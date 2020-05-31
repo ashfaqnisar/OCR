@@ -8,13 +8,23 @@ const DefaultList = ({ t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('ui_elements.typography.default_list')}</h5>
-          <h5 className="subhead">Use default <span className="red-text">ul</span></h5>
+          <h5 className="bold-text">
+            {t('ui_elements.typography.default_list')}
+          </h5>
+          <h5 className="subhead">
+            Use default <span className="red-text">ul</span>
+          </h5>
         </div>
         <ul className="list">
-          <li><p>Nulla tellus elit, varius non commodo eget</p></li>
-          <li><p>Cum sociis natoque penatibus</p></li>
-          <li><p>Curabitur bibendum ornare dolor</p></li>
+          <li>
+            <p>Nulla tellus elit, varius non commodo eget</p>
+          </li>
+          <li>
+            <p>Cum sociis natoque penatibus</p>
+          </li>
+          <li>
+            <p>Curabitur bibendum ornare dolor</p>
+          </li>
         </ul>
       </CardBody>
     </Card>
@@ -22,7 +32,7 @@ const DefaultList = ({ t }) => (
 );
 
 DefaultList.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(DefaultList);

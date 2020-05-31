@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Card, CardBody, Col, Button, ButtonToolbar,
-} from 'reactstrap';
+import { Card, CardBody, Col, Button, ButtonToolbar } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import MaskedInput from 'react-text-mask';
 import { withTranslation } from 'react-i18next';
@@ -10,7 +8,14 @@ import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrect
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
 const renderField = ({
-  input, placeholder, type, mask, className, guide = true, pipe, keepCharPositions = false,
+  input,
+  placeholder,
+  type,
+  mask,
+  className,
+  guide = true,
+  pipe,
+  keepCharPositions = false
 }) => (
   <MaskedInput
     {...input}
@@ -32,12 +37,12 @@ renderField.propTypes = {
   className: PropTypes.string.isRequired,
   guide: PropTypes.bool.isRequired,
   keepCharPositions: PropTypes.bool.isRequired,
-  pipe: PropTypes.func.isRequired,
+  pipe: PropTypes.func.isRequired
 };
 
 renderField.defaultProps = {
   placeholder: '',
-  type: 'text',
+  type: 'text'
 };
 
 const maskDate = (dir, sep) => {
@@ -48,23 +53,38 @@ const maskDate = (dir, sep) => {
 };
 
 const autoCorrectedDatePipe = (dir, sep) => {
-  const format = dir === 'rtl' ? `yyyy${sep}mm${sep}dd` : `dd${sep}mm${sep}yyyy`;
+  const format =
+    dir === 'rtl' ? `yyyy${sep}mm${sep}dd` : `dd${sep}mm${sep}yyyy`;
   return createAutoCorrectedDatePipe(format);
 };
 
 const numberMask = createNumberMask({
   prefix: '$ ',
   allowDecimal: true,
-  allowLeadingZeroes: true,
+  allowLeadingZeroes: true
 });
 
-const ipMask = () => [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/];
+const ipMask = () => [
+  /\d/,
+  /\d/,
+  /\d/,
+  '.',
+  /\d/,
+  /\d/,
+  /\d/,
+  '.',
+  /\d/,
+  /\d/,
+  /\d/,
+  '.',
+  /\d/,
+  /\d/,
+  /\d/
+];
 
 const all = /[A-Za-z0-9]/;
 
-const MaskExamples = ({
-  handleSubmit, reset, t, dir,
-}) => (
+const MaskExamples = ({ handleSubmit, reset, t, dir }) => (
   <Col md={12} lg={12}>
     <Card>
       <CardBody>
@@ -73,32 +93,66 @@ const MaskExamples = ({
         </div>
         <form className="form" onSubmit={handleSubmit}>
           <div className="form__form-group">
-            <span className="form__form-group-label">Phone <span>(xxx)-xxx-xxxx</span></span>
+            <span className="form__form-group-label">
+              Phone <span>(xxx)-xxx-xxxx</span>
+            </span>
             <div className="form__form-group-field">
               <Field
                 name="phone"
                 component={renderField}
                 type="text"
-                mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                mask={[
+                  '(',
+                  /[1-9]/,
+                  /\d/,
+                  /\d/,
+                  ')',
+                  ' ',
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  '-',
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  /\d/
+                ]}
                 className="phone-input"
                 guide={false}
               />
             </div>
           </div>
           <div className="form__form-group">
-            <span className="form__form-group-label">Phone with code <span>+23 xxx xx xx</span></span>
+            <span className="form__form-group-label">
+              Phone with code <span>+23 xxx xx xx</span>
+            </span>
             <div className="form__form-group-field">
               <Field
                 name="phone_code"
                 component={renderField}
                 type="text"
-                mask={['+', '2', '3', ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, ' ', /\d/, /\d/]}
+                mask={[
+                  '+',
+                  '2',
+                  '3',
+                  ' ',
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  ' ',
+                  /\d/,
+                  /\d/,
+                  ' ',
+                  /\d/,
+                  /\d/
+                ]}
                 className="phone-input"
               />
             </div>
           </div>
           <div className="form__form-group">
-            <span className="form__form-group-label">Date
+            <span className="form__form-group-label">
+              Date
               <span>{`${dir === 'ltr' ? ' dd/mm/yyyy' : ' yyyy/mm/dd'}`}</span>
             </span>
             <div className="form__form-group-field">
@@ -113,7 +167,8 @@ const MaskExamples = ({
             </div>
           </div>
           <div className="form__form-group">
-            <span className="form__form-group-label">Date
+            <span className="form__form-group-label">
+              Date
               <span>{`${dir === 'ltr' ? ' dd-mm-yyyy' : ' yyyy-mm-dd'}`}</span>
             </span>
             <div className="form__form-group-field">
@@ -127,7 +182,9 @@ const MaskExamples = ({
             </div>
           </div>
           <div className="form__form-group">
-            <span className="form__form-group-label">Currency <span>$xxx,xxx,xxx.xx</span></span>
+            <span className="form__form-group-label">
+              Currency <span>$xxx,xxx,xxx.xx</span>
+            </span>
             <div className="form__form-group-field">
               <Field
                 name="currency"
@@ -139,18 +196,42 @@ const MaskExamples = ({
             </div>
           </div>
           <div className="form__form-group">
-            <span className="form__form-group-label">Licence key <span>xxxx-xxxx-xxxx-xxxx</span></span>
+            <span className="form__form-group-label">
+              Licence key <span>xxxx-xxxx-xxxx-xxxx</span>
+            </span>
             <div className="form__form-group-field">
               <Field
                 name="licence"
                 component={renderField}
                 type="text"
-                mask={[all, all, all, all, '-', all, all, all, all, '-', all, all, all, all, '-', all, all, all, all]}
+                mask={[
+                  all,
+                  all,
+                  all,
+                  all,
+                  '-',
+                  all,
+                  all,
+                  all,
+                  all,
+                  '-',
+                  all,
+                  all,
+                  all,
+                  all,
+                  '-',
+                  all,
+                  all,
+                  all,
+                  all
+                ]}
               />
             </div>
           </div>
           <div className="form__form-group">
-            <span className="form__form-group-label">IP Address <span>xxx.xxx.xxx.xxx</span></span>
+            <span className="form__form-group-label">
+              IP Address <span>xxx.xxx.xxx.xxx</span>
+            </span>
             <div className="form__form-group-field">
               <Field
                 name="ip"
@@ -163,9 +244,11 @@ const MaskExamples = ({
             </div>
           </div>
           <ButtonToolbar className="form__button-toolbar">
-            <Button color="primary" type="submit">Submit</Button>
+            <Button color="primary" type="submit">
+              Submit
+            </Button>
             <Button type="button" onClick={reset}>
-                  Cancel
+              Cancel
             </Button>
           </ButtonToolbar>
         </form>
@@ -178,9 +261,9 @@ MaskExamples.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  dir: PropTypes.string.isRequired,
+  dir: PropTypes.string.isRequired
 };
 
 export default reduxForm({
-  form: 'mask_examples', // a unique identifier for this form
+  form: 'mask_examples' // a unique identifier for this form
 })(withTranslation('common')(MaskExamples));

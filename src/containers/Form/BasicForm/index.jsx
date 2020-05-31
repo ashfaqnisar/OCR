@@ -11,8 +11,9 @@ const BasicForm = ({ t }) => (
     <Row>
       <Col md={12}>
         <h3 className="page-title">{t('forms.basic_form.title')}</h3>
-        <h3 className="page-subhead subhead">Use this elements, if you want to show some hints or additional
-              information
+        <h3 className="page-subhead subhead">
+          Use this elements, if you want to show some hints or additional
+          information
         </h3>
       </Col>
     </Row>
@@ -26,7 +27,7 @@ const BasicForm = ({ t }) => (
 );
 
 BasicForm.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(BasicForm);

@@ -9,7 +9,9 @@ const Timeline = ({ t }) => (
     <Row>
       <Col md={12}>
         <h3 className="page-title">{t('ui_elements.timeline.title')}</h3>
-        <h3 className="page-subhead subhead">This interface let you to see your activity history</h3>
+        <h3 className="page-subhead subhead">
+          This interface let you to see your activity history
+        </h3>
       </Col>
     </Row>
     <Row>
@@ -19,7 +21,7 @@ const Timeline = ({ t }) => (
 );
 
 Timeline.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(Timeline);

@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
-import {
-  Card, CardBody, Col, Button, ButtonToolbar,
-} from 'reactstrap';
+import { Card, CardBody, Col, Button, ButtonToolbar } from 'reactstrap';
 import { Field, reduxForm } from 'redux-form';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -12,17 +10,17 @@ class HorizontalForm extends PureComponent {
   static propTypes = {
     t: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    reset: PropTypes.func.isRequired,
+    reset: PropTypes.func.isRequired
   };
 
   constructor() {
     super();
     this.state = {
-      showPassword: false,
+      showPassword: false
     };
   }
 
-  showPassword = (e) => {
+  showPassword = e => {
     e.preventDefault();
     this.setState(prevState => ({ showPassword: !prevState.showPassword }));
   };
@@ -36,7 +34,9 @@ class HorizontalForm extends PureComponent {
         <Card>
           <CardBody>
             <div className="card__title">
-              <h5 className="bold-text">{t('forms.form_layouts.horizontal_form')}</h5>
+              <h5 className="bold-text">
+                {t('forms.form_layouts.horizontal_form')}
+              </h5>
               <h5 className="subhead">Labels are left from fields</h5>
             </div>
             <form className="form form--horizontal" onSubmit={handleSubmit}>
@@ -83,10 +83,13 @@ class HorizontalForm extends PureComponent {
                     placeholder="Password"
                   />
                   <button
-                    className={`form__form-group-button${showPassword ? ' active' : ''}`}
+                    className={`form__form-group-button${
+                      showPassword ? ' active' : ''
+                    }`}
                     type="button"
                     onClick={e => this.showPassword(e)}
-                  ><EyeIcon />
+                  >
+                    <EyeIcon />
                   </button>
                 </div>
               </div>
@@ -100,7 +103,9 @@ class HorizontalForm extends PureComponent {
                 </div>
               </div>
               <ButtonToolbar className="form__button-toolbar">
-                <Button color="primary" type="submit">Submit</Button>
+                <Button color="primary" type="submit">
+                  Submit
+                </Button>
                 <Button type="button" onClick={reset}>
                   Cancel
                 </Button>
@@ -114,5 +119,5 @@ class HorizontalForm extends PureComponent {
 }
 
 export default reduxForm({
-  form: 'horizontal_form_layout', // a unique identifier for this form
+  form: 'horizontal_form_layout' // a unique identifier for this form
 })(withTranslation('common')(HorizontalForm));

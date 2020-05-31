@@ -24,7 +24,7 @@ const showNotification = ({ notification, position }, rtl) => {
         duration: 5,
         closable: true,
         style: { top: 0, left: 0 },
-        className: `${position} ${rtl}-support`,
+        className: `${position} ${rtl}-support`
       });
       break;
     case 'right-up':
@@ -33,7 +33,7 @@ const showNotification = ({ notification, position }, rtl) => {
         duration: 5,
         closable: true,
         style: { top: 0, left: 'calc(100vw - 100%)' },
-        className: `${position} ${rtl}-support`,
+        className: `${position} ${rtl}-support`
       });
       break;
     default:
@@ -42,7 +42,7 @@ const showNotification = ({ notification, position }, rtl) => {
         duration: 5,
         closable: true,
         style: { top: 0, left: 0 },
-        className: `${position} ${rtl}-support`,
+        className: `${position} ${rtl}-support`
       });
       break;
   }
@@ -51,13 +51,22 @@ const showNotification = ({ notification, position }, rtl) => {
 class Notifications extends PureComponent {
   static propTypes = {
     t: PropTypes.func.isRequired,
-    rtl: RTLProps.isRequired,
+    rtl: RTLProps.isRequired
   };
 
   componentDidMount() {
-    NotificationSystem.newInstance({ style: { top: 65 } }, n => notificationLU = n);
-    NotificationSystem.newInstance({ style: { top: 65 } }, n => notificationRU = n);
-    NotificationSystem.newInstance({ style: { top: 65 } }, n => notificationTC = n);
+    NotificationSystem.newInstance(
+      { style: { top: 65 } },
+      n => (notificationLU = n)
+    );
+    NotificationSystem.newInstance(
+      { style: { top: 65 } },
+      n => (notificationRU = n)
+    );
+    NotificationSystem.newInstance(
+      { style: { top: 65 } },
+      n => (notificationTC = n)
+    );
   }
 
   componentWillUnmount() {
@@ -73,31 +82,34 @@ class Notifications extends PureComponent {
       <Container>
         <Row>
           <Col md={12}>
-            <h3 className="page-title">{t('ui_elements.notifications.title')}</h3>
-            <h3 className="page-subhead subhead">Use this elements, if you want to show some hints or additional
+            <h3 className="page-title">
+              {t('ui_elements.notifications.title')}
+            </h3>
+            <h3 className="page-subhead subhead">
+              Use this elements, if you want to show some hints or additional
               information
             </h3>
           </Col>
         </Row>
         <Row>
           <BasicNotifications
-            showNotification={
-              ({ notification, position }) => showNotification({ notification, position }, rtl.direction)
+            showNotification={({ notification, position }) =>
+              showNotification({ notification, position }, rtl.direction)
             }
           />
           <ImageNotifications
-            showNotification={
-              ({ notification, position }) => showNotification({ notification, position }, rtl.direction)
+            showNotification={({ notification, position }) =>
+              showNotification({ notification, position }, rtl.direction)
             }
           />
           <ColorStates
-            showNotification={
-              ({ notification, position }) => showNotification({ notification, position }, rtl.direction)
+            showNotification={({ notification, position }) =>
+              showNotification({ notification, position }, rtl.direction)
             }
           />
           <ColorStatesFullWidth
-            showNotification={
-              ({ notification, position }) => showNotification({ notification, position }, rtl.direction)
+            showNotification={({ notification, position }) =>
+              showNotification({ notification, position }, rtl.direction)
             }
           />
         </Row>
@@ -106,6 +118,9 @@ class Notifications extends PureComponent {
   }
 }
 
-export default compose(withTranslation('common'), connect(state => ({
-  rtl: state.rtl,
-})))(Notifications);
+export default compose(
+  withTranslation('common'),
+  connect(state => ({
+    rtl: state.rtl
+  }))
+)(Notifications);

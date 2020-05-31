@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react';
 import {
   ButtonToolbar,
   Card,
@@ -8,9 +8,9 @@ import {
   Popover,
   PopoverBody,
   PopoverHeader
-} from "reactstrap";
-import { withTranslation } from "react-i18next";
-import PropTypes from "prop-types";
+} from 'reactstrap';
+import { withTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 class PopoverLeft extends PureComponent {
   static propTypes = {
@@ -39,10 +39,10 @@ class PopoverLeft extends PureComponent {
           <CardBody>
             <div className="card__title">
               <h5 className="bold-text">
-                {t("ui_elements.tooltips_popovers.popover_on_left")}
+                {t('ui_elements.tooltips_popovers.popover_on_left')}
               </h5>
               <h5 className="subhead">
-                Use popover with placement{" "}
+                Use popover with placement{' '}
                 <span className="red-text">left</span>
               </h5>
             </div>
@@ -76,4 +76,4 @@ class PopoverLeft extends PureComponent {
   }
 }
 
-export default withTranslation("common")(PopoverLeft);
+export default withTranslation('common')(PopoverLeft);

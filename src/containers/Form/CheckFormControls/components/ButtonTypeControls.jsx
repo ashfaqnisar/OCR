@@ -11,8 +11,11 @@ const ButtonTypeControls = ({ handleSubmit, t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('forms.check_form_controls.button_type_controls')}</h5>
-          <h5 className="subhead">Checkboxes and radio buttons. Use class
+          <h5 className="bold-text">
+            {t('forms.check_form_controls.button_type_controls')}
+          </h5>
+          <h5 className="subhead">
+            Checkboxes and radio buttons. Use class
             <span className="red-text"> button</span>
           </h5>
         </div>
@@ -217,9 +220,9 @@ const ButtonTypeControls = ({ handleSubmit, t }) => (
 
 ButtonTypeControls.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default reduxForm({
-  form: 'button_type_controls', // a unique identifier for this form
+  form: 'button_type_controls' // a unique identifier for this form
 })(withTranslation('common')(ButtonTypeControls));

@@ -9,7 +9,9 @@ const SliderWithoutParams = ({ t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('ui_elements.range_sliders.slider_without_params')}</h5>
+          <h5 className="bold-text">
+            {t('ui_elements.range_sliders.slider_without_params')}
+          </h5>
           <h5 className="subhead">Use default slider</h5>
         </div>
         <div dir="ltr">
@@ -21,7 +23,7 @@ const SliderWithoutParams = ({ t }) => (
 );
 
 SliderWithoutParams.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(SliderWithoutParams);

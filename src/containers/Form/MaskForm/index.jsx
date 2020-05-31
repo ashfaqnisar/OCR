@@ -12,8 +12,9 @@ const MaskForm = ({ t, rtl }) => (
     <Row>
       <Col md={12}>
         <h3 className="page-title">{t('forms.mask_form.title')}</h3>
-        <h3 className="page-subhead subhead">Use this elements, if you want to show some hints or additional
-              information
+        <h3 className="page-subhead subhead">
+          Use this elements, if you want to show some hints or additional
+          information
         </h3>
       </Col>
     </Row>
@@ -25,9 +26,9 @@ const MaskForm = ({ t, rtl }) => (
 
 MaskForm.propTypes = {
   t: PropTypes.func.isRequired,
-  rtl: RTLProps.isRequired,
+  rtl: RTLProps.isRequired
 };
 
 export default connect(state => ({
-  rtl: state.rtl,
+  rtl: state.rtl
 }))(withTranslation('common')(MaskForm));

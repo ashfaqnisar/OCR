@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  ButtonToolbar, Card, CardBody, Col,
-} from 'reactstrap';
+import { ButtonToolbar, Card, CardBody, Col } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Modal from '../../../../shared/components/Modal';
@@ -11,7 +9,9 @@ const DefaultModals = ({ t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('ui_elements.modals.default_modals')}</h5>
+          <h5 className="bold-text">
+            {t('ui_elements.modals.default_modals')}
+          </h5>
           <h5 className="subhead">Use default modal</h5>
         </div>
         <ButtonToolbar>
@@ -50,7 +50,7 @@ const DefaultModals = ({ t }) => (
 );
 
 DefaultModals.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(DefaultModals);

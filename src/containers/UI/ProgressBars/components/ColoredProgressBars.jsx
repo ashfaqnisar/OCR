@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Card, CardBody, Col, Progress,
-} from 'reactstrap';
+import { Card, CardBody, Col, Progress } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
@@ -10,8 +8,11 @@ const ColoredProgressBars = ({ t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('ui_elements.progress_bars.colored_progress_bars')}</h5>
-          <h5 className="subhead">Use default progress with class
+          <h5 className="bold-text">
+            {t('ui_elements.progress_bars.colored_progress_bars')}
+          </h5>
+          <h5 className="subhead">
+            Use default progress with class
             <span className="red-text"> progress-wrap--yellow</span>,
             <span className="red-text"> progress-wrap--violet</span>,
             <span className="red-text"> progress-wrap--pink</span>,
@@ -39,7 +40,7 @@ const ColoredProgressBars = ({ t }) => (
 );
 
 ColoredProgressBars.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation('common')(ColoredProgressBars);

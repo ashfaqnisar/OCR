@@ -11,8 +11,11 @@ const ColoredControls = ({ handleSubmit, t }) => (
     <Card>
       <CardBody>
         <div className="card__title">
-          <h5 className="bold-text">{t('forms.check_form_controls.colored_controls')}</h5>
-          <h5 className="subhead">Checkboxes and radio buttons. Use class
+          <h5 className="bold-text">
+            {t('forms.check_form_controls.colored_controls')}
+          </h5>
+          <h5 className="subhead">
+            Checkboxes and radio buttons. Use class
             <span className="red-text"> colored</span>
           </h5>
         </div>
@@ -217,9 +220,9 @@ const ColoredControls = ({ handleSubmit, t }) => (
 
 ColoredControls.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default reduxForm({
-  form: 'colored_controls', // a unique identifier for this form
+  form: 'colored_controls' // a unique identifier for this form
 })(withTranslation('common')(ColoredControls));
