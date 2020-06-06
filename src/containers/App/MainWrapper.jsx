@@ -1,40 +1,25 @@
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { ThemeProps, RTLProps } from '../../shared/prop-types/ReducerProps';
 
-class MainWrapper extends PureComponent {
-  static propTypes = {
-    theme: ThemeProps.isRequired,
-    children: PropTypes.element.isRequired
-  };
+const MainWrapper = props => {
+  const theme = useSelector(state => state.theme);
+  const { uid } = useSelector(state => state.firebase.auth);
+  const { children } = props;
+  const history = useHistory();
 
-  render() {
-    const { theme, children } = this.props;
+  const wrapperClass = classNames({
+    wrapper: true
+  });
 
-    const wrapperClass = classNames({
-      wrapper: true
-    });
+  const direction = 'ltr';
 
-    const direction = 'ltr';
-
-    return (
-      <div
-        className={`${theme.className} ${direction}-support`}
-        dir={direction}
-      >
-        <div className={wrapperClass}>{children}</div>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    theme: state.theme
-  };
+  return (
+    <div className={`${theme.className} ${direction}-support`} dir={direction}>
+      <div className={wrapperClass}>{children}</div>
+    </div>
+  );
 };
 
-export default withRouter(connect(mapStateToProps)(MainWrapper));
+export default MainWrapper;
