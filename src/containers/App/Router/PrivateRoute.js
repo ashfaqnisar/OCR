@@ -9,7 +9,11 @@ const PrivateRoute = ({ component: Component, ...otherProps }) => {
     <Route
       {...otherProps}
       render={props =>
-        auth.uid ? <Component {...props} /> : <Redirect to={'/'} />
+        isLoaded(auth) && !isEmpty(auth) ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={'/'} />
+        )
       }
     />
   );
