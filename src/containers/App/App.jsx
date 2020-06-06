@@ -8,6 +8,9 @@ import Loading from '../../shared/components/Loading';
 import { ConnectedRouter } from 'connected-react-router';
 import store, { history } from '../../redux/store';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import { createFirestoreInstance } from 'redux-firestore';
+import { firebase } from '../../config';
 import { useState } from 'react';
 import { SWRConfig } from 'swr';
 import theme from '../../theme';
@@ -15,6 +18,18 @@ import theme from '../../theme';
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [loaded, setLoaded] = useState(false);
+
+  const rrfConfig = {
+    userProfile: 'users',
+    useFirestoreForProfile: true
+  };
+
+  const rrfProps = {
+    firebase,
+    config: rrfConfig,
+    dispatch: store.dispatch,
+    createFirestoreInstance
+  };
 
   useEffect(() => {
     window.addEventListener('load', () => {
@@ -25,16 +40,18 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <MuiThemeProvider theme={theme}>
-          {!loaded && <Loading loading={loading} />}
-          <div>
-            <SWRConfig value={{ refreshInterval: 5000 }}>
-              <Router />
-            </SWRConfig>
-          </div>
-        </MuiThemeProvider>
-      </ConnectedRouter>
+      <ReactReduxFirebaseProvider {...rrfProps}>
+        <ConnectedRouter history={history}>
+          <MuiThemeProvider theme={theme}>
+            {!loaded && <Loading loading={loading} />}
+            <div>
+              <SWRConfig value={{ refreshInterval: 5000 }}>
+                <Router />
+              </SWRConfig>
+            </div>
+          </MuiThemeProvider>
+        </ConnectedRouter>
+      </ReactReduxFirebaseProvider>
     </Provider>
   );
 };
