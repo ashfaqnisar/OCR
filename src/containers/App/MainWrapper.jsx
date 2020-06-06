@@ -8,21 +8,17 @@ import { ThemeProps, RTLProps } from '../../shared/prop-types/ReducerProps';
 class MainWrapper extends PureComponent {
   static propTypes = {
     theme: ThemeProps.isRequired,
-    rtl: RTLProps.isRequired,
-    children: PropTypes.element.isRequired,
-    location: PropTypes.shape({
-      pathname: PropTypes.string
-    }).isRequired
+    children: PropTypes.element.isRequired
   };
 
   render() {
-    const { theme, children, rtl, location } = this.props;
+    const { theme, children } = this.props;
 
     const wrapperClass = classNames({
       wrapper: true
     });
 
-    const direction = location.pathname === '/' ? 'ltr' : rtl.direction;
+    const direction = 'ltr';
 
     return (
       <div
@@ -37,8 +33,7 @@ class MainWrapper extends PureComponent {
 
 const mapStateToProps = state => {
   return {
-    theme: state.theme,
-    rtl: state.rtl
+    theme: state.theme
   };
 };
 
