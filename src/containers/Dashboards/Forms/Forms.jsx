@@ -15,7 +15,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const DocumentForm = ({ doc }) => {
   return (
-    <Grid item xs={12} sm={6} md={4} lg xl key={doc.id}>
+    <Grid item xs={6} sm={6} md={4} lg={2} xl={2} key={doc.id}>
       <Paper variant="outlined" elevation={2} style={{ width: '100%' }}>
         <Grid
           container
@@ -28,7 +28,7 @@ const DocumentForm = ({ doc }) => {
             <LazyLoadImage
               alt={doc.fileId}
               effect={'blur'}
-              src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${doc.fileId}.jpeg?or=0&w=240`}
+              src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${doc.fileId}.jpeg?or=0&w=180`}
             />
           </Grid>
           <Grid item>
@@ -62,10 +62,10 @@ const ApplicationForms = () => {
           direction={'row'}
           spacing={1}
         >
-          <Grid item xs={10} sm={9} md={10} lg={10} xl={11}>
+          <Grid item xs sm md lg xl>
             <h3 className="page-title">Application Forms</h3>
           </Grid>
-          <Grid item xs={12} sm={3} md={2} lg={2} xl={1}>
+          <Grid item>
             <Button
               color="primary"
               variant="contained"
