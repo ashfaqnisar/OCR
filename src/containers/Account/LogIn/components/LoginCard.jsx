@@ -1,35 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LogInForm from './LogInForm';
 import logo from '../../../../images/eslogo.svg';
-import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../shared/components/Loading';
-import { loginUser } from '../loginThunk';
 import { useFirebase } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
 
 const LoginCard = () => {
-  const dispatch = useDispatch();
-  const { state, error } = useSelector(state => state.user);
-
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const history = useHistory();
   const firebase = useFirebase();
-  const signInWithGoogle = () => {
+
+  const signInWithGoogle = (email, password) => {
+    setLoading(true);
     firebase
       .login({
-        provider: 'google',
-        type: 'popup'
+        email: email,
+        password: password
       })
-      .then(() => history.push('/home'));
+      .then(() => {
+        history.push('/home');
+        setLoading(false);
+      })
+      .catch(err => {
+        setLoading(false);
+        setError(err.message);
+      });
   };
 
   const onSubmitFireBase = ({ email, password }) => {
     event.preventDefault();
-    signInWithGoogle();
-    // dispatch(loginUser(email, password));
+    signInWithGoogle(email, password);
   };
 
-  return ['loading'].includes(state) ? (
-    <Loading loading={['initial', 'loading'].includes(state)} />
+  return loading ? (
+    <Loading loading={loading} />
   ) : (
     <div className="account__wrapper">
       <div className="account__card">

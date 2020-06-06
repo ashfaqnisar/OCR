@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Field, reduxForm, Form } from 'redux-form';
-import { connect } from 'react-redux';
 import EyeIcon from 'mdi-react/EyeIcon';
 import KeyVariantIcon from 'mdi-react/KeyVariantIcon';
 import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
@@ -63,7 +62,7 @@ class LogInForm extends PureComponent {
     return (
       <Form className="form login-form" onSubmit={handleSubmit}>
         <Alert color="danger" isOpen={!!errorMessage || !!errorMsg}>
-          {errorMsg}
+          {errorMsg || errorMessage}
         </Alert>
         <div className="form__form-group">
           <span className="form__form-group-label">{fieldUser}</span>
@@ -120,11 +119,7 @@ class LogInForm extends PureComponent {
   }
 }
 
-export default connect(state => ({
-  errorMsg: state.user.error
-}))(
-  reduxForm({
-    name: 'the_login_form',
-    validate
-  })(withRouter(LogInForm))
-);
+export default reduxForm({
+  name: 'the_login_form',
+  validate
+})(withRouter(LogInForm));
