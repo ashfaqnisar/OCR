@@ -10,6 +10,35 @@ import {
   Grid,
   Paper
 } from '@material-ui/core';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
+const DocumentForm = ({ doc }) => {
+  return (
+    <Grid item xs={12} sm={6} md={4} lg xl key={doc.id}>
+      <Paper variant="outlined" elevation={2} style={{ width: '100%' }}>
+        <Grid
+          container
+          justify={'center'}
+          alignItems={'center'}
+          direction={'column'}
+          spacing={2}
+        >
+          <Grid item>
+            <LazyLoadImage
+              alt={doc.fileId}
+              effect={'blur'}
+              src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${doc.fileId}.jpeg?or=0&w=240`}
+            />
+          </Grid>
+          <Grid item>
+            <p>{doc.uploadedFile}</p>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Grid>
+  );
+};
 
 const ApplicationForms = () => {
   const { uid } = useSelector(state => state.user.data);
@@ -21,7 +50,6 @@ const ApplicationForms = () => {
   const uploadDocument = () => {
     console.log('Document Uploaded');
   };
-  const fetchPreviousDocument = () => {};
 
   return (
     <Container maxWidth={'xl'}>
@@ -71,25 +99,7 @@ const ApplicationForms = () => {
                     spacing={2}
                   >
                     {documents.data.map(doc => (
-                      <Grid item xs={12} sm={6} md={4} lg xl key={doc.ocrId}>
-                        <Paper
-                          variant="outlined"
-                          elevation={2}
-                          style={{ width: '100%' }}
-                        >
-                          <Grid
-                            container
-                            justify={'center'}
-                            alignItems={'center'}
-                            direction={'column'}
-                            spacing={2}
-                          >
-                            <Grid item>
-                              <p>{doc.input}</p>
-                            </Grid>
-                          </Grid>
-                        </Paper>
-                      </Grid>
+                      <DocumentForm doc={doc} />
                     ))}
                   </Grid>
                 </CardContent>
