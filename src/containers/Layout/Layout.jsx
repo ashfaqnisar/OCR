@@ -40,9 +40,9 @@ class Layout extends Component {
       layout: true,
       'layout--collapse': sidebar.collapse
     });
-    if (!user.uid) {
-      return <Redirect to={'/login'} />;
-    }
+    // if (!user.uid) {
+    //   return <Redirect to={'/login'} />;
+    // }
     return (
       <div className={layoutClass}>
         <Topbar

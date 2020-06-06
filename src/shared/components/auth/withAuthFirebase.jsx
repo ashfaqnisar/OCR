@@ -34,7 +34,7 @@ function withAuthFirebase(WrappedComponent) {
         .signInWithEmailAndPassword(username, password)
         .then(res => {
           dispatch(auth({ name: res.user.email }));
-          history.push('/dashboard_mobile_app');
+          history.push('/home');
           this.setState({ isOpen: false });
         })
         .catch(error => {
@@ -49,11 +49,11 @@ function withAuthFirebase(WrappedComponent) {
         .auth()
         .signInWithPopup(provider)
         .then(res => {
-          localStorage.setItem('easydev', res.credential.accessToken);
+          localStorage.setItem('esocr', res.credential.accessToken);
           dispatch(
             auth({ name: res.user.displayName, avatar: res.user.photoURL })
           );
-          history.push('/dashboard_mobile_app');
+          history.push('/home');
         })
         .catch(error => {
           dispatch(authError(error.message));
@@ -67,11 +67,11 @@ function withAuthFirebase(WrappedComponent) {
         .auth()
         .signInWithPopup(provider)
         .then(res => {
-          localStorage.setItem('easydev', res.credential.accessToken);
+          localStorage.setItem('esocr', res.credential.accessToken);
           dispatch(
             auth({ name: res.user.displayName, avatar: res.user.photoURL })
           );
-          history.push('/dashboard_mobile_app');
+          history.push('/home');
         })
         .catch(error => {
           dispatch(authError(error.message));
