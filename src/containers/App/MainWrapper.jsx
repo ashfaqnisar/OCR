@@ -6,17 +6,11 @@ import { isLoaded, isEmpty } from 'react-redux-firebase';
 
 const MainWrapper = props => {
   const theme = useSelector(state => state.theme);
-  const auth = useSelector(state => state.firebase.auth);
   const { children } = props;
-  const history = useHistory();
 
   const wrapperClass = classNames({
     wrapper: true
   });
-
-  if (isLoaded(auth) && !isEmpty(auth)) {
-    history.push('/home');
-  }
 
   const direction = 'ltr';
 
