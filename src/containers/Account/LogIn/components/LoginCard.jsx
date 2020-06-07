@@ -19,8 +19,8 @@ const LoginCard = () => {
         password: password
       })
       .then(() => {
-        history.push('/home');
         setLoading(false);
+        history.push('/home');
       })
       .catch(err => {
         setLoading(false);

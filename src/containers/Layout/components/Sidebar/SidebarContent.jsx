@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import SidebarLink from './SidebarLink';
 
 const SidebarContent = props => {

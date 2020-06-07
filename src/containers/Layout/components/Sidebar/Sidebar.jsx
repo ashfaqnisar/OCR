@@ -4,10 +4,10 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import SidebarContent from './SidebarContent';
 import { SidebarProps } from '../../../../shared/prop-types/ReducerProps';
-import firebase from '../../../../config/firebase';
 import { useDispatch } from 'react-redux';
 import { signOutUser } from '../../../../redux/actions/loginActions';
 import { history } from '../../../../redux/store';
+import { useFirebase } from 'react-redux-firebase';
 
 const Sidebar = ({
   changeToDark,
@@ -21,13 +21,13 @@ const Sidebar = ({
     'sidebar--collapse': sidebar.collapse
   });
   const dispatch = useDispatch();
+  const firebase = useFirebase();
 
   const firebaseSignOut = () => {
     firebase
-      .auth()
-      .signOut()
+      .logout()
       .then(() => {
-        dispatch(signOutUser());
+        // dispatch(signOutUser());
         history.push('/login');
       })
       .catch(error => {
