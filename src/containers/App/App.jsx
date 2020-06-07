@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { hot } from 'react-hot-loader';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../scss/app.scss';
@@ -8,17 +8,13 @@ import Loading from '../../shared/components/Loading';
 import { ConnectedRouter } from 'connected-react-router';
 import store, { history } from '../../redux/store';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import { isLoaded, ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { createFirestoreInstance } from 'redux-firestore';
 import { firebase } from '../../config';
-import { useState } from 'react';
 import { SWRConfig } from 'swr';
 import theme from '../../theme';
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
-  const [loaded, setLoaded] = useState(false);
-
   const rrfConfig = {
     userProfile: 'users',
     useFirestoreForProfile: true
@@ -31,24 +27,22 @@ const App = () => {
     createFirestoreInstance
   };
 
-  useEffect(() => {
-    window.addEventListener('load', () => {
-      setLoading(false);
-      setTimeout(() => setLoaded(true), 300);
-    });
-  }, []);
+  const AuthIsLoaded = ({ children }) => {
+    const auth = useSelector(state => state.firebase.auth);
+    if (!isLoaded(auth)) return <Loading loading={!isLoaded(auth)} />;
+    return children;
+  };
 
   return (
     <Provider store={store}>
       <ReactReduxFirebaseProvider {...rrfProps}>
         <ConnectedRouter history={history}>
           <MuiThemeProvider theme={theme}>
-            {!loaded && <Loading loading={loading} />}
-            <div>
+            <AuthIsLoaded>
               <SWRConfig value={{ refreshInterval: 5000 }}>
                 <Router />
               </SWRConfig>
-            </div>
+            </AuthIsLoaded>
           </MuiThemeProvider>
         </ConnectedRouter>
       </ReactReduxFirebaseProvider>
