@@ -25,13 +25,3 @@ export const UserProps = shape({
   fullName: string,
   avatar: string
 });
-
-export const AuthOProps = shape({
-  isAuthenticated: bool,
-  loading: bool,
-  user: shape({
-    name: string,
-    picture: string
-  }),
-  logout: func
-});

@@ -12,10 +12,28 @@ import {
 } from '@material-ui/core';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  documentForm: {
+    cursor: 'pointer'
+  }
+});
 
 const DocumentForm = ({ doc }) => {
+  const classes = useStyles();
+  const toggleToolTip = () => console.log(`This is ${doc.fileId} id document`);
   return (
-    <Grid item xs={12} sm={6} md={4} lg xl key={doc.id}>
+    <Grid
+      item
+      xs={6}
+      sm={6}
+      md={4}
+      lg={2}
+      xl={2}
+      className={classes.documentForm}
+      onClick={toggleToolTip}
+    >
       <Paper variant="outlined" elevation={2} style={{ width: '100%' }}>
         <Grid
           container
@@ -28,7 +46,7 @@ const DocumentForm = ({ doc }) => {
             <LazyLoadImage
               alt={doc.fileId}
               effect={'blur'}
-              src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${doc.fileId}.jpeg?or=0&w=240`}
+              src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${doc.fileId}.jpeg?or=0&w=180`}
             />
           </Grid>
           <Grid item>
@@ -62,10 +80,10 @@ const ApplicationForms = () => {
           direction={'row'}
           spacing={1}
         >
-          <Grid item xs={10} sm={9} md={10} lg={10} xl={11}>
+          <Grid item xs sm md lg xl>
             <h3 className="page-title">Application Forms</h3>
           </Grid>
-          <Grid item xs={12} sm={3} md={2} lg={2} xl={1}>
+          <Grid item>
             <Button
               color="primary"
               variant="contained"
@@ -99,7 +117,7 @@ const ApplicationForms = () => {
                     spacing={2}
                   >
                     {documents.data.map(doc => (
-                      <DocumentForm doc={doc} />
+                      <DocumentForm doc={doc} key={doc.id} />
                     ))}
                   </Grid>
                 </CardContent>
@@ -109,54 +127,6 @@ const ApplicationForms = () => {
         </Grid>
       </Grid>
     </Container>
-
-    /*<div>
-              <Container className="dashboard">
-                <Row>
-                  <Col sm={6} md={8} lg={10} xl={10}>
-                    <h3 className="page-title">Application Forms</h3>
-                  </Col>
-                  <Col xs={12} sm={6} md={4} lg={2} xl={2}>
-                    <Button color="primary" onClick={uploadDocument}>
-                      New Form
-                    </Button>
-                  </Col>
-                </Row>
-                <Row>
-                  {error ? (
-                    <>
-                      <Col>
-                        <p>Error: {error.message}</p>
-                      </Col>
-                    </>
-                  ) : !documents ? (
-                    <>Loading</>
-                  ) : (
-                    documents.data.map(doc => (
-                      <Col lg={3} key={doc.ocrId}>
-                        <div>
-                          <p>{doc.input}</p>
-                        </div>
-                      </Col>
-                    ))
-                    /!*<Grid
-                      container
-                      justify="space-between"
-                      alignItems={'center'}
-                      direction="row"
-                    >
-                      {documents.data.map(doc => (
-                        <Grid item key={doc.ocrId}>
-                          <div>
-                            <p>{doc.input}</p>
-                          </div>
-                        </Grid>
-                      ))}
-                    </Grid>*!/
-                  )}
-                </Row>
-              </Container>
-            </div>*/
   );
 };
 

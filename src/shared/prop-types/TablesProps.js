@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 
-const {
-  string, shape, arrayOf, number,
-} = PropTypes;
+const { string, shape, arrayOf, number } = PropTypes;
 
 export const CryptoRowProps = shape({
   name: string,
@@ -11,7 +9,7 @@ export const CryptoRowProps = shape({
   volume: string,
   supply: string,
   change: string,
-  chart: string,
+  chart: string
 });
 
 export const CryptoTableProps = arrayOf(CryptoRowProps);
@@ -21,7 +19,7 @@ export const NewOrderRowProps = shape({
   quantity: number,
   sold: number,
   total: string,
-  img: string,
+  img: string
 });
 
 export const NewOrderTableProps = arrayOf(NewOrderRowProps);
