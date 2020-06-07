@@ -59,7 +59,7 @@ const DocumentForm = ({ doc }) => {
 };
 
 const ApplicationForms = () => {
-  const { uid } = useSelector(state => state.user.data);
+  const { uid } = useSelector(state => state.firebase.auth);
   const fetcher = url => axios({ method: 'get', url: url });
   const { data: documents, error } = useSWR(`/ocr/?uid=${uid}`, fetcher, {
     refreshInterval: 10000
