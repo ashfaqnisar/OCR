@@ -47,7 +47,7 @@ class RegisterForm extends PureComponent {
     const { showPassword } = this.state;
 
     return (
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form register-form" onSubmit={handleSubmit}>
         <Alert color="danger" isOpen={!!errorMessage}>
           {errorMessage}
         </Alert>
@@ -76,21 +76,6 @@ class RegisterForm extends PureComponent {
               component={renderField}
               type="email"
               placeholder="example@mail.com"
-              required
-            />
-          </div>
-        </div>
-        <div className="form__form-group">
-          <span className="form__form-group-label">Phone Number</span>
-          <div className="form__form-group-field">
-            <div className="form__form-group-icon">
-              <CallIcon />
-            </div>
-            <Field
-              name="number"
-              component={renderField}
-              type="phone"
-              placeholder="9999999999"
               required
             />
           </div>

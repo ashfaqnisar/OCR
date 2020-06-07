@@ -1,22 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import RegisterForm from '../../../shared/components/login/RegisterForm';
 import logo from '../../../images/eslogo.svg';
 import Loading from '../../../shared/components/Loading';
-import { registerUser } from './registerThunk';
+import { useFirebase } from 'react-redux-firebase';
 
 const Register = () => {
-  const dispatch = useDispatch();
+  const firebase = useFirebase();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const history = useHistory();
+  const createNewUser = ({ email, password, name }) => {
+    setLoading(true);
+    firebase
+      .createUser({ email, password }, { name, email })
+      .then(() => {
+        setLoading(false);
+        history.push('/home');
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false);
+      });
+  };
   const onSubmitRegisterUser = user => {
     event.preventDefault();
-    dispatch(registerUser(user));
+    console.log({ ...user });
+    createNewUser(user);
   };
 
-  const { error, state } = useSelector(state => state.register);
-  return ['loading'].includes(state) ? (
-    <Loading loading={['initial', 'loading'].includes(state)} />
+  return loading ? (
+    <Loading loading={loading} />
   ) : (
     <div className="account account--not-photo">
       <div className="account__wrapper">
