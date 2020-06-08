@@ -22,7 +22,6 @@ const TopbarProfile = () => {
   };
 
   const { profile, auth } = useSelector(state => state.firebase);
-  // const auth = useSelector(state => state.firebase.auth);
 
   return (
     <div className="topbar__profile">
@@ -42,7 +41,9 @@ const TopbarProfile = () => {
             )}
           </Avatar>
         )}
-        <p className="topbar__avatar-name">{'Loading....'}</p>
+        <p className="topbar__avatar-name">
+          {auth.displayName || profile.name}
+        </p>
         <DownIcon className="topbar__icon" />
       </button>
       {isCollapseOpen && (
@@ -57,7 +58,7 @@ const TopbarProfile = () => {
           <TopbarMenuLink
             title="Account Settings"
             icon="cog"
-            path="#"
+            path="/settings"
             onClick={toggleCollapse}
           />
 
@@ -72,70 +73,5 @@ const TopbarProfile = () => {
     </div>
   );
 };
-
-// class TopbarProfile extends PureComponent {
-//   static propTypes = {
-//     user: UserProps.isRequired
-//   };
-//
-//   state = {
-//     collapse: false
-//   };
-//
-//   toggle = () => {
-//     this.setState(prevState => ({ collapse: !prevState.collapse }));
-//   };
-//
-//   render() {
-//     const { user } = this.props;
-//     const { collapse } = this.state;
-//
-//     return (
-//       <>
-//         <div className="topbar__profile">
-//           <button
-//             className="topbar__avatar"
-//             type="button"
-//             onClick={this.toggle}
-//           >
-//             <img
-//               className="topbar__avatar-img"
-//               src={user.avatar || Ava}
-//               alt="avatar"
-//             />
-//             <p className="topbar__avatar-name">
-//               {user.name ? user.name : 'Loading....'}
-//             </p>
-//             <DownIcon className="topbar__icon" />
-//           </button>
-//           {collapse && (
-//             <button
-//               className="topbar__back"
-//               type="button"
-//               onClick={this.toggle}
-//             />
-//           )}
-//           <Collapse isOpen={collapse} className="topbar__menu-wrap">
-//             <div className="topbar__menu">
-//               <TopbarMenuLink
-//                 title="Account Settings"
-//                 icon="cog"
-//                 path="#"
-//                 onClick={this.toggle}
-//               />
-//
-//               <TopbarMenuLink
-//                 title="Log Out"
-//                 icon="exit"
-//                 path="/login"
-//                 onClick={this.logout}
-//               />
-//             </div>
-//           </Collapse>
-//         </div>
-//       </>
-//     );
-//   }
-// }
 
 export default TopbarProfile;
