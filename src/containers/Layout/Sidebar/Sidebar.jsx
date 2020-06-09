@@ -1,10 +1,7 @@
 import React from 'react';
 import Scrollbar from 'react-smooth-scrollbar';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import SidebarContent from './SidebarContent';
-import { SidebarProps } from '../../../shared/prop-types/ReducerProps';
-import { useDispatch } from 'react-redux';
 import { history } from '../../../redux/store';
 import { useFirebase } from 'react-redux-firebase';
 
