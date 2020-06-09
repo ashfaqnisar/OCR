@@ -42,7 +42,7 @@ const TopbarProfile = () => {
           </Avatar>
         )}
         <p className="topbar__avatar-name">
-          {auth.displayName || profile.name}
+          {auth.displayName || profile.name || 'User'}
         </p>
         <DownIcon className="topbar__icon" />
       </button>
