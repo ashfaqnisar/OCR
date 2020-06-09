@@ -19,3 +19,4 @@ TopbarMenuLinks.propTypes = {
   path: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired
 };
+export default TopbarMenuLinks;
