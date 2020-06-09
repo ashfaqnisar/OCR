@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Provider, useSelector } from 'react-redux';
 import { hot } from 'react-hot-loader';
 import 'bootstrap/dist/css/bootstrap.css';

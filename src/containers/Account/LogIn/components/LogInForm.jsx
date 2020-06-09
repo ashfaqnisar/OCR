@@ -6,7 +6,7 @@ import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Alert, Button } from 'reactstrap';
-import validate from '../../../Form/FormValidation/components/validate';
+import validate from '../../../Form/FormValidation/validate';
 
 const renderField = ({
   input,

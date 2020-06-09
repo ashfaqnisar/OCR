@@ -1,69 +1,44 @@
-import React, { Component } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
-import { Topbar, Sidebar } from './components';
+import { Topbar } from './Topbar';
+import { Sidebar } from './Sidebar';
 
 import {
   changeMobileSidebarVisibility,
   changeSidebarVisibility
 } from '../../redux/actions/sidebarActions';
 
-import {
-  SidebarProps,
-  ThemeProps,
-  UserProps
-} from '../../shared/prop-types/ReducerProps';
+const Layout = () => {
+  const dispatch = useDispatch();
 
-class Layout extends Component {
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    sidebar: SidebarProps.isRequired,
-    theme: ThemeProps.isRequired,
-    user: UserProps.isRequired
-  };
-
-  changeSidebarVisibility = () => {
-    const { dispatch } = this.props;
+  const sidebar = useSelector(state => state.sidebar);
+  const changeSidebar = () => {
     dispatch(changeSidebarVisibility());
   };
 
-  changeMobileSidebarVisibility = () => {
-    const { dispatch } = this.props;
+  const changeMobileSidebar = () => {
     dispatch(changeMobileSidebarVisibility());
   };
 
-  render() {
-    const { sidebar, user } = this.props;
-    const layoutClass = classNames({
-      layout: true,
-      'layout--collapse': sidebar.collapse
-    });
-    // if (!user.uid) {
-    //   return <Redirect to={'/login'} />;
-    // }
-    return (
-      <div className={layoutClass}>
-        <Topbar
-          changeMobileSidebarVisibility={this.changeMobileSidebarVisibility}
-          changeSidebarVisibility={this.changeSidebarVisibility}
-          user={user}
-        />
+  const layoutClass = classNames({
+    layout: true,
+    'layout--collapse': sidebar.collapse
+  });
 
-        <Sidebar
-          sidebar={sidebar}
-          changeMobileSidebarVisibility={this.changeMobileSidebarVisibility}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className={layoutClass}>
+      <Topbar
+        changeMobileSidebarVisibility={changeMobileSidebar}
+        changeSidebarVisibility={changeSidebar}
+      />
 
-export default withRouter(
-  connect(state => ({
-    sidebar: state.sidebar,
-    theme: state.theme,
-    user: state.user.data
-  }))(Layout)
-);
+      <Sidebar
+        sidebar={sidebar}
+        changeMobileSidebarVisibility={changeMobileSidebar}
+      />
+    </div>
+  );
+};
+
+export default Layout;

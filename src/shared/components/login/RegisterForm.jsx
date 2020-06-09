@@ -4,10 +4,9 @@ import EyeIcon from 'mdi-react/EyeIcon';
 import KeyVariantIcon from 'mdi-react/KeyVariantIcon';
 import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
 import MailRuIcon from 'mdi-react/MailRuIcon';
-import CallIcon from 'mdi-react/PhoneIcon';
 import { Button, Alert } from 'reactstrap';
 import PropTypes from 'prop-types';
-import validate from '../../../containers/Form/FormValidation/components/validate';
+import validate from '../../../containers/Form/FormValidation/validate';
 
 const renderField = ({
   input,
