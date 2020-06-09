@@ -6,7 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import UserIcon from '@material-ui/icons/Person';
 import { useSelector } from 'react-redux';
-import { isBlank } from '../../../../shared/components/Beautifier';
+import { isBlank } from '../../../shared/components/Beautifier';
 
 const useStyles = makeStyles(theme => ({
   avatar: {
