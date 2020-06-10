@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   Button,
+  Container,
   Dialog,
   DialogActions,
   DialogContent,
@@ -8,11 +9,16 @@ import {
   FormControl,
   Select,
   TextField,
-  Typography
+  Typography,
+  Grid,
+  Divider
 } from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import Chip from '@material-ui/core/Chip';
+
 import moment from 'moment';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 const DetailedDocumentDialog = props => {
   const { open, toggleDialog, document } = props;
@@ -52,33 +58,86 @@ const DetailedDocumentDialog = props => {
       year: 4
     }
   ];
-  const blockOptions = [
-    {
-      title: 'North Block',
-      block: 'N'
-    },
-    {
-      title: 'South Block',
-      block: 'S'
-    },
-    {
-      title: 'Central Block',
-      block: 'C'
-    },
-    {
-      title: 'East Block',
-      block: 'E'
-    }
-  ];
+
+  const [view, setView] = useState('json');
+  const handleViewChange = (event, newView) => setView(newView);
 
   return (
-    <Dialog open={open} onClose={toggleDialog} fullWidth={true} maxWidth="sm">
+    <Dialog open={open} onClose={toggleDialog} fullWidth={true} maxWidth="md">
       {console.log({ ...document })}
       <DialogTitle>
-        <Typography variant="h6">New Exam</Typography>
+        <Typography variant="h6">
+          Document: {document['uploadedFile']}
+        </Typography>
       </DialogTitle>
       <DialogContent dividers>
-        <div className="form">
+        <Container maxWidth={'md'}>
+          <Grid
+            container
+            alignItems={'flex-start'}
+            justify={'space-evenly'}
+            spacing={1}
+          >
+            <Grid
+              item
+              container
+              xs={12}
+              sm
+              md
+              lg
+              xl
+              justify={'center'}
+              alignItems="center"
+              direction={'column'}
+              style={{ border: 'solid red' }}
+            >
+              <Grid item>
+                <LazyLoadImage
+                  alt={document['fileId']}
+                  effect={'blur'}
+                  src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${document['fileId']}.jpeg?or=0&w=500`}
+                />
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm
+              md
+              lg
+              xl
+              container
+              direction={'column'}
+              justify={'center'}
+              alignItems={'center'}
+              style={{ border: 'solid red' }}
+            >
+              <Grid
+                item
+                xs
+                sm
+                lg
+                md
+                xl
+                container
+                justify={'flex-start'}
+                alignItems={'center'}
+                direction={'row'}
+              >
+                <ToggleButtonGroup
+                  size={'medium'}
+                  value={view}
+                  exclusive
+                  onChange={handleViewChange}
+                >
+                  <ToggleButton value={'json'}>JSON</ToggleButton>
+                  <ToggleButton value={'table'}>Table</ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Container>
+        {/*<div className="form">
           <div className="form__form-group">
             <span className="form__form-group-label typography-message">
               Exam Type
@@ -214,7 +273,7 @@ const DetailedDocumentDialog = props => {
               />
             </div>
           </div>
-        </div>
+        </div>*/}
       </DialogContent>
       <DialogActions>
         <Button autoFocus color="primary" onClick={handleTheNewExam}>

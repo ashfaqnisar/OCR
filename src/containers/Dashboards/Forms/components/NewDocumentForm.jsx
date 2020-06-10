@@ -13,8 +13,6 @@ import {
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Chip from '@material-ui/core/Chip';
 import moment from 'moment';
-import axios from 'axios';
-//Test Example
 
 const ExamForm = props => {
   const { open, toggleDialog } = props;
