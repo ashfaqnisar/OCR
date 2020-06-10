@@ -140,7 +140,6 @@ const DetailedDocumentDialog = props => {
               direction={'column'}
               justify={'flex-start'}
               alignItems={'center'}
-              style={{ border: 'solid red' }}
             >
               <Grid
                 item
@@ -149,7 +148,6 @@ const DetailedDocumentDialog = props => {
                 lg={12}
                 md
                 xl={12}
-                style={{ border: 'solid yellow' }}
               >
                 <ToggleButtonGroup
                   size={'medium'}
@@ -169,9 +167,6 @@ const DetailedDocumentDialog = props => {
                 lg
                 md
                 xl
-                style={{
-                  border: 'solid yellow'
-                }}
               >
                 {view === 'form' ? (
                   <Element
