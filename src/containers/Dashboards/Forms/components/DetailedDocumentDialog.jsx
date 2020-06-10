@@ -141,14 +141,7 @@ const DetailedDocumentDialog = props => {
               justify={'flex-start'}
               alignItems={'center'}
             >
-              <Grid
-                item
-                xs
-                sm
-                lg={12}
-                md
-                xl={12}
-              >
+              <Grid item xs sm lg={12} md xl={12}>
                 <ToggleButtonGroup
                   size={'medium'}
                   value={view}
@@ -160,14 +153,7 @@ const DetailedDocumentDialog = props => {
                   <ToggleButton value={'table'}>Table</ToggleButton>
                 </ToggleButtonGroup>
               </Grid>
-              <Grid
-                item
-                xs
-                sm
-                lg
-                md
-                xl
-              >
+              <Grid item xs sm lg md xl>
                 {view === 'form' ? (
                   <Element
                     style={{
