@@ -6,7 +6,7 @@ import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
 import MailRuIcon from 'mdi-react/MailRuIcon';
 import { Button, Alert } from 'reactstrap';
 import PropTypes from 'prop-types';
-import validate from '../../../containers/Form/FormValidation/validate';
+import validate from '../../../Form/FormValidation/validate';
 
 const renderField = ({
   input,

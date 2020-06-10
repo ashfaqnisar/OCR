@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import RegisterForm from '../../../shared/components/login/RegisterForm';
+import RegisterForm from './components/RegisterForm';
 import logo from '../../../images/eslogo.svg';
 import Loading from '../../../shared/components/Loading';
 import { useFirebase } from 'react-redux-firebase';
