@@ -79,7 +79,7 @@ const Forms = () => {
     setNewFormDialog(!isNewFormOpen);
   };
   const toggleDetailedDocumentDialog = () => {
-    setNewFormDialog(!isNewFormOpen);
+    setDetailedDocumentDialog(!isDetailedDocumentOpen);
   };
 
   return (

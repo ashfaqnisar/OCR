@@ -13,23 +13,11 @@ import {
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Chip from '@material-ui/core/Chip';
 import moment from 'moment';
-import axios from 'axios';
-//Test Example
 
 const DetailedDocumentDialog = props => {
   const { open, toggleDialog, document } = props;
-  const initialFormData = {
-    examType: 'mid',
-    midType: 1,
-    startDate: moment().toISOString(),
-    semType: 1,
-    endDate: moment()
-      .add(3, 'days')
-      .toISOString(),
-    blocks: [],
-    studentsYear: []
-  };
-  const [formData, setFormData] = useState(initialFormData);
+
+  const [formData, setFormData] = useState({});
 
   const handleTheFormChange = event => {
     const object = { [event.target.name]: event.target.value };
@@ -37,18 +25,7 @@ const DetailedDocumentDialog = props => {
   };
 
   const handleTheNewExam = async () => {
-    try {
-      const response = await axios({
-        method: 'post',
-        url: 'https://college-erp-ezerka.firebaseapp.com/api/v1/exams',
-        data: formData
-      });
-      console.log('Success');
-    } catch (e) {
-      console.log(e.message);
-    }
-    toggleDialog();
-    setFormData({ ...initialFormData });
+    console.log('clicked on create button');
   };
 
   const handleTheDateChange = (date, name) => {

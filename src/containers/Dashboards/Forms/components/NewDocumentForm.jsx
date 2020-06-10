@@ -38,17 +38,10 @@ const ExamForm = props => {
 
   const handleTheNewExam = async () => {
     try {
-      const response = await axios({
-        method: 'post',
-        url: 'https://college-erp-ezerka.firebaseapp.com/api/v1/exams',
-        data: formData
-      });
-      console.log('Success');
+      console.log('New Document Form has opened');
     } catch (e) {
       console.log(e.message);
     }
-    toggleDialog();
-    setFormData({ ...initialFormData });
   };
 
   const handleTheDateChange = (date, name) => {
