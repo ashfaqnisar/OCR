@@ -115,8 +115,20 @@ const DetailedDocumentDialog = props => {
   const handleViewChange = (event, newView) => setView(newView);
   const classes = useStyles();
   const [tooltip, setTooltip] = useState(false);
-  const toggleToolTip = () => setTooltip(!tooltip);
-  const copyObjectToClipboard = () => toggleToolTip();
+  const closeTooltip = () => {
+    if (tooltip) {
+      setTooltip(!tooltip);
+    }
+  };
+  const openTooltip = () => {
+    if (!tooltip) {
+      setTooltip(!tooltip);
+    }
+  };
+  const copyObjectToClipboard = () => {
+    console.log('Copied to clipboard');
+    openTooltip();
+  };
 
   return (
     <Dialog open={open} onClose={toggleDialog} fullWidth={true} maxWidth="lg">
@@ -495,24 +507,16 @@ const DetailedDocumentDialog = props => {
                       <h4>Response: </h4>
                     </Grid>
                     <Grid item>
-                      <ClickAwayListener onClickAway={toggleToolTip}>
-                        <Tooltip
-                          title={'Copied'}
-                          disableFocusListener
-                          disableHoverListener
-                          disableTouchListener
-                          open={tooltip}
-                          onClose={toggleToolTip}
-                          leaveDelay={200}
-                        >
-                          <IconButton onClick={copyObjectToClipboard}>
-                            <FileCopyIcon
-                              color={'primary'}
-                              fontSize={'small'}
-                            />
-                          </IconButton>
-                        </Tooltip>
-                      </ClickAwayListener>
+                      <Tooltip
+                        title={'Copied'}
+                        open={tooltip}
+                        onClose={closeTooltip}
+                        interactive
+                      >
+                        <IconButton onClick={copyObjectToClipboard}>
+                          <FileCopyIcon color={'primary'} fontSize={'small'} />
+                        </IconButton>
+                      </Tooltip>
                     </Grid>
                   </Grid>
                   <Grid item xs sm lg md xl>
