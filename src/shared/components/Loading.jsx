@@ -1,22 +1,57 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Grid, LinearProgress } from '@material-ui/core';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 
-const Loading = ({ loading }) => (
-  <div className={`load${loading ? '' : ' loaded'}`}>
-    <div className="load__icon-wrap">
-      <svg className="load__icon">
-        <path fill="#794dff" d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" />
-      </svg>
-    </div>
-  </div>
-);
+const useStyles = makeStyles(theme => ({
+  root: {
+    minHeight: '100vh',
+    backgroundColor: theme.palette.primary.main
+  },
+  heading: {
+    fontWeight: 700,
+    color: `${theme.colors.white} !important`
+  }
+}));
+const TopLinearProgress = withStyles(theme => ({
+  root: {
+    height: theme.spacing(0.6),
+    backgroundColor: theme.palette.primary.light
+  },
+  bar: {
+    backgroundColor: theme.palette.primary.dark
+  }
+}))(LinearProgress);
 
-Loading.propTypes = {
-  loading: PropTypes.bool
-};
-
-Loading.defaultProps = {
-  loading: false
+const Loading = () => {
+  const classes = useStyles();
+  return (
+    <Grid
+      container
+      className={classes.root}
+      alignItems={'flex-start'}
+      justify={'center'}
+      direction={'column'}
+    >
+      <Grid item style={{ width: '100%' }}>
+        <TopLinearProgress />
+      </Grid>
+      <Grid
+        item
+        xs
+        sm
+        md
+        lg
+        xl
+        container
+        justify={'center'}
+        alignItems={'center'}
+      >
+        <Grid item>
+          <h1 className={classes.heading}>ESOCR</h1>
+        </Grid>
+      </Grid>
+    </Grid>
+  );
 };
 
 export default Loading;

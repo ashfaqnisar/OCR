@@ -34,7 +34,7 @@ const LoginCard = () => {
   };
 
   return loading ? (
-    <Loading loading={loading} />
+    <Loading />
   ) : (
     <div className="account__wrapper">
       <div className="account__card">
