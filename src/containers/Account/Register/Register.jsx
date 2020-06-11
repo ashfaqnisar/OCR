@@ -27,12 +27,11 @@ const Register = () => {
   };
   const onSubmitRegisterUser = user => {
     event.preventDefault();
-    console.log({ ...user });
     createNewUser(user);
   };
 
   return loading ? (
-    <Loading loading={loading} />
+    <Loading />
   ) : (
     <div className="account account--not-photo">
       <div className="account__wrapper">
