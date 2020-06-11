@@ -24,6 +24,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Element } from 'react-scroll';
 import Chip from '@material-ui/core/Chip';
 import AppBar from '@material-ui/core/AppBar';
+import ReactJson from 'react-json-view';
 
 const useStyles = makeStyles(theme => ({
   root: {}
@@ -74,6 +75,7 @@ const DetailedDocumentDialog = props => {
       year: 4
     }
   ];
+
   const blockOptions = [
     {
       title: 'North Block',
@@ -92,6 +94,8 @@ const DetailedDocumentDialog = props => {
       block: 'E'
     }
   ];
+
+  const jsonViewProps = { name: 'prediction' };
 
   const [view, setView] = useState(0);
   const handleViewChange = (event, newView) => setView(newView);
@@ -162,7 +166,32 @@ const DetailedDocumentDialog = props => {
             </Grid>
             <Grid item xs sm lg md xl>
               {view === 0 ? (
-                'JSON'
+                <Grid container direction={'column'} spacing={2}>
+                  <Grid item xs sm lg md xl>
+                    <h4>Response: </h4>
+                  </Grid>
+                  <Grid item xs sm lg md xl>
+                    <Element
+                      style={{
+                        position: 'relative',
+                        height: '400px',
+                        overflow: 'scroll'
+                      }}
+                      name={'json'}
+                    >
+                      <ReactJson
+                        src={document['prediction']}
+                        name={'prediction'}
+                        enableClipboard={false}
+                        iconStyle={'square'}
+                        collapsed={false}
+                        collapseStringsAfterLength={10}
+                        displayDataTypes={false}
+                        displayObjectSize={false}
+                      />
+                    </Element>
+                  </Grid>
+                </Grid>
               ) : view === 1 ? (
                 <Element
                   style={{
@@ -170,6 +199,7 @@ const DetailedDocumentDialog = props => {
                     height: '435px',
                     overflow: 'scroll'
                   }}
+                  name={'form'}
                 >
                   <div className="form">
                     <div className="form__form-group">
