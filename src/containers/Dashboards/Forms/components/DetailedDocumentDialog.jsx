@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Button,
-  Container,
   Dialog,
   DialogActions,
   DialogContent,
@@ -10,17 +9,17 @@ import {
   Grid,
   Paper,
   Select,
-  TextField,
-  Typography,
+  Tab,
   Tabs,
-  Tab
+  TextField,
+  Typography
 } from '@material-ui/core';
 
 import moment from 'moment';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-import { Autocomplete, ToggleButtonGroup } from '@material-ui/lab';
+import { Autocomplete } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import { Element } from 'react-scroll';
 import Chip from '@material-ui/core/Chip';
@@ -155,14 +154,16 @@ const DetailedDocumentDialog = props => {
                   indicatorColor="primary"
                   variant="fullWidth"
                 >
-                  <Tab label={'Form'} />
-                  <Tab label={'JSON'} {...allyProps(0)} />
+                  <Tab label={'JSON'} />
+                  <Tab label={'Form'} {...allyProps(0)} />
                   <Tab label={'Table'} {...allyProps(0)} />
                 </Tabs>
               </AppBar>
             </Grid>
             <Grid item xs sm lg md xl>
               {view === 0 ? (
+                'JSON'
+              ) : view === 1 ? (
                 <Element
                   style={{
                     position: 'relative',
@@ -456,8 +457,6 @@ const DetailedDocumentDialog = props => {
                     </div>
                   </div>
                 </Element>
-              ) : view === 1 ? (
-                'JSON'
               ) : (
                 'TABLE'
               )}
