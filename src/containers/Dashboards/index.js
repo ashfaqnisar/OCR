@@ -1,4 +1,4 @@
 export { Home } from './Home';
-export { Forms } from './Forms/Forms';
-export { UploadForm } from './Forms/UploadForm';
+export { Forms } from './Forms';
+export { UploadForm } from './UploadForm';
 export { Settings } from './Settings';

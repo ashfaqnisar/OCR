@@ -10,6 +10,7 @@ export default () => (
     <div className="container__wrap">
       <Switch>
         <PrivateRoute path="/home" component={Home} />
+        <PrivateRoute path="/forms/upload" component={UploadForm} />
         <PrivateRoute path="/forms" component={Forms} />
         <PrivateRoute path="/settings" component={Settings} />
         <Redirect from={'*'} to={'/404'} />
