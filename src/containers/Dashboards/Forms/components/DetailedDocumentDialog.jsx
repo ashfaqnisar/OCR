@@ -17,7 +17,8 @@ import {
   Tooltip,
   IconButton,
   Typography,
-  ClickAwayListener
+  ClickAwayListener,
+  Box
 } from '@material-ui/core';
 
 import moment from 'moment';
@@ -125,8 +126,9 @@ const DetailedDocumentDialog = props => {
       setTooltip(!tooltip);
     }
   };
+
   const copyObjectToClipboard = () => {
-    console.log('Copied to clipboard');
+    navigator.clipboard.writeText(JSON.stringify(document['prediction']));
     openTooltip();
   };
 
@@ -161,7 +163,7 @@ const DetailedDocumentDialog = props => {
                 <LazyLoadImage
                   alt={document['fileId']}
                   effect={'blur'}
-                  src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${document['fileId']}.jpeg?or=0&w=400`}
+                  src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${document['fileId']}.jpeg?or=0&w=380`}
                 />
               </Paper>
             </Grid>
@@ -178,7 +180,7 @@ const DetailedDocumentDialog = props => {
             spacing={2}
           >
             <Grid item xs sm lg={12} md={12} xl={12}>
-              <AppBar position="static" color="default">
+              <AppBar position="sticky" color="default">
                 <Tabs
                   value={view}
                   onChange={handleViewChange}
@@ -192,15 +194,14 @@ const DetailedDocumentDialog = props => {
                 </Tabs>
               </AppBar>
             </Grid>
-            <Grid item xs sm lg md xl>
+            <Grid item xs sm lg={12} md xl>
               {view === 0 ? (
-                <Element
+                <div
                   style={{
-                    position: 'relative',
-                    height: '435px',
-                    overflow: 'scroll'
+                    position: 'Relative',
+                    height: '425px',
+                    overflow: 'auto'
                   }}
-                  name={'form'}
                 >
                   <div className="form">
                     <div className="form__form-group">
@@ -487,9 +488,17 @@ const DetailedDocumentDialog = props => {
                       </div>
                     </div>
                   </div>
-                </Element>
+                </div>
               ) : view === 1 ? (
-                'Table'
+                <div
+                  style={{
+                    position: 'relative',
+                    height: '425px',
+                    overflow: 'auto'
+                  }}
+                >
+                  Table
+                </div>
               ) : (
                 <Grid container direction={'column'} spacing={1}>
                   <Grid
@@ -520,13 +529,12 @@ const DetailedDocumentDialog = props => {
                     </Grid>
                   </Grid>
                   <Grid item xs sm lg md xl>
-                    <Element
+                    <div
                       style={{
                         position: 'relative',
-                        height: '380px',
-                        overflow: 'scroll'
+                        height: '375px',
+                        overflow: 'auto'
                       }}
-                      name={'json'}
                     >
                       <ReactJson
                         src={document['prediction']}
@@ -540,7 +548,7 @@ const DetailedDocumentDialog = props => {
                         displayObjectSize={false}
                         theme={jsonViewStyles}
                       />
-                    </Element>
+                    </div>
                   </Grid>
                 </Grid>
               )}
