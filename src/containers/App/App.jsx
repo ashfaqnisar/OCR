@@ -4,7 +4,7 @@ import { hot } from 'react-hot-loader';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../scss/app.scss';
 import { Router } from './Router/index';
-import { LogoLoading } from '../../shared/components/Loading';
+import { LogoLoading } from '../../shared/components/LogoLoading';
 import { ConnectedRouter } from 'connected-react-router';
 import store, { history } from '../../redux/store';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';

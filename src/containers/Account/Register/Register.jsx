@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import RegisterForm from './components/RegisterForm';
 import logo from '../../../images/eslogo.svg';
-import { LogoLoading } from '../../../shared/components/Loading';
+import { LogoLoading } from '../../../shared/components/LogoLoading';
 import { useFirebase } from 'react-redux-firebase';
 
 const Register = () => {
