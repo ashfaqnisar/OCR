@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {
+  AppBar,
   Button,
+  Chip,
   Dialog,
   DialogActions,
   DialogContent,
@@ -12,18 +14,20 @@ import {
   Tab,
   Tabs,
   TextField,
-  Typography
+  Tooltip,
+  IconButton,
+  Typography,
+  ClickAwayListener
 } from '@material-ui/core';
 
 import moment from 'moment';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-
+import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
 import { Autocomplete } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import { Element } from 'react-scroll';
-import Chip from '@material-ui/core/Chip';
-import AppBar from '@material-ui/core/AppBar';
+
 import ReactJson from 'react-json-view';
 
 const useStyles = makeStyles(theme => ({
@@ -110,10 +114,12 @@ const DetailedDocumentDialog = props => {
   const [view, setView] = useState(0);
   const handleViewChange = (event, newView) => setView(newView);
   const classes = useStyles();
+  const [tooltip, setTooltip] = useState(false);
+  const toggleToolTip = () => setTooltip(!tooltip);
+  const copyObjectToClipboard = () => toggleToolTip();
 
   return (
     <Dialog open={open} onClose={toggleDialog} fullWidth={true} maxWidth="lg">
-      {console.log({ ...document })}
       <DialogTitle>
         <Typography variant="h6">
           Document: {document['uploadedFile']}
@@ -473,15 +479,47 @@ const DetailedDocumentDialog = props => {
               ) : view === 1 ? (
                 'Table'
               ) : (
-                <Grid container direction={'column'} spacing={2}>
-                  <Grid item xs sm lg md xl>
-                    <h4>Response: </h4>
+                <Grid container direction={'column'} spacing={1}>
+                  <Grid
+                    item
+                    xs
+                    sm
+                    lg
+                    md
+                    xl
+                    container
+                    alignItems={'center'}
+                    spacing={1}
+                  >
+                    <Grid item>
+                      <h4>Response: </h4>
+                    </Grid>
+                    <Grid item>
+                      <ClickAwayListener onClickAway={toggleToolTip}>
+                        <Tooltip
+                          title={'Copied'}
+                          disableFocusListener
+                          disableHoverListener
+                          disableTouchListener
+                          open={tooltip}
+                          onClose={toggleToolTip}
+                          leaveDelay={200}
+                        >
+                          <IconButton onClick={copyObjectToClipboard}>
+                            <FileCopyIcon
+                              color={'primary'}
+                              fontSize={'small'}
+                            />
+                          </IconButton>
+                        </Tooltip>
+                      </ClickAwayListener>
+                    </Grid>
                   </Grid>
                   <Grid item xs sm lg md xl>
                     <Element
                       style={{
                         position: 'relative',
-                        height: '405px',
+                        height: '380px',
                         overflow: 'scroll'
                       }}
                       name={'json'}
