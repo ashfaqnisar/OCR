@@ -120,18 +120,20 @@ const DetailedDocumentDialog = props => {
             sm
             md
             lg={4}
-            xl
+            xl={5}
+            container
             justify={'center'}
             alignItems="center"
-            direction={'column'}
           >
-            <Paper variant={'outlined'}>
-              <LazyLoadImage
-                alt={document['fileId']}
-                effect={'blur'}
-                src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${document['fileId']}.jpeg?or=0&w=400`}
-              />
-            </Paper>
+            <Grid item>
+              <Paper variant={'outlined'}>
+                <LazyLoadImage
+                  alt={document['fileId']}
+                  effect={'blur'}
+                  src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${document['fileId']}.jpeg?or=0&w=400`}
+                />
+              </Paper>
+            </Grid>
           </Grid>
           <Grid
             item
@@ -139,7 +141,7 @@ const DetailedDocumentDialog = props => {
             sm
             md
             lg={8}
-            xl
+            xl={7}
             container
             direction={'column'}
             spacing={2}
