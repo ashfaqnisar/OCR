@@ -30,13 +30,6 @@ const useStyles = makeStyles(theme => ({
   root: {}
 }));
 
-function allyProps(index) {
-  return {
-    id: `scrollable-prevent-tab-${index}`,
-    'aria-controls': `scrollable-prevent-tabpanel-${index}`
-  };
-}
-
 const DetailedDocumentDialog = props => {
   const { open, toggleDialog, document } = props;
 
@@ -95,7 +88,24 @@ const DetailedDocumentDialog = props => {
     }
   ];
 
-  const jsonViewProps = { name: 'prediction' };
+  const jsonViewStyles = {
+    base00: 'white',
+    base01: '#ddd',
+    base02: '#ddd',
+    base03: '#444',
+    base04: '#794dff',
+    base05: '#444',
+    base06: '#444',
+    base07: '#444',
+    base08: '#444',
+    base09: '#794dff',
+    base0A: '#794dff',
+    base0B: '#794dff',
+    base0C: '#794dff',
+    base0D: '#794dff',
+    base0E: '#794dff',
+    base0F: '#794dff'
+  };
 
   const [view, setView] = useState(0);
   const handleViewChange = (event, newView) => setView(newView);
@@ -158,41 +168,14 @@ const DetailedDocumentDialog = props => {
                   indicatorColor="primary"
                   variant="fullWidth"
                 >
+                  <Tab label={'Form'} />
+                  <Tab label={'Table'} />
                   <Tab label={'JSON'} />
-                  <Tab label={'Form'} {...allyProps(0)} />
-                  <Tab label={'Table'} {...allyProps(0)} />
                 </Tabs>
               </AppBar>
             </Grid>
             <Grid item xs sm lg md xl>
               {view === 0 ? (
-                <Grid container direction={'column'} spacing={2}>
-                  <Grid item xs sm lg md xl>
-                    <h4>Response: </h4>
-                  </Grid>
-                  <Grid item xs sm lg md xl>
-                    <Element
-                      style={{
-                        position: 'relative',
-                        height: '400px',
-                        overflow: 'scroll'
-                      }}
-                      name={'json'}
-                    >
-                      <ReactJson
-                        src={document['prediction']}
-                        name={'prediction'}
-                        enableClipboard={false}
-                        iconStyle={'square'}
-                        collapsed={false}
-                        collapseStringsAfterLength={10}
-                        displayDataTypes={false}
-                        displayObjectSize={false}
-                      />
-                    </Element>
-                  </Grid>
-                </Grid>
-              ) : view === 1 ? (
                 <Element
                   style={{
                     position: 'relative',
@@ -487,8 +470,37 @@ const DetailedDocumentDialog = props => {
                     </div>
                   </div>
                 </Element>
+              ) : view === 1 ? (
+                'Table'
               ) : (
-                'TABLE'
+                <Grid container direction={'column'} spacing={2}>
+                  <Grid item xs sm lg md xl>
+                    <h4>Response: </h4>
+                  </Grid>
+                  <Grid item xs sm lg md xl>
+                    <Element
+                      style={{
+                        position: 'relative',
+                        height: '405px',
+                        overflow: 'scroll'
+                      }}
+                      name={'json'}
+                    >
+                      <ReactJson
+                        src={document['prediction']}
+                        name={'prediction'}
+                        enableClipboard={false}
+                        iconStyle={'square'}
+                        style={{ fontSize: '0.9rem' }}
+                        collapsed={false}
+                        collapseStringsAfterLength={10}
+                        displayDataTypes={false}
+                        displayObjectSize={false}
+                        theme={jsonViewStyles}
+                      />
+                    </Element>
+                  </Grid>
+                </Grid>
               )}
             </Grid>
           </Grid>
