@@ -18,8 +18,6 @@ import {
   Tooltip,
   Typography
 } from '@material-ui/core';
-
-import moment from 'moment';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
@@ -44,12 +42,6 @@ const DetailedDocumentDialog = props => {
 
   const handleTheNewExam = async () => {
     console.log('clicked on create button');
-  };
-
-  const handleTheDateChange = (date, name) => {
-    const isoDate = moment(date).toISOString();
-    const object = { [name]: isoDate };
-    setFormData({ ...formData, ...object });
   };
 
   const yearOptions = [
@@ -125,8 +117,9 @@ const DetailedDocumentDialog = props => {
   };
 
   const copyObjectToClipboard = () => {
-    navigator.clipboard.writeText(JSON.stringify(document['prediction']));
-    openTooltip();
+    navigator.clipboard
+      .writeText(JSON.stringify(document['prediction']))
+      .then(() => openTooltip());
   };
 
   return (
