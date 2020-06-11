@@ -22,7 +22,7 @@ const TopLinearProgress = withStyles(theme => ({
   }
 }))(LinearProgress);
 
-const Loading = () => {
+const LogoLoading = () => {
   const classes = useStyles();
   return (
     <Grid
@@ -54,4 +54,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default LogoLoading;

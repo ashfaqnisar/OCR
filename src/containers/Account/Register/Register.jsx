@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import RegisterForm from './components/RegisterForm';
 import logo from '../../../images/eslogo.svg';
-import Loading from '../../../shared/components/Loading';
+import { LogoLoading } from '../../../shared/components/Loading';
 import { useFirebase } from 'react-redux-firebase';
 
 const Register = () => {
@@ -31,7 +31,7 @@ const Register = () => {
   };
 
   return loading ? (
-    <Loading />
+    <LogoLoading />
   ) : (
     <div className="account account--not-photo">
       <div className="account__wrapper">
