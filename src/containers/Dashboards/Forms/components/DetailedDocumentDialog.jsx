@@ -9,16 +9,14 @@ import {
   DialogTitle,
   FormControl,
   Grid,
+  IconButton,
   Paper,
   Select,
   Tab,
   Tabs,
   TextField,
   Tooltip,
-  IconButton,
-  Typography,
-  ClickAwayListener,
-  Box
+  Typography
 } from '@material-ui/core';
 
 import moment from 'moment';
@@ -27,7 +25,6 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
 import { Autocomplete } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
-import { Element } from 'react-scroll';
 
 import ReactJson from 'react-json-view';
 
