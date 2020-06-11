@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
 import {
+  AppBar,
   Button,
+  Chip,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   FormControl,
   Grid,
+  IconButton,
   Paper,
   Select,
   Tab,
   Tabs,
   TextField,
+  Tooltip,
   Typography
 } from '@material-ui/core';
-
-import moment from 'moment';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-
+import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
 import { Autocomplete } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
-import { Element } from 'react-scroll';
-import Chip from '@material-ui/core/Chip';
-import AppBar from '@material-ui/core/AppBar';
+
 import ReactJson from 'react-json-view';
 
 const useStyles = makeStyles(theme => ({
@@ -42,12 +42,6 @@ const DetailedDocumentDialog = props => {
 
   const handleTheNewExam = async () => {
     console.log('clicked on create button');
-  };
-
-  const handleTheDateChange = (date, name) => {
-    const isoDate = moment(date).toISOString();
-    const object = { [name]: isoDate };
-    setFormData({ ...formData, ...object });
   };
 
   const yearOptions = [
@@ -110,10 +104,26 @@ const DetailedDocumentDialog = props => {
   const [view, setView] = useState(0);
   const handleViewChange = (event, newView) => setView(newView);
   const classes = useStyles();
+  const [tooltip, setTooltip] = useState(false);
+  const closeTooltip = () => {
+    if (tooltip) {
+      setTooltip(!tooltip);
+    }
+  };
+  const openTooltip = () => {
+    if (!tooltip) {
+      setTooltip(!tooltip);
+    }
+  };
+
+  const copyObjectToClipboard = () => {
+    navigator.clipboard
+      .writeText(JSON.stringify(document['prediction']))
+      .then(() => openTooltip());
+  };
 
   return (
     <Dialog open={open} onClose={toggleDialog} fullWidth={true} maxWidth="lg">
-      {console.log({ ...document })}
       <DialogTitle>
         <Typography variant="h6">
           Document: {document['uploadedFile']}
@@ -143,7 +153,7 @@ const DetailedDocumentDialog = props => {
                 <LazyLoadImage
                   alt={document['fileId']}
                   effect={'blur'}
-                  src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${document['fileId']}.jpeg?or=0&w=400`}
+                  src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${document['fileId']}.jpeg?or=0&w=380`}
                 />
               </Paper>
             </Grid>
@@ -160,7 +170,7 @@ const DetailedDocumentDialog = props => {
             spacing={2}
           >
             <Grid item xs sm lg={12} md={12} xl={12}>
-              <AppBar position="static" color="default">
+              <AppBar position="sticky" color="default">
                 <Tabs
                   value={view}
                   onChange={handleViewChange}
@@ -174,15 +184,14 @@ const DetailedDocumentDialog = props => {
                 </Tabs>
               </AppBar>
             </Grid>
-            <Grid item xs sm lg md xl>
+            <Grid item xs sm lg={12} md xl>
               {view === 0 ? (
-                <Element
+                <div
                   style={{
-                    position: 'relative',
-                    height: '435px',
-                    overflow: 'scroll'
+                    position: 'Relative',
+                    height: '425px',
+                    overflow: 'auto'
                   }}
-                  name={'form'}
                 >
                   <div className="form">
                     <div className="form__form-group">
@@ -469,22 +478,53 @@ const DetailedDocumentDialog = props => {
                       </div>
                     </div>
                   </div>
-                </Element>
+                </div>
               ) : view === 1 ? (
-                'Table'
+                <div
+                  style={{
+                    position: 'relative',
+                    height: '425px',
+                    overflow: 'auto'
+                  }}
+                >
+                  Table
+                </div>
               ) : (
-                <Grid container direction={'column'} spacing={2}>
-                  <Grid item xs sm lg md xl>
-                    <h4>Response: </h4>
+                <Grid container direction={'column'} spacing={1}>
+                  <Grid
+                    item
+                    xs
+                    sm
+                    lg
+                    md
+                    xl
+                    container
+                    alignItems={'center'}
+                    spacing={1}
+                  >
+                    <Grid item>
+                      <h4>Response: </h4>
+                    </Grid>
+                    <Grid item>
+                      <Tooltip
+                        title={'Copied'}
+                        open={tooltip}
+                        onClose={closeTooltip}
+                        interactive
+                      >
+                        <IconButton onClick={copyObjectToClipboard}>
+                          <FileCopyIcon color={'primary'} fontSize={'small'} />
+                        </IconButton>
+                      </Tooltip>
+                    </Grid>
                   </Grid>
                   <Grid item xs sm lg md xl>
-                    <Element
+                    <div
                       style={{
                         position: 'relative',
-                        height: '405px',
-                        overflow: 'scroll'
+                        height: '375px',
+                        overflow: 'auto'
                       }}
-                      name={'json'}
                     >
                       <ReactJson
                         src={document['prediction']}
@@ -498,7 +538,7 @@ const DetailedDocumentDialog = props => {
                         displayObjectSize={false}
                         theme={jsonViewStyles}
                       />
-                    </Element>
+                    </div>
                   </Grid>
                 </Grid>
               )}
