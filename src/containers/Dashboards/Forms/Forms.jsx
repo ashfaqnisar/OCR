@@ -14,6 +14,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { makeStyles } from '@material-ui/core/styles';
 import { NewDocumentForm, DetailedDocumentDialog } from './components';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles({
   documentForm: {
@@ -69,6 +70,8 @@ const Forms = () => {
     refreshInterval: 10000
   });
 
+  const history = useHistory();
+
   const [isNewFormOpen, setNewFormDialog] = useState(false);
   const [isDetailedDocumentOpen, setDetailedDocumentDialog] = useState(false);
   const [documentData, setDocumentData] = useState({});
@@ -97,7 +100,11 @@ const Forms = () => {
             <h3 className="page-title">Application Forms</h3>
           </Grid>
           <Grid item>
-            <Button color="primary" variant="contained" onClick={toggleNewForm}>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => history.push('/forms/upload')}
+            >
               New Form
             </Button>
           </Grid>

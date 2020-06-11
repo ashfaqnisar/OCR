@@ -1,8 +1,8 @@
 import React from 'react';
-import { Switch, Redirect } from 'react-router-dom';
+import { Redirect, Switch } from 'react-router-dom';
 import PrivateRoute from '../PrivateRoute';
 import { Layout } from '../../../Layout';
-import { Home, Forms, Settings } from '../../../Dashboards';
+import { Forms, Home, Settings, UploadForm } from '../../../Dashboards';
 
 export default () => (
   <div>
@@ -10,6 +10,7 @@ export default () => (
     <div className="container__wrap">
       <Switch>
         <PrivateRoute path="/home" component={Home} />
+        <PrivateRoute path="/forms/upload" component={UploadForm} />
         <PrivateRoute path="/forms" component={Forms} />
         <PrivateRoute path="/settings" component={Settings} />
         <Redirect from={'*'} to={'/404'} />
