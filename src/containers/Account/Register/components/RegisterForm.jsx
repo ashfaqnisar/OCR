@@ -1,119 +1,164 @@
-import React, { PureComponent } from 'react';
-import { Field, reduxForm } from 'redux-form';
-import EyeIcon from 'mdi-react/EyeIcon';
-import KeyVariantIcon from 'mdi-react/KeyVariantIcon';
-import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
-import MailRuIcon from 'mdi-react/MailRuIcon';
-import { Button, Alert } from 'reactstrap';
-import PropTypes from 'prop-types';
-import validate from '../../validate';
+import React, { useState } from 'react';
+import {
+  Button,
+  FormControl,
+  FormHelperText,
+  Grid,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  TextField
+} from '@material-ui/core';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 
-const renderField = ({
-  input,
-  placeholder,
-  type,
-  meta: { touched, error }
-}) => (
-  <div className="form__form-group-input-wrap">
-    <input {...input} placeholder={placeholder} type={type} />
-    {touched && error && (
-      <span className="form__form-group-error">{error}</span>
-    )}
-  </div>
-);
+const RegisterForm = ({ handleSubmit }) => {
+  const loginValidationSchema = Yup.object().shape({
+    firstName: Yup.string().required('Required'),
+    lastName: Yup.string().required('Required'),
+    email: Yup.string()
+      .email('Invalid Email Address')
+      .required('Required'),
+    password: Yup.string()
+      .min(5, 'Password Too Short')
+      .max(20, 'Password Too Long')
+      .required('Required')
+  });
+  const [passwordView, setPasswordView] = useState(false);
 
-class RegisterForm extends PureComponent {
-  static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    errorMessage: PropTypes.string
-  };
-
-  static defaultProps = {
-    errorMessage: ''
-  };
-
-  state = {
-    showPassword: false
-  };
-
-  showPassword(e) {
-    e.preventDefault();
-    this.setState(prevState => ({ showPassword: !prevState.showPassword }));
+  function togglePassword() {
+    setPasswordView(!passwordView);
   }
 
-  render() {
-    const { handleSubmit, errorMessage } = this.props;
-    const { showPassword } = this.state;
-
-    return (
-      <form className="form register-form" onSubmit={handleSubmit}>
-        <Alert color="danger" isOpen={!!errorMessage}>
-          {errorMessage}
-        </Alert>
-        <div className="form__form-group">
-          <span className="form__form-group-label">Username</span>
-          <div className="form__form-group-field">
-            <div className="form__form-group-icon">
-              <AccountOutlineIcon />
-            </div>
-            <Field
-              name="name"
-              component={renderField}
-              type="text"
-              placeholder="Name"
-            />
-          </div>
-        </div>
-        <div className="form__form-group">
-          <span className="form__form-group-label">E-mail</span>
-          <div className="form__form-group-field">
-            <div className="form__form-group-icon">
-              <MailRuIcon />
-            </div>
-            <Field
-              name="email"
-              component={renderField}
-              type="email"
-              placeholder="example@mail.com"
-              required
-            />
-          </div>
-        </div>
-        <div className="form__form-group form__form-group--forgot">
-          <span className="form__form-group-label">Password</span>
-          <div className="form__form-group-field">
-            <div className="form__form-group-icon">
-              <KeyVariantIcon />
-            </div>
-            <Field
-              name="password"
-              component={renderField}
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Password"
-              required
-            />
-            <button
-              type="button"
-              className={`form__form-group-button${
-                showPassword ? ' active' : ''
-              }`}
-              onClick={e => this.showPassword(e)}
+  return (
+    <Formik
+      initialValues={{ firstName: '', lastName: '', email: '', password: '' }}
+      validationSchema={loginValidationSchema}
+      onSubmit={values => {
+        handleSubmit(values);
+      }}
+    >
+      {props => {
+        const {
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit
+        } = props;
+        return (
+          <form onSubmit={handleSubmit}>
+            <Grid
+              container
+              direction={'column'}
+              spacing={2}
+              alignItems="flex-start"
             >
-              <EyeIcon />
-            </button>
-          </div>
-        </div>
-        <div className="account__btns register__btns">
-          <Button type="submit" color="primary" className="account__btn">
-            Sign Up
-          </Button>
-        </div>
-      </form>
-    );
-  }
-}
+              <Grid item container spacing={2}>
+                <Grid item xs={12} lg={6} xl={6}>
+                  <TextField
+                    id={'firstName'}
+                    name={'firstName'}
+                    helperText={
+                      errors.firstName && touched.firstName && errors.firstName
+                    }
+                    error={errors.firstName && touched.firstName}
+                    variant={'outlined'}
+                    label={'First Name'}
+                    type={'name'}
+                    size={'small'}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.firstName}
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12} lg={6} xl={6}>
+                  <TextField
+                    id={'lastName'}
+                    name={'lastName'}
+                    helperText={
+                      errors.lastName && touched.lastName && errors.lastName
+                    }
+                    error={errors.lastName && touched.lastName}
+                    variant={'outlined'}
+                    label={'Last Name'}
+                    type={'name'}
+                    size={'small'}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.lastName}
+                    fullWidth
+                  />
+                </Grid>
+              </Grid>
+              <Grid item container>
+                <TextField
+                  id={'email'}
+                  name={'email'}
+                  helperText={errors.email && touched.email && errors.email}
+                  error={errors.email && touched.email}
+                  variant={'outlined'}
+                  label={'Email'}
+                  type={'email'}
+                  size={'small'}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item container>
+                <FormControl variant="outlined" fullWidth size={'small'}>
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id={'password'}
+                    name={'password'}
+                    variant={'outlined'}
+                    error={errors.password && touched.password}
+                    label={'Password'}
+                    onBlur={handleBlur}
+                    type={passwordView ? 'text' : 'password'}
+                    value={values.password}
+                    onChange={handleChange}
+                    fullWidth
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={togglePassword}
+                          edge="end"
+                        >
+                          {passwordView ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                  <FormHelperText error={errors.password && touched.password}>
+                    {errors.password && touched.password && errors.password}
+                  </FormHelperText>
+                </FormControl>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant={'contained'}
+                  color={'primary'}
+                  onClick={handleSubmit}
+                >
+                  Sign Up
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        );
+      }}
+    </Formik>
+  );
+};
 
-export default reduxForm({
-  form: 'register_form',
-  validate // a unique identifier for this form
-})(RegisterForm);
+export default RegisterForm;

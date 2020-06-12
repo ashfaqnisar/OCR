@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { LogoLoading } from '../../../shared/components/LogoLoading';
-
 import { Link, useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
 import { Grid, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import LoginForm from './components/LoginForm';
+import { LoginForm } from './components';
 import { Alert } from '@material-ui/lab';
 import { isBlank } from '../../../shared/components/Beautifier';
 
@@ -140,27 +139,6 @@ const Login = () => {
         </Grid>
       </Hidden>
     </Grid>
-    /*<div className="account account--not-photo">
-                  <div className="account__wrapper">
-                    <div className="account__card">
-                      <div className="account__head">
-                        <div className="account__title text-center">
-                          <img
-                            style={{ align: 'center', width: '50%' }}
-                            src={logo}
-                            alt="Logo"
-                          />
-                          <span className="account__logo" />
-                        </div>
-                      </div>
-                      <LoginForm
-                        onSubmit={onSubmitFireBase}
-                        errorMessage={error}
-                        form="log_in_form"
-                      />
-                    </div>
-                  </div>
-                </div>*/
   );
 };
 
