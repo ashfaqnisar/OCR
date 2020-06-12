@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LogoLoading } from '../../../shared/components/LogoLoading';
 import logo from '../../../images/eslogo.svg';
-import LoginForm from './components/LoginForm1';
+import LoginForm from './components/LoginForm';
 import { useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
 
