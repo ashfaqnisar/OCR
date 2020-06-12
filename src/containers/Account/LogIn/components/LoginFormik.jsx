@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Grid } from '@material-ui/core';
+import { TextField, Grid, Button } from '@material-ui/core';
 
 const LoginFormik = () => {
   return (
@@ -19,6 +19,11 @@ const LoginFormik = () => {
           size={'small'}
           fullWidth
         />
+      </Grid>
+      <Grid item>
+        <Button variant={'contained'} color={'primary'} fullWidth>
+          Sign In
+        </Button>
       </Grid>
     </Grid>
   );

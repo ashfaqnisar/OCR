@@ -87,7 +87,7 @@ const Login = () => {
 
           <Grid item>
             <h5>
-              Don't have an account? <Link to={'/register'}>Sign up</Link>
+              Don't have an account? <Link to={'/register'}>Register</Link>
             </h5>
           </Grid>
         </Grid>
