@@ -3,7 +3,7 @@ import { Collapse } from 'reactstrap';
 import TopbarMenuLink from './TopbarMenuLink';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
-import { Person, ArrowDropDownOutlined } from '@material-ui/icons';
+import { Person, KeyboardArrowDownOutlined } from '@material-ui/icons';
 import { useSelector } from 'react-redux';
 import { isBlank } from '../../../shared/components/Beautifier';
 
@@ -43,7 +43,7 @@ const TopbarProfile = () => {
         <p className="topbar__avatar-name">
           {auth.displayName || profile.name || 'User'}
         </p>
-        <ArrowDropDownOutlined className="topbar__icon" />
+        <KeyboardArrowDownOutlined className="topbar__icon" />
       </button>
       {isCollapseOpen && (
         <button
