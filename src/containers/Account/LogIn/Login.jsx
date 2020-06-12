@@ -85,7 +85,7 @@ const Login = () => {
           alignItems={'flex-start'}
           justify={'center'}
           direction={'column'}
-          spacing={3}
+          spacing={4}
         >
           <Hidden only={['lg', 'xl']}>
             <Grid item container justify={'center'}>
@@ -96,11 +96,11 @@ const Login = () => {
           </Hidden>
 
           <Grid item>
-            <h3 style={{ fontWeight: 'bold' }}>Welcome Back</h3>
+            <h3>Welcome Back</h3>
             <h5>Sign In to continue</h5>
           </Grid>
 
-          <Grid item container direction={'column'} spacing={2}>
+          <Grid item container direction={'column'}>
             <LoginForm handleSubmit={onSubmitFireBase} />
           </Grid>
 
