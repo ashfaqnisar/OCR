@@ -3,7 +3,7 @@ import { LogoLoading } from '../../../shared/components/LogoLoading';
 
 import { Link, useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
-import { Grid, Container } from '@material-ui/core';
+import { Grid, Container, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import LoginFormik from './components/LoginFormik';
 
@@ -24,6 +24,10 @@ const useStyles = makeStyles(theme => ({
   headingBlack: {
     fontWeight: 700,
     color: `${theme.colors.black} !important`
+  },
+  headingPrimary: {
+    fontWeight: 700,
+    color: `${theme.colors.primary} !important`
   }
 }));
 
@@ -76,13 +80,21 @@ const Login = () => {
           container
           className={classes.loginComponent}
           xs={12}
-          lg={7}
-          xl={7}
+          lg={8}
+          xl={8}
           alignItems={'flex-start'}
           justify={'center'}
           direction={'column'}
           spacing={3}
         >
+          <Hidden only={['lg', 'xl']}>
+            <Grid item container justify={'center'}>
+              <h1 className={classes.headingBlack}>
+                ES<span className={classes.headingPrimary}>OCR</span>
+              </h1>
+            </Grid>
+          </Hidden>
+
           <Grid item>
             <h3 style={{ fontWeight: 'bold' }}>Welcome Back</h3>
             <h5>Sign In to continue</h5>
@@ -97,24 +109,26 @@ const Login = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid
-        item
-        xs={12}
-        sm
-        md
-        lg
-        xl
-        className={classes.logoComponent}
-        container
-        justify={'center'}
-        alignItems={'center'}
-      >
-        <Grid item>
-          <h1 className={classes.heading}>
-            <span className={classes.headingBlack}>ES</span>OCR
-          </h1>
+      <Hidden only={['xs', 'sm', 'md']}>
+        <Grid
+          item
+          xs={12}
+          sm
+          md
+          lg
+          xl
+          className={classes.logoComponent}
+          container
+          justify={'center'}
+          alignItems={'center'}
+        >
+          <Grid item>
+            <h1 className={classes.heading}>
+              <span className={classes.headingBlack}>ES</span>OCR
+            </h1>
+          </Grid>
         </Grid>
-      </Grid>
+      </Hidden>
     </Grid>
     /*<div className="account account--not-photo">
               <div className="account__wrapper">
