@@ -6,6 +6,8 @@ import { useFirebase } from 'react-redux-firebase';
 import { Grid, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import LoginForm from './components/LoginForm';
+import { Alert } from '@material-ui/lab';
+import { isBlank } from '../../../shared/components/Beautifier';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -94,16 +96,22 @@ const Login = () => {
               </h1>
             </Grid>
           </Hidden>
-
           <Grid item>
             <h3>Welcome Back</h3>
             <h5>Sign In to continue</h5>
           </Grid>
-
+          {!isBlank(error) ? (
+            <Grid item container justify={'center'}>
+              <Alert variant={'filled'} severity={'error'}>
+                {error}
+              </Alert>
+            </Grid>
+          ) : (
+            <></>
+          )}
           <Grid item container direction={'column'}>
             <LoginForm handleSubmit={onSubmitFireBase} />
           </Grid>
-
           <Grid item>
             <h5>
               Don't have an account? <Link to={'/register'}>Register</Link>
