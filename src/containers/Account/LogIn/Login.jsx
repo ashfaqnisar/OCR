@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LogoLoading } from '../../../shared/components/LogoLoading';
 import logo from '../../../images/eslogo.svg';
-import LogInForm from './components/LoginForm';
+import LoginForm from './components/LoginForm1';
 import { useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
 
@@ -49,7 +49,7 @@ const Login = () => {
               <span className="account__logo" />
             </div>
           </div>
-          <LogInForm
+          <LoginForm
             onSubmit={onSubmitFireBase}
             errorMessage={error}
             form="log_in_form"

@@ -22,7 +22,7 @@ const renderField = ({
   </div>
 );
 
-class LoginForm extends PureComponent {
+class LoginForm1 extends PureComponent {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     errorMessage: PropTypes.string,
@@ -122,4 +122,4 @@ class LoginForm extends PureComponent {
 export default reduxForm({
   name: 'the_login_form',
   validate
-})(withRouter(LoginForm));
+})(withRouter(LoginForm1));
