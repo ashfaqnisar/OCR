@@ -1,24 +1,23 @@
 import React from 'react';
 import { Button, Grid, TextField } from '@material-ui/core';
 import { Formik } from 'formik';
+import * as Yup from 'yup';
 
 const LoginForm = ({ handleSubmit }) => {
+  const loginValidationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email('Invalid Email Address')
+      .required('Required'),
+    password: Yup.string()
+      .min(5, 'Password Too Short')
+      .max(20, 'Password Too Long')
+      .required('Required')
+  });
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
-      validate={values => {
-        const errors = {};
-        if (!values.email) {
-          errors.email = 'Required';
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = 'Invalid email address';
-        }
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        setSubmitting(true);
+      validationSchema={loginValidationSchema}
+      onSubmit={values => {
         handleSubmit(values);
       }}
     >
@@ -77,7 +76,7 @@ const LoginForm = ({ handleSubmit }) => {
                 <Button
                   variant={'contained'}
                   color={'primary'}
-                  onClick={handleSubmit}
+                  onClick={'submit'}
                 >
                   Sign In
                 </Button>
