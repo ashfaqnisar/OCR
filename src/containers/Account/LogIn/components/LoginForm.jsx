@@ -1,7 +1,13 @@
-import React from 'react';
-import { Button, Grid, TextField } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Button, FormHelperText, Grid, TextField } from '@material-ui/core';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+import IconButton from '@material-ui/core/IconButton';
 
 const LoginForm = ({ handleSubmit }) => {
   const loginValidationSchema = Yup.object().shape({
@@ -13,6 +19,12 @@ const LoginForm = ({ handleSubmit }) => {
       .max(20, 'Password Too Long')
       .required('Required')
   });
+  const [passwordView, setPasswordView] = useState(false);
+
+  function togglePassword() {
+    setPasswordView(!passwordView);
+  }
+
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
@@ -55,22 +67,37 @@ const LoginForm = ({ handleSubmit }) => {
                 />
               </Grid>
               <Grid item container>
-                <TextField
-                  id={'password'}
-                  name={'password'}
-                  variant={'outlined'}
-                  helperText={
-                    errors.password && touched.password && errors.password
-                  }
-                  error={errors.password && touched.password}
-                  label={'Password'}
-                  onBlur={handleBlur}
-                  type={'password'}
-                  size={'small'}
-                  value={values.password}
-                  onChange={handleChange}
-                  fullWidth
-                />
+                <FormControl variant="outlined" fullWidth size={'small'}>
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id={'password'}
+                    name={'password'}
+                    variant={'outlined'}
+                    error={errors.password && touched.password}
+                    label={'Password'}
+                    onBlur={handleBlur}
+                    type={passwordView ? 'text' : 'password'}
+                    value={values.password}
+                    onChange={handleChange}
+                    fullWidth
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={togglePassword}
+                          edge="end"
+                        >
+                          {passwordView ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                  <FormHelperText error={errors.password && touched.password}>
+                    {errors.password && touched.password && errors.password}
+                  </FormHelperText>
+                </FormControl>
               </Grid>
               <Grid item>
                 <Button
