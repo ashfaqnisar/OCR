@@ -3,13 +3,16 @@ import { LogoLoading } from '../../../shared/components/LogoLoading';
 
 import { Link, useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
-import { Grid } from '@material-ui/core';
+import { Grid, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import LoginFormik from './components/LoginFormik';
 
 const useStyles = makeStyles(theme => ({
   container: {
     minHeight: '100vh'
+  },
+  loginComponent: {
+    padding: theme.spacing(1)
   },
   logoComponent: {
     backgroundColor: theme.palette.primary.main
@@ -56,7 +59,7 @@ const Login = () => {
   return loading ? (
     <LogoLoading />
   ) : (
-    <Grid container className={classes.container} justify={'center'}>
+    <Grid container className={classes.container}>
       <Grid
         item
         xs={12}
@@ -71,8 +74,10 @@ const Login = () => {
         <Grid
           item
           container
-          lg={8}
-          xl={8}
+          className={classes.loginComponent}
+          xs={12}
+          lg={7}
+          xl={7}
           alignItems={'flex-start'}
           justify={'center'}
           direction={'column'}
