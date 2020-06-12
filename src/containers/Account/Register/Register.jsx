@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { withRouter } from 'react-router';
 import { LogoLoading } from '../../../shared/components/LogoLoading';
 import { useFirebase } from 'react-redux-firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Hidden } from '@material-ui/core';
 import { isBlank } from '../../../shared/components/Beautifier';
 import { Alert } from '@material-ui/lab';
-import RegisterForm from './components/RegisterForm';
+import { RegisterForm } from './components';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -135,4 +134,4 @@ const Register = () => {
   );
 };
 
-export default withRouter(Register);
+export default Register;
