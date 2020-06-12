@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import DownIcon from 'mdi-react/ChevronDownIcon';
 import { Collapse } from 'reactstrap';
 import TopbarMenuLink from './TopbarMenuLink';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
-import UserIcon from '@material-ui/icons/Person';
+import { Person, ArrowDropDownOutlined } from '@material-ui/icons';
 import { useSelector } from 'react-redux';
 import { isBlank } from '../../../shared/components/Beautifier';
 
@@ -37,14 +36,14 @@ const TopbarProfile = () => {
             {!isBlank(profile.name) ? (
               profile.name.split('')[0].toUpperCase()
             ) : (
-              <UserIcon />
+              <Person />
             )}
           </Avatar>
         )}
         <p className="topbar__avatar-name">
           {auth.displayName || profile.name || 'User'}
         </p>
-        <DownIcon className="topbar__icon" />
+        <ArrowDropDownOutlined className="topbar__icon" />
       </button>
       {isCollapseOpen && (
         <button
