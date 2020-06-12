@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { Button, FormHelperText, Grid, TextField } from '@material-ui/core';
+import {
+  Button,
+  FormControl,
+  FormHelperText,
+  Grid,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  TextField
+} from '@material-ui/core';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
-import IconButton from '@material-ui/core/IconButton';
 
 const LoginForm = ({ handleSubmit }) => {
   const loginValidationSchema = Yup.object().shape({
