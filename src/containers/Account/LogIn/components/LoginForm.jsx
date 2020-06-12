@@ -76,7 +76,7 @@ const LoginForm = ({ handleSubmit }) => {
                 <Button
                   variant={'contained'}
                   color={'primary'}
-                  onClick={'submit'}
+                  onClick={handleSubmit}
                 >
                   Sign In
                 </Button>
