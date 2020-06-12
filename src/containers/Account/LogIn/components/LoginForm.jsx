@@ -1,125 +1,93 @@
-import React, { PureComponent } from 'react';
-import { Field, reduxForm, Form } from 'redux-form';
-import EyeIcon from 'mdi-react/EyeIcon';
-import KeyVariantIcon from 'mdi-react/KeyVariantIcon';
-import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
-import { Link, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { Alert, Button } from 'reactstrap';
-import validate from '../../validate';
+import React from 'react';
+import { Button, Grid, TextField } from '@material-ui/core';
+import { Formik } from 'formik';
 
-const renderField = ({
-  input,
-  placeholder,
-  type,
-  meta: { touched, error }
-}) => (
-  <div className="form__form-group-input-wrap">
-    <input {...input} placeholder={placeholder} type={type} />
-    {touched && error && (
-      <span className="form__form-group-error">{error}</span>
-    )}
-  </div>
-);
-
-class LoginForm extends PureComponent {
-  static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    errorMessage: PropTypes.string,
-    errorMsg: PropTypes.string,
-    fieldUser: PropTypes.string,
-    typeFieldUser: PropTypes.string,
-    form: PropTypes.string.isRequired
-  };
-
-  static defaultProps = {
-    errorMessage: '',
-    errorMsg: '',
-    fieldUser: 'Email',
-    typeFieldUser: 'text'
-  };
-
-  state = {
-    showPassword: false
-  };
-
-  showPassword(e) {
-    e.preventDefault();
-    this.setState(prevState => ({ showPassword: !prevState.showPassword }));
-  }
-
-  render() {
-    const {
-      handleSubmit,
-      errorMessage,
-      errorMsg,
-      fieldUser,
-      typeFieldUser,
-      form
-    } = this.props;
-    const { showPassword } = this.state;
-
-    return (
-      <Form className="form login-form" onSubmit={handleSubmit}>
-        <Alert color="danger" isOpen={!!errorMessage || !!errorMsg}>
-          {errorMsg || errorMessage}
-        </Alert>
-        <div className="form__form-group">
-          <span className="form__form-group-label">{fieldUser}</span>
-          <div className="form__form-group-field">
-            <div className="form__form-group-icon">
-              <AccountOutlineIcon />
-            </div>
-            <Field
-              name="email"
-              component={renderField}
-              type={typeFieldUser}
-              placeholder={fieldUser}
-            />
-          </div>
-        </div>
-        <div className="form__form-group">
-          <span className="form__form-group-label">Password</span>
-          <div className="form__form-group-field">
-            <div className="form__form-group-icon">
-              <KeyVariantIcon />
-            </div>
-            <Field
-              name="password"
-              component={renderField}
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Password"
-            />
-            <button
-              type="button"
-              className={`form__form-group-button${
-                showPassword ? ' active' : ''
-              }`}
-              onClick={e => this.showPassword(e)}
+const LoginForm = ({ handleSubmit }) => {
+  return (
+    <Formik
+      initialValues={{ email: '', password: '' }}
+      validate={values => {
+        const errors = {};
+        if (!values.email) {
+          errors.email = 'Required';
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = 'Invalid email address';
+        }
+        return errors;
+      }}
+      onSubmit={(values, { setSubmitting }) => {
+        setSubmitting(true);
+        handleSubmit(values);
+      }}
+    >
+      {props => {
+        const {
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit
+        } = props;
+        return (
+          <form onSubmit={handleSubmit}>
+            <Grid
+              container
+              direction={'column'}
+              spacing={2}
+              alignItems="flex-start"
             >
-              <EyeIcon />
-            </button>
-          </div>
-        </div>
+              <Grid item container>
+                <TextField
+                  id={'email'}
+                  name={'email'}
+                  helperText={errors.email && touched.email && errors.email}
+                  error={errors.email && touched.email}
+                  variant={'outlined'}
+                  label={'Email'}
+                  type={'email'}
+                  size={'small'}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item container>
+                <TextField
+                  id={'password'}
+                  name={'password'}
+                  variant={'outlined'}
+                  helperText={
+                    errors.password && touched.password && errors.password
+                  }
+                  error={errors.password && touched.password}
+                  label={'Password'}
+                  onBlur={handleBlur}
+                  type={'password'}
+                  size={'small'}
+                  value={values.password}
+                  onChange={handleChange}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item>
+                <Button
+                  variant={'contained'}
+                  color={'primary'}
+                  onClick={handleSubmit}
+                >
+                  Sign In
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        );
+      }}
+    </Formik>
+  );
+};
 
-        <div className="account__btns">
-          <Button
-            className="account__btn"
-            color="primary"
-            onClick={handleSubmit}
-          >
-            Sign In
-          </Button>
-          <Link className="btn btn-outline-primary account__btn" to="/register">
-            Create Account
-          </Link>
-        </div>
-      </Form>
-    );
-  }
-}
-
-export default reduxForm({
-  name: 'the_login_form',
-  validate
-})(withRouter(LoginForm));
+export default LoginForm;

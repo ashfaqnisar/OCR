@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
 import { Grid, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import LoginFormik from './components/LoginFormik';
+import LoginForm from './components/LoginForm';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -81,7 +81,7 @@ const Login = () => {
           className={classes.loginComponent}
           xs={12}
           lg={8}
-          xl={8}
+          xl={7}
           alignItems={'flex-start'}
           justify={'center'}
           direction={'column'}
@@ -100,7 +100,9 @@ const Login = () => {
             <h5>Sign In to continue</h5>
           </Grid>
 
-          <LoginFormik />
+          <Grid item container direction={'column'} spacing={2}>
+            <LoginForm handleSubmit={onSubmitFireBase} />
+          </Grid>
 
           <Grid item>
             <h5>
