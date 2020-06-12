@@ -76,7 +76,7 @@ const Login = () => {
           alignItems={'flex-start'}
           justify={'center'}
           direction={'column'}
-          spacing={2}
+          spacing={3}
         >
           <Grid item>
             <h3 style={{ fontWeight: 'bold' }}>Welcome Back</h3>

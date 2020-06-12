@@ -5,10 +5,20 @@ const LoginFormik = () => {
   return (
     <Grid item container direction={'column'} spacing={2}>
       <Grid item container>
-        <TextField variant={'outlined'} label={'Email'} fullWidth />
+        <TextField
+          variant={'outlined'}
+          label={'Email'}
+          size={'small'}
+          fullWidth
+        />
       </Grid>
       <Grid item container>
-        <TextField variant={'outlined'} label={'Password'} fullWidth />
+        <TextField
+          variant={'outlined'}
+          label={'Password'}
+          size={'small'}
+          fullWidth
+        />
       </Grid>
     </Grid>
   );
