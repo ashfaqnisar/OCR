@@ -10,6 +10,10 @@ const useStyles = makeStyles(theme => ({
   heading: {
     fontWeight: 700,
     color: `${theme.colors.white} !important`
+  },
+  headingBlack: {
+    fontWeight: 700,
+    color: `${theme.colors.black} !important`
   }
 }));
 const TopLinearProgress = withStyles(theme => ({
@@ -47,7 +51,9 @@ const LogoLoading = () => {
         alignItems={'center'}
       >
         <Grid item>
-          <h1 className={classes.heading}>ESOCR</h1>
+          <h1 className={classes.heading}>
+            <span className={classes.headingBlack}>ES</span>OCR
+          </h1>
         </Grid>
       </Grid>
     </Grid>
