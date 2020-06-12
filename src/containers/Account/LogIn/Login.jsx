@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { LogoLoading } from '../../../shared/components/LogoLoading';
-import LoginForm from './components/LoginForm';
 
 import { Link, useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import LoginFormik from './components/LoginFormik';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -82,13 +82,9 @@ const Login = () => {
             <h3 style={{ fontWeight: 'bold' }}>Welcome Back</h3>
             <h5>Sign In to continue</h5>
           </Grid>
-          <Grid item>
-            <LoginForm
-              onSubmit={onSubmitFireBase}
-              errorMessage={error}
-              form="log_in_form"
-            />
-          </Grid>
+
+          <LoginFormik />
+
           <Grid item>
             <h5>
               Don't have an account? <Link to={'/register'}>Sign up</Link>
@@ -116,26 +112,26 @@ const Login = () => {
       </Grid>
     </Grid>
     /*<div className="account account--not-photo">
-          <div className="account__wrapper">
-            <div className="account__card">
-              <div className="account__head">
-                <div className="account__title text-center">
-                  <img
-                    style={{ align: 'center', width: '50%' }}
-                    src={logo}
-                    alt="Logo"
+              <div className="account__wrapper">
+                <div className="account__card">
+                  <div className="account__head">
+                    <div className="account__title text-center">
+                      <img
+                        style={{ align: 'center', width: '50%' }}
+                        src={logo}
+                        alt="Logo"
+                      />
+                      <span className="account__logo" />
+                    </div>
+                  </div>
+                  <LoginForm
+                    onSubmit={onSubmitFireBase}
+                    errorMessage={error}
+                    form="log_in_form"
                   />
-                  <span className="account__logo" />
                 </div>
               </div>
-              <LoginForm
-                onSubmit={onSubmitFireBase}
-                errorMessage={error}
-                form="log_in_form"
-              />
-            </div>
-          </div>
-        </div>*/
+            </div>*/
   );
 };
 
