@@ -1,6 +1,5 @@
 import React from 'react';
-
-const icon = `${process.env.PUBLIC_URL}/img/burger.svg`;
+import MenuIcon from '@material-ui/icons/MenuRounded';
 
 const TopbarSidebarButton = props => {
   const { changeMobileSidebarVisibility, changeSidebarVisibility } = props;
@@ -12,14 +11,14 @@ const TopbarSidebarButton = props => {
         type="button"
         onClick={changeSidebarVisibility}
       >
-        <img src={icon} alt="" className="topbar__button-icon" />
+        <MenuIcon className="topbar__button-icon" />
       </button>
       <button
         className="topbar__button topbar__button--mobile"
         type="button"
         onClick={changeMobileSidebarVisibility}
       >
-        <img src={icon} alt="" className="topbar__button-icon" />
+        <MenuIcon className="topbar__button-icon" />
       </button>
     </div>
   );

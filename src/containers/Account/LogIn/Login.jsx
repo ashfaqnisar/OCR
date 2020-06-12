@@ -3,13 +3,18 @@ import { LogoLoading } from '../../../shared/components/LogoLoading';
 
 import { Link, useHistory } from 'react-router-dom';
 import { useFirebase } from 'react-redux-firebase';
-import { Grid } from '@material-ui/core';
+import { Grid, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import LoginFormik from './components/LoginFormik';
+import LoginForm from './components/LoginForm';
+import { Alert } from '@material-ui/lab';
+import { isBlank } from '../../../shared/components/Beautifier';
 
 const useStyles = makeStyles(theme => ({
   container: {
     minHeight: '100vh'
+  },
+  loginComponent: {
+    padding: theme.spacing(1)
   },
   logoComponent: {
     backgroundColor: theme.palette.primary.main
@@ -21,6 +26,10 @@ const useStyles = makeStyles(theme => ({
   headingBlack: {
     fontWeight: 700,
     color: `${theme.colors.black} !important`
+  },
+  headingPrimary: {
+    fontWeight: 700,
+    color: `${theme.colors.primary} !important`
   }
 }));
 
@@ -56,7 +65,7 @@ const Login = () => {
   return loading ? (
     <LogoLoading />
   ) : (
-    <Grid container className={classes.container} justify={'center'}>
+    <Grid container className={classes.container}>
       <Grid
         item
         xs={12}
@@ -71,20 +80,38 @@ const Login = () => {
         <Grid
           item
           container
+          className={classes.loginComponent}
+          xs={12}
           lg={8}
-          xl={8}
+          xl={7}
           alignItems={'flex-start'}
           justify={'center'}
           direction={'column'}
-          spacing={3}
+          spacing={4}
         >
+          <Hidden only={['lg', 'xl']}>
+            <Grid item container justify={'center'}>
+              <h1 className={classes.headingBlack}>
+                ES<span className={classes.headingPrimary}>OCR</span>
+              </h1>
+            </Grid>
+          </Hidden>
           <Grid item>
-            <h3 style={{ fontWeight: 'bold' }}>Welcome Back</h3>
+            <h3>Welcome Back</h3>
             <h5>Sign In to continue</h5>
           </Grid>
-
-          <LoginFormik />
-
+          {!isBlank(error) ? (
+            <Grid item container justify={'center'}>
+              <Alert variant={'filled'} severity={'error'}>
+                {error}
+              </Alert>
+            </Grid>
+          ) : (
+            <></>
+          )}
+          <Grid item container direction={'column'}>
+            <LoginForm handleSubmit={onSubmitFireBase} />
+          </Grid>
           <Grid item>
             <h5>
               Don't have an account? <Link to={'/register'}>Register</Link>
@@ -92,46 +119,48 @@ const Login = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid
-        item
-        xs={12}
-        sm
-        md
-        lg
-        xl
-        className={classes.logoComponent}
-        container
-        justify={'center'}
-        alignItems={'center'}
-      >
-        <Grid item>
-          <h1 className={classes.heading}>
-            <span className={classes.headingBlack}>ES</span>OCR
-          </h1>
+      <Hidden only={['xs', 'sm', 'md']}>
+        <Grid
+          item
+          xs={12}
+          sm
+          md
+          lg
+          xl
+          className={classes.logoComponent}
+          container
+          justify={'center'}
+          alignItems={'center'}
+        >
+          <Grid item>
+            <h1 className={classes.heading}>
+              <span className={classes.headingBlack}>ES</span>OCR
+            </h1>
+          </Grid>
         </Grid>
-      </Grid>
+      </Hidden>
     </Grid>
     /*<div className="account account--not-photo">
-              <div className="account__wrapper">
-                <div className="account__card">
-                  <div className="account__head">
-                    <div className="account__title text-center">
-                      <img
-                        style={{ align: 'center', width: '50%' }}
-                        src={logo}
-                        alt="Logo"
+                  <div className="account__wrapper">
+                    <div className="account__card">
+                      <div className="account__head">
+                        <div className="account__title text-center">
+                          <img
+                            style={{ align: 'center', width: '50%' }}
+                            src={logo}
+                            alt="Logo"
+                          />
+                          <span className="account__logo" />
+                        </div>
+                      </div>
+                      <LoginForm
+                        onSubmit={onSubmitFireBase}
+                        errorMessage={error}
+                        form="log_in_form"
                       />
-                      <span className="account__logo" />
                     </div>
                   </div>
-                  <LoginForm
-                    onSubmit={onSubmitFireBase}
-                    errorMessage={error}
-                    form="log_in_form"
-                  />
-                </div>
-              </div>
-            </div>*/
+                </div>*/
   );
 };
 

@@ -1,125 +1,119 @@
-import React, { PureComponent } from 'react';
-import { Field, reduxForm, Form } from 'redux-form';
-import EyeIcon from 'mdi-react/EyeIcon';
-import KeyVariantIcon from 'mdi-react/KeyVariantIcon';
-import AccountOutlineIcon from 'mdi-react/AccountOutlineIcon';
-import { Link, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { Alert, Button } from 'reactstrap';
-import validate from '../../validate';
+import React, { useState } from 'react';
+import { Button, FormHelperText, Grid, TextField } from '@material-ui/core';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+import IconButton from '@material-ui/core/IconButton';
 
-const renderField = ({
-  input,
-  placeholder,
-  type,
-  meta: { touched, error }
-}) => (
-  <div className="form__form-group-input-wrap">
-    <input {...input} placeholder={placeholder} type={type} />
-    {touched && error && (
-      <span className="form__form-group-error">{error}</span>
-    )}
-  </div>
-);
+const LoginForm = ({ handleSubmit }) => {
+  const loginValidationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email('Invalid Email Address')
+      .required('Required'),
+    password: Yup.string()
+      .min(5, 'Password Too Short')
+      .max(20, 'Password Too Long')
+      .required('Required')
+  });
+  const [passwordView, setPasswordView] = useState(false);
 
-class LoginForm extends PureComponent {
-  static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    errorMessage: PropTypes.string,
-    errorMsg: PropTypes.string,
-    fieldUser: PropTypes.string,
-    typeFieldUser: PropTypes.string,
-    form: PropTypes.string.isRequired
-  };
-
-  static defaultProps = {
-    errorMessage: '',
-    errorMsg: '',
-    fieldUser: 'Email',
-    typeFieldUser: 'text'
-  };
-
-  state = {
-    showPassword: false
-  };
-
-  showPassword(e) {
-    e.preventDefault();
-    this.setState(prevState => ({ showPassword: !prevState.showPassword }));
+  function togglePassword() {
+    setPasswordView(!passwordView);
   }
 
-  render() {
-    const {
-      handleSubmit,
-      errorMessage,
-      errorMsg,
-      fieldUser,
-      typeFieldUser,
-      form
-    } = this.props;
-    const { showPassword } = this.state;
-
-    return (
-      <Form className="form login-form" onSubmit={handleSubmit}>
-        <Alert color="danger" isOpen={!!errorMessage || !!errorMsg}>
-          {errorMsg || errorMessage}
-        </Alert>
-        <div className="form__form-group">
-          <span className="form__form-group-label">{fieldUser}</span>
-          <div className="form__form-group-field">
-            <div className="form__form-group-icon">
-              <AccountOutlineIcon />
-            </div>
-            <Field
-              name="email"
-              component={renderField}
-              type={typeFieldUser}
-              placeholder={fieldUser}
-            />
-          </div>
-        </div>
-        <div className="form__form-group">
-          <span className="form__form-group-label">Password</span>
-          <div className="form__form-group-field">
-            <div className="form__form-group-icon">
-              <KeyVariantIcon />
-            </div>
-            <Field
-              name="password"
-              component={renderField}
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Password"
-            />
-            <button
-              type="button"
-              className={`form__form-group-button${
-                showPassword ? ' active' : ''
-              }`}
-              onClick={e => this.showPassword(e)}
+  return (
+    <Formik
+      initialValues={{ email: '', password: '' }}
+      validationSchema={loginValidationSchema}
+      onSubmit={values => {
+        handleSubmit(values);
+      }}
+    >
+      {props => {
+        const {
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit
+        } = props;
+        return (
+          <form onSubmit={handleSubmit}>
+            <Grid
+              container
+              direction={'column'}
+              spacing={2}
+              alignItems="flex-start"
             >
-              <EyeIcon />
-            </button>
-          </div>
-        </div>
+              <Grid item container>
+                <TextField
+                  id={'email'}
+                  name={'email'}
+                  helperText={errors.email && touched.email && errors.email}
+                  error={errors.email && touched.email}
+                  variant={'outlined'}
+                  label={'Email'}
+                  type={'email'}
+                  size={'small'}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item container>
+                <FormControl variant="outlined" fullWidth size={'small'}>
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id={'password'}
+                    name={'password'}
+                    variant={'outlined'}
+                    error={errors.password && touched.password}
+                    label={'Password'}
+                    onBlur={handleBlur}
+                    type={passwordView ? 'text' : 'password'}
+                    value={values.password}
+                    onChange={handleChange}
+                    fullWidth
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={togglePassword}
+                          edge="end"
+                        >
+                          {passwordView ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                  <FormHelperText error={errors.password && touched.password}>
+                    {errors.password && touched.password && errors.password}
+                  </FormHelperText>
+                </FormControl>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant={'contained'}
+                  color={'primary'}
+                  onClick={handleSubmit}
+                >
+                  Sign In
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        );
+      }}
+    </Formik>
+  );
+};
 
-        <div className="account__btns">
-          <Button
-            className="account__btn"
-            color="primary"
-            onClick={handleSubmit}
-          >
-            Sign In
-          </Button>
-          <Link className="btn btn-outline-primary account__btn" to="/register">
-            Create Account
-          </Link>
-        </div>
-      </Form>
-    );
-  }
-}
-
-export default reduxForm({
-  name: 'the_login_form',
-  validate
-})(withRouter(LoginForm));
+export default LoginForm;
