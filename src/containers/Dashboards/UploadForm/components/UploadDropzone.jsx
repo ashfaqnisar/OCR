@@ -52,7 +52,6 @@ class DropZoneMultipleField extends PureComponent {
           accept="image/jpeg, image/png"
           name={name}
           onDrop={filesToUpload => {
-            console.log(filesToUpload);
             this.onDrop(value ? value.concat(filesToUpload) : filesToUpload);
           }}
         >
@@ -97,7 +96,6 @@ const renderDropZoneMultipleField = props => {
   return (
     <>
       <DropZoneMultipleField {...input} />
-      {console.log({ ...input })}
     </>
   );
 };

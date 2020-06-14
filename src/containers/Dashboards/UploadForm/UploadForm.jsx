@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Container, Grid, Paper, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Field, reduxForm } from 'redux-form';
-import renderDropZoneMultipleField from './components/UploadDropzone';
+import DropFilesDropzone from './components/DropFilesDropzone';
 
 const useStyles = makeStyles(theme => ({
   dropzoneComponent: {
@@ -13,6 +12,9 @@ const useStyles = makeStyles(theme => ({
 
 const UploadForm = () => {
   const classes = useStyles();
+  const showValues = values => {
+    window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+  };
 
   return (
     <Container maxWidth={'xl'}>
@@ -21,18 +23,11 @@ const UploadForm = () => {
           <h3 className="page-title">Upload Form</h3>
         </Grid>
         <Grid item lg>
-          <form className={'form'} onSubmit={() => console.log('submitterd')}>
-            <Field name={'files'} component={renderDropZoneMultipleField} />
-            <Button color="primary" type="submit">
-              Submit
-            </Button>
-          </form>
+          <DropFilesDropzone onSubmit={showValues} />
         </Grid>
       </Grid>
     </Container>
   );
 };
 
-export default reduxForm({
-  form: 'drop_files_form'
-})(UploadForm);
+export default UploadForm;
