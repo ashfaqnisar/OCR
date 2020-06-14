@@ -7,6 +7,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -76,7 +77,9 @@ const DropZoneMultipleField = props => {
           <div {...getRootProps()} className="dropzone__input">
             {(!files || files.length === 0) && (
               <Grid container alignItems={'center'} justify={'center'}>
-                <Grid item>Drop file here to upload</Grid>
+                <Grid item lg xl style={{ border: 'solid blue' }}>
+                  Drop file here to upload
+                </Grid>
               </Grid>
             )}
             <input {...getInputProps()} />
@@ -84,44 +87,56 @@ const DropZoneMultipleField = props => {
         )}
       </Dropzone>
       {files && Array.isArray(files) && (
-        <Grid
-          container
-          alignItems={'center'}
-          justify={'center'}
-          direction={'column'}
-          style={{ border: 'solid blue' }}
-        >
-          <Grid item>Drop files here</Grid>
-          <GridList
-            cellHeight={200}
-            className={'dropzone__imgs-wrapper'}
-            cols={6}
-            style={{
-              border: 'solid red',
-              display: 'flex',
-              justifyContent: 'space-evenly',
-              overflow: 'auto',
-              maxHeight: '600px'
-            }}
-          >
-            {files.map((file, index) => (
-              <GridListTile
-                key={index}
-                className={classes.image}
-                style={{ backgroundImage: `url(${file.preview})` }}
+        <Grid container>
+          <Grid item lg xl>
+            <Paper>
+              <Grid
+                container
+                alignItems={'center'}
+                justify={'center'}
+                direction={'column'}
+                style={{ border: 'solid blue' }}
+                spacing={2}
               >
-                <GridListTileBar
-                  title={file.name}
-                  classes={{ root: classes.titlebar, title: classes.title }}
-                  actionIcon={
-                    <IconButton onClick={e => removeFile(index, e)}>
-                      <DeleteOutlineIcon />
-                    </IconButton>
-                  }
-                />
-              </GridListTile>
-            ))}
-          </GridList>
+                <Grid item>
+                  <h3>Drop files here</h3>
+                </Grid>
+                <GridList
+                  cellHeight={200}
+                  className={'dropzone__imgs-wrapper'}
+                  cols={6}
+                  style={{
+                    border: 'solid red',
+                    display: 'flex',
+                    justifyContent: 'space-evenly',
+                    overflow: 'auto',
+                    maxHeight: '600px'
+                  }}
+                >
+                  {files.map((file, index) => (
+                    <GridListTile
+                      key={index}
+                      className={classes.image}
+                      style={{ backgroundImage: `url(${file.preview})` }}
+                    >
+                      <GridListTileBar
+                        title={file.name}
+                        classes={{
+                          root: classes.titlebar,
+                          title: classes.title
+                        }}
+                        actionIcon={
+                          <IconButton onClick={e => removeFile(index, e)}>
+                            <DeleteOutlineIcon />
+                          </IconButton>
+                        }
+                      />
+                    </GridListTile>
+                  ))}
+                </GridList>
+              </Grid>
+            </Paper>
+          </Grid>
         </Grid>
       )}
 
