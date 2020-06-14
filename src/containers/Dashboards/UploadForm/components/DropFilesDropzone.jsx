@@ -7,10 +7,16 @@ import Grid from '@material-ui/core/Grid';
 const DropFilesDropzone = ({ handleSubmit }) => {
   return (
     <form className={'form'} onSubmit={handleSubmit}>
-      <Field name={'files'} component={renderDropZoneMultipleField} />
-      <Button color="primary" type="submit">
-        Submit
-      </Button>
+      <Grid container direction={'column'} spacing={2}>
+        <Grid item>
+          <Field name={'files'} component={renderDropZoneMultipleField} />
+        </Grid>
+        <Grid item>
+          <Button color="primary" type="submit">
+            Submit
+          </Button>
+        </Grid>
+      </Grid>
     </form>
   );
 };

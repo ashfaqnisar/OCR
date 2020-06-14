@@ -38,6 +38,10 @@ const useStyles = makeStyles(theme => ({
     border: `solid ${theme.palette.primary.main}`,
     borderRadius: '5px',
     cursor: 'default'
+  },
+  heading: {
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2)
   }
 }));
 
@@ -100,7 +104,7 @@ const DropZoneMultipleField = props => {
                 justify={'center'}
                 direction={'column'}
               >
-                <Grid item>
+                <Grid item className={classes.heading}>
                   <h3>Drop files here</h3>
                 </Grid>
                 <GridList
@@ -108,11 +112,11 @@ const DropZoneMultipleField = props => {
                   className={'dropzone__imgs-wrapper'}
                   cols={6}
                   style={{
-                    border: 'solid red',
                     display: 'flex',
                     justifyContent: 'space-evenly',
                     overflow: 'auto',
-                    maxHeight: '600px'
+                    maxHeight: '600px',
+                    border: '1px dashed black '
                   }}
                 >
                   {files.map((file, index) => (
