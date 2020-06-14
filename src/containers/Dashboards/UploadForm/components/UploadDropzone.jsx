@@ -33,7 +33,10 @@ const useStyles = makeStyles(theme => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
+    border: `solid ${theme.palette.primary.main}`,
+    borderRadius: '5px',
+    cursor: 'default'
   }
 }));
 
@@ -81,7 +84,14 @@ const DropZoneMultipleField = props => {
         )}
       </Dropzone>
       {files && Array.isArray(files) && (
-        <Grid container alignItems={'center'} justify={'center'}>
+        <Grid
+          container
+          alignItems={'center'}
+          justify={'center'}
+          direction={'column'}
+          style={{ border: 'solid blue' }}
+        >
+          <Grid item>Drop files here</Grid>
           <GridList
             cellHeight={200}
             className={'dropzone__imgs-wrapper'}
