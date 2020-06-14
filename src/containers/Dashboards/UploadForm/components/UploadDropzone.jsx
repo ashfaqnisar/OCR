@@ -141,7 +141,7 @@ const DropZoneMultipleField = props => {
                         }}
                         actionIcon={
                           <IconButton onClick={e => removeFile(index, e)}>
-                            <DeleteOutlineIcon style={{ color: '#ffffff' }} />
+                            <DeleteOutlineIcon className={classes.deleteIcon} />
                           </IconButton>
                         }
                       />
