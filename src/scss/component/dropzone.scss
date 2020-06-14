@@ -28,7 +28,7 @@
 
       @include themify($themes) {
         background-image: linear-gradient(-45deg, themed('colorBorder') 25%, transparent 25%,
-          transparent 50%, themed('colorBorder') 50%, themed('colorBorder') 75%, transparent 75%, transparent);
+                transparent 50%, themed('colorBorder') 50%, themed('colorBorder') 75%, transparent 75%, transparent);
       }
 
       background-size: 30px 30px;
@@ -84,8 +84,7 @@
 }
 
 .dropzone__imgs-wrapper {
-  padding: 30px 20px;
-  width: calc(100% + 30px);
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -93,7 +92,7 @@
 .dropzone__img {
   margin-bottom: 30px;
   width: calc(16.6667% - 30px);
-  height: 150px;
+  height: 200px;
   overflow: hidden;
   margin-left: 15px;
   margin-right: 15px;
