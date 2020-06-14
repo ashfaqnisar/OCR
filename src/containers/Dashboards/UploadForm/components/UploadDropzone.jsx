@@ -1,13 +1,15 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import Grid from '@material-ui/core/Grid';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import {
+  Grid,
+  GridList,
+  GridListTile,
+  GridListTileBar,
+  IconButton,
+  Paper
+} from '@material-ui/core';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,8 +20,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper
   },
   gridList: {
-    flexWrap: 'nowrap',
-    transform: 'translateZ(0)'
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    overflow: 'auto',
+    maxHeight: '600px',
+    border: '1px dashed black '
   },
   title: {
     color: theme.colors.white
@@ -42,11 +47,22 @@ const useStyles = makeStyles(theme => ({
   heading: {
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2)
+  },
+  paper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%'
+  },
+  deleteIcon: {
+    color: theme.colors.white,
+    '&:hover': { color: theme.colors.error }
   }
 }));
 
 const DropZoneMultipleField = props => {
   const { name, value, onChange } = props;
+
   const onDrop = files => {
     onChange(
       files.map(fl =>
@@ -78,15 +94,7 @@ const DropZoneMultipleField = props => {
         {({ getRootProps, getInputProps }) => (
           <div {...getRootProps()} className="dropzone__input">
             {(!files || files.length === 0) && (
-              <Paper
-                variant={'outlined'}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '100%'
-                }}
-              >
+              <Paper variant={'outlined'} className={classes.paper}>
                 <h4>Drop Files Here!</h4>
               </Paper>
             )}
@@ -96,7 +104,7 @@ const DropZoneMultipleField = props => {
       </Dropzone>
       {files && Array.isArray(files) && (
         <Grid container>
-          <Grid item lg xl>
+          <Grid item xs sm md lg xl>
             <Paper>
               <Grid
                 container
@@ -133,7 +141,7 @@ const DropZoneMultipleField = props => {
                         }}
                         actionIcon={
                           <IconButton onClick={e => removeFile(index, e)}>
-                            <DeleteOutlineIcon />
+                            <DeleteOutlineIcon style={{ color: '#ffffff' }} />
                           </IconButton>
                         }
                       />

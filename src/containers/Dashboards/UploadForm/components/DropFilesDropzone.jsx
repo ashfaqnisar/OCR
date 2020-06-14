@@ -1,8 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import renderDropZoneMultipleField from './UploadDropzone';
-import { Button } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
+import { Button, Grid } from '@material-ui/core';
 
 const DropFilesDropzone = ({ handleSubmit }) => {
   return (
