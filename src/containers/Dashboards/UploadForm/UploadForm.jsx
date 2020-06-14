@@ -18,7 +18,7 @@ const UploadForm = () => {
 
   return (
     <Container maxWidth={'xl'}>
-      <Grid container justify={'center'} spacing={2} direction={'column'}>
+      <Grid container justify={'center'} direction={'column'} spacing={2}>
         <Grid item>
           <h3 className="page-title">Upload Form</h3>
         </Grid>

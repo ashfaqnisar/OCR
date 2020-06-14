@@ -76,11 +76,17 @@ const DropZoneMultipleField = props => {
         {({ getRootProps, getInputProps }) => (
           <div {...getRootProps()} className="dropzone__input">
             {(!files || files.length === 0) && (
-              <Grid container alignItems={'center'} justify={'center'}>
-                <Grid item lg xl style={{ border: 'solid blue' }}>
-                  Drop file here to upload
-                </Grid>
-              </Grid>
+              <Paper
+                variant={'outlined'}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '100%'
+                }}
+              >
+                <h4>Drop Files Here!</h4>
+              </Paper>
             )}
             <input {...getInputProps()} />
           </div>
@@ -95,8 +101,6 @@ const DropZoneMultipleField = props => {
                 alignItems={'center'}
                 justify={'center'}
                 direction={'column'}
-                style={{ border: 'solid blue' }}
-                spacing={2}
               >
                 <Grid item>
                   <h3>Drop files here</h3>
