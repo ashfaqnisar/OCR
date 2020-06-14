@@ -28,7 +28,7 @@
 
       @include themify($themes) {
         background-image: linear-gradient(-45deg, themed('colorBorder') 25%, transparent 25%,
-          transparent 50%, themed('colorBorder') 50%, themed('colorBorder') 75%, transparent 75%, transparent);
+                transparent 50%, themed('colorBorder') 50%, themed('colorBorder') 75%, transparent 75%, transparent);
       }
 
       background-size: 30px 30px;
@@ -84,8 +84,7 @@
 }
 
 .dropzone__imgs-wrapper {
-  padding: 30px 20px;
-  width: calc(100% + 30px);
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 }

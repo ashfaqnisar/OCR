@@ -44,8 +44,6 @@ const useStyles = makeStyles(theme => ({
 const DropZoneMultipleField = props => {
   const { name, value, onChange } = props;
   const onDrop = files => {
-    const { onChange } = props;
-    console.log(onChange);
     onChange(
       files.map(fl =>
         Object.assign(fl, {
@@ -61,8 +59,8 @@ const DropZoneMultipleField = props => {
   };
 
   const files = value;
-
   const classes = useStyles();
+
   return (
     <div className="dropzone dropzone--multiple">
       <Dropzone
@@ -143,27 +141,6 @@ const DropZoneMultipleField = props => {
           </Grid>
         </Grid>
       )}
-
-      {/*{files && Array.isArray(files) && (
-        <div className="dropzone__imgs-wrapper">
-          {files.map((file, i) => (
-            <div
-              className="dropzone__img"
-              key={i}
-              style={{ backgroundImage: `url(${file.preview})` }}
-            >
-              <p className="dropzone__img-name">{file.name}</p>
-              <button
-                className="dropzone__img-delete"
-                type="button"
-                onClick={e => removeFile(i, e)}
-              >
-                Remove
-              </button>
-            </div>
-          ))}
-        </div>
-      )}*/}
     </div>
   );
 };
