@@ -115,15 +115,15 @@ const DropZoneMultipleField = props => {
                 <Grid item className={classes.heading}>
                   <h3>Drop files here</h3>
                 </Grid>
+
                 <GridList
-                  cellHeight={200}
                   className={'dropzone__imgs-wrapper'}
                   cols={6}
                   style={{
                     display: 'flex',
                     justifyContent: 'space-evenly',
                     overflow: 'auto',
-                    maxHeight: '600px',
+                    maxHeight: '550px',
                     border: '1px dashed black '
                   }}
                 >

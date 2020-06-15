@@ -15,10 +15,14 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import { makeStyles } from '@material-ui/core/styles';
 import { NewDocumentForm, DetailedDocumentDialog } from './components';
 import { useHistory } from 'react-router';
+import none from '../../../shared/img/other/none.png';
 
 const useStyles = makeStyles({
   documentForm: {
     cursor: 'pointer'
+  },
+  noDocumentsImage: {
+    height: '400px'
   }
 });
 
@@ -64,6 +68,7 @@ const DocumentForm = ({ doc, toggleDialog, setDocument }) => {
 };
 
 const Forms = () => {
+  const classes = useStyles();
   const { uid } = useSelector(state => state.firebase.auth);
   const fetcher = url => axios({ method: 'get', url: url });
   const { data: documents, error } = useSWR(`/ocr/?uid=${uid}`, fetcher, {
@@ -87,7 +92,7 @@ const Forms = () => {
 
   return (
     <Container maxWidth={'xl'}>
-      <Grid container className="dashboard" direction={'column'} spacing={2}>
+      <Grid container direction={'column'} spacing={3}>
         <Grid
           item
           container
@@ -109,7 +114,7 @@ const Forms = () => {
             </Button>
           </Grid>
         </Grid>
-        <Grid item container>
+        <Grid item xs sm md lg xl container>
           {error ? (
             <>
               <Grid item>
@@ -119,6 +124,36 @@ const Forms = () => {
           ) : !documents ? (
             <Grid item>
               <p>Loading</p>
+            </Grid>
+          ) : documents.data.length === 0 ? (
+            <Grid
+              item
+              container
+              alignItems={'center'}
+              justify={'center'}
+              direction={'column'}
+              spacing={1}
+            >
+              <Grid item>
+                <LazyLoadImage
+                  className={classes.noDocumentsImage}
+                  alt={'None'}
+                  src={none}
+                />
+              </Grid>
+              <Grid item>
+                <p align={'center'}>
+                  There are no forms processed , go head and create some of them
+                </p>
+              </Grid>
+              <Grid item>
+                <Button
+                  color={'primary'}
+                  onClick={() => history.push('/forms/upload')}
+                >
+                  Create Form
+                </Button>
+              </Grid>
             </Grid>
           ) : (
             <Grid item md sm xs lg xl>

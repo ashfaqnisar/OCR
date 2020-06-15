@@ -1,21 +1,23 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import renderDropZoneMultipleField from './UploadDropzone';
-import { Button, Grid } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles(theme => ({
+  button: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(1)
+  }
+}));
 const DropFilesDropzone = ({ handleSubmit }) => {
+  const classes = useStyles();
   return (
     <form className={'form'} onSubmit={handleSubmit}>
-      <Grid container direction={'column'} spacing={2}>
-        <Grid item>
-          <Field name={'files'} component={renderDropZoneMultipleField} />
-        </Grid>
-        <Grid item>
-          <Button color="primary" type="submit">
-            Submit
-          </Button>
-        </Grid>
-      </Grid>
+      <Field name={'files'} component={renderDropZoneMultipleField} />
+      <Button className={classes.button} color="primary" type="submit">
+        Submit
+      </Button>
     </form>
   );
 };
