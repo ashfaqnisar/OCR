@@ -15,9 +15,6 @@ const DropFilesDropzone = ({ handleSubmit }) => {
   return (
     <form className={'form'} onSubmit={handleSubmit}>
       <Field name={'files'} component={renderDropZoneMultipleField} />
-      <Button className={classes.button} color="primary" type="submit">
-        Submit
-      </Button>
     </form>
   );
 };
