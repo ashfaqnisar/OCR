@@ -154,6 +154,7 @@ const DetailedDocumentDialog = props => {
                   alt={document['fileId']}
                   effect={'blur'}
                   src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${document['fileId']}.jpeg?or=0&w=380`}
+                  // src={`https://esocr.imgix.net/${uid}/${doc['fileId']}?fm=jpg&or=0&w=380`}
                 />
               </Paper>
             </Grid>

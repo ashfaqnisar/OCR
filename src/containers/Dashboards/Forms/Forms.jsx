@@ -8,62 +8,91 @@ import {
   CardContent,
   Container,
   Grid,
-  Paper
+  GridList,
+  GridListTile,
+  GridListTileBar
 } from '@material-ui/core';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { makeStyles } from '@material-ui/core/styles';
-import { NewDocumentForm, DetailedDocumentDialog } from './components';
+import { DetailedDocumentDialog, NewDocumentForm } from './components';
 import { useHistory } from 'react-router';
 import none from '../../../shared/img/other/none.png';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   documentForm: {
     cursor: 'pointer'
   },
   noDocumentsImage: {
     height: '400px'
+  },
+  gridList: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    overflow: 'auto',
+    maxHeight: '550px',
+    width: '100%',
+    backgroundColor: theme.palette.background.paper
+  },
+  title: {
+    color: theme.colors.white
+  },
+  titleBar: {
+    background:
+      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)'
+  },
+  image: {
+    position: 'relative',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center'
+  },
+  gridListTile: {
+    height: '300px !important',
+    margin: theme.spacing(2),
+    border: `solid ${theme.palette.primary.main}`,
+    borderRadius: '5px',
+    cursor: 'pointer'
   }
-});
+}));
 
-const DocumentForm = ({ doc, toggleDialog, setDocument }) => {
+const DocumentsForm = ({ documents, toggleDialog, setDocument }) => {
   const classes = useStyles();
 
   return (
-    <Grid
-      item
-      xs={6}
-      sm={6}
-      md={4}
-      lg={2}
-      xl={2}
-      className={classes.documentForm}
-      onClick={() => {
-        setDocument(doc);
-        toggleDialog();
-      }}
+    <GridList
+      cellHeight={200}
+      spacing={1}
+      className={classes.gridList}
+      cols={6}
     >
-      <Paper variant="outlined" elevation={2} style={{ width: '100%' }}>
-        <Grid
-          container
-          justify={'center'}
-          alignItems={'center'}
-          direction={'column'}
-          spacing={2}
+      {documents.map(doc => (
+        <GridListTile
+          key={doc.id}
+          className={classes.gridListTile}
+          onClick={() => {
+            setDocument(doc);
+            toggleDialog();
+          }}
         >
-          <Grid item>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <LazyLoadImage
+              className={classes.image}
               alt={doc['fileId']}
               effect={'blur'}
-              src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${doc['fileId']}.jpeg?or=0&w=180`}
+              src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${doc['fileId']}.jpeg?or=0&w=280`}
+              // src={`https://esocr.imgix.net/${uid}/${doc['fileId']}?fm=jpg&or=0&h=300&w=250`}
             />
-          </Grid>
-          <Grid item>
-            <p>{doc['uploadedFile']}</p>
-          </Grid>
-        </Grid>
-      </Paper>
-    </Grid>
+          </div>
+
+          <GridListTileBar
+            title={doc['uploadedFile']}
+            classes={{ root: classes.titleBar, title: classes.title }}
+          />
+        </GridListTile>
+      ))}
+    </GridList>
   );
 };
 
@@ -161,20 +190,15 @@ const Forms = () => {
                 <CardContent>
                   <Grid
                     container
-                    item
-                    justify="flex-start"
+                    justify="center"
                     alignItems={'center'}
                     direction="row"
-                    spacing={2}
                   >
-                    {documents.data.map(doc => (
-                      <DocumentForm
-                        doc={doc}
-                        key={doc.id}
-                        toggleDialog={toggleDetailedDocumentDialog}
-                        setDocument={setDocumentData}
-                      />
-                    ))}
+                    <DocumentsForm
+                      documents={documents.data}
+                      toggleDialog={toggleDetailedDocumentDialog}
+                      setDocument={setDocumentData}
+                    />
                   </Grid>
                 </CardContent>
               </Card>
