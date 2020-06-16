@@ -85,7 +85,6 @@ const DropZoneMultipleField = props => {
     <div className="dropzone dropzone--multiple">
       <Dropzone
         className="dropzone__input"
-        accept="image/jpeg, image/png"
         name={name}
         onDrop={filesToUpload => {
           onDrop(value ? value.concat(filesToUpload) : filesToUpload);
