@@ -12,11 +12,7 @@ const useStyles = makeStyles(theme => ({
 }));
 const DropFilesDropzone = ({ handleSubmit }) => {
   const classes = useStyles();
-  return (
-    <form className={'form'} onSubmit={handleSubmit}>
-      <Field name={'files'} component={renderDropZoneMultipleField} />
-    </form>
-  );
+  return <Field name={'files'} component={renderDropZoneMultipleField} />;
 };
 
 export default reduxForm({

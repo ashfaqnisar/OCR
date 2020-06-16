@@ -103,55 +103,52 @@ const DropZoneMultipleField = props => {
         )}
       </Dropzone>
       {files && Array.isArray(files) && (
-        <Grid container>
-          <Grid item xs sm md lg xl>
-            <Paper>
-              <Grid
-                container
-                alignItems={'center'}
-                justify={'center'}
-                direction={'column'}
-              >
-                <Grid item className={classes.heading}>
-                  <h3>Drop files here</h3>
-                </Grid>
+        <Paper style={{ width: '100%' }}>
+          <Grid
+            container
+            alignItems={'center'}
+            justify={'center'}
+            direction={'column'}
+          >
+            <Grid item className={classes.heading}>
+              <h3>Drop files here</h3>
+            </Grid>
 
-                <GridList
-                  className={'dropzone__imgs-wrapper'}
-                  cols={6}
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-evenly',
-                    overflow: 'auto',
-                    maxHeight: '550px',
-                    border: '1px dashed black '
-                  }}
+            <GridList
+              cols={6}
+              style={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'space-evenly',
+                overflow: 'auto',
+                maxHeight: '550px',
+
+                border: '1px dashed black '
+              }}
+            >
+              {files.map((file, index) => (
+                <GridListTile
+                  key={index}
+                  className={classes.image}
+                  style={{ backgroundImage: `url(${file.preview})` }}
                 >
-                  {files.map((file, index) => (
-                    <GridListTile
-                      key={index}
-                      className={classes.image}
-                      style={{ backgroundImage: `url(${file.preview})` }}
-                    >
-                      <GridListTileBar
-                        title={file.name}
-                        classes={{
-                          root: classes.titlebar,
-                          title: classes.title
-                        }}
-                        actionIcon={
-                          <IconButton onClick={e => removeFile(index, e)}>
-                            <DeleteOutlineIcon className={classes.deleteIcon} />
-                          </IconButton>
-                        }
-                      />
-                    </GridListTile>
-                  ))}
-                </GridList>
-              </Grid>
-            </Paper>
+                  <GridListTileBar
+                    title={file.name}
+                    classes={{
+                      root: classes.titlebar,
+                      title: classes.title
+                    }}
+                    actionIcon={
+                      <IconButton onClick={e => removeFile(index, e)}>
+                        <DeleteOutlineIcon className={classes.deleteIcon} />
+                      </IconButton>
+                    }
+                  />
+                </GridListTile>
+              ))}
+            </GridList>
           </Grid>
-        </Grid>
+        </Paper>
       )}
     </div>
   );
