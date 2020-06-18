@@ -230,8 +230,8 @@ const FormComponent = ({ document }) => {
       <Box mb={2} style={{ width: '100%' }}>
         <h4>Provider Information</h4>
         <Box my={1} style={{ width: '100%' }}>
-          <Grid container spacing={1} direction={'column'}>
-            <Grid item container spacing={1}>
+          <Grid container direction={'column'} spacing={1}>
+            <Grid item container spacing={2}>
               <Grid item xs={12} sm md lg={6} xl={6}>
                 <div className="form__form-group">
                   <span className="form__form-group-label typography-message">
@@ -265,6 +265,105 @@ const FormComponent = ({ document }) => {
                       name="examType"
                       required
                       value={prediction.provider.name}
+                      onChange={handleTheFormChange}
+                    />
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
+            <Grid item xs={12} sm md lg xl>
+              <div className="form__form-group">
+                <span className="form__form-group-label typography-message">
+                  Location Address
+                </span>
+                <div className="form__form-group-field">
+                  <TextField
+                    size={'small'}
+                    variant="outlined"
+                    fullWidth
+                    type="text"
+                    name="provider.name"
+                    required
+                    value={prediction.provider.address}
+                    onChange={handleTheFormChange}
+                  />
+                </div>
+              </div>
+            </Grid>
+            <Grid item container spacing={2}>
+              <Grid item xs={12} sm md lg={6} xl={6}>
+                <div className="form__form-group">
+                  <span className="form__form-group-label typography-message">
+                    NPI
+                  </span>
+                  <div className="form__form-group-field">
+                    <TextField
+                      size={'small'}
+                      variant="outlined"
+                      fullWidth
+                      type="text"
+                      name="provider.name"
+                      required
+                      value={prediction.provider.NPI}
+                      onChange={handleTheFormChange}
+                    />
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={12} sm md lg={6} xl={6}>
+                <div className="form__form-group">
+                  <span className="form__form-group-label typography-message">
+                    City
+                  </span>
+                  <div className="form__form-group-field">
+                    <TextField
+                      size={'small'}
+                      variant="outlined"
+                      fullWidth
+                      type="text"
+                      name="examType"
+                      required
+                      value={prediction.provider.city}
+                      onChange={handleTheFormChange}
+                    />
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
+            <Grid item container spacing={2}>
+              <Grid item xs={12} sm md lg={6} xl={6}>
+                <div className="form__form-group">
+                  <span className="form__form-group-label typography-message">
+                    State
+                  </span>
+                  <div className="form__form-group-field">
+                    <TextField
+                      size={'small'}
+                      variant="outlined"
+                      fullWidth
+                      type="text"
+                      name="provider.name"
+                      required
+                      value={prediction.provider.state}
+                      onChange={handleTheFormChange}
+                    />
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={12} sm md lg={6} xl={6}>
+                <div className="form__form-group">
+                  <span className="form__form-group-label typography-message">
+                    Zip
+                  </span>
+                  <div className="form__form-group-field">
+                    <TextField
+                      size={'small'}
+                      variant="outlined"
+                      fullWidth
+                      type="text"
+                      name="examType"
+                      required
+                      value={prediction.provider.zip}
                       onChange={handleTheFormChange}
                     />
                   </div>
