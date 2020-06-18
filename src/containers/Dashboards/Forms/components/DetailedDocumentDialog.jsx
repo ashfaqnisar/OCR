@@ -2,16 +2,13 @@ import React, { useState } from 'react';
 import {
   AppBar,
   Button,
-  Chip,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  FormControl,
   Grid,
   IconButton,
   Paper,
-  Select,
   Tab,
   Tabs,
   TextField,
@@ -21,10 +18,10 @@ import {
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
-import { Autocomplete } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 
 import ReactJson from 'react-json-view';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
   root: {}
@@ -33,54 +30,9 @@ const useStyles = makeStyles(theme => ({
 const DetailedDocumentDialog = props => {
   const { open, toggleDialog, document } = props;
 
-  const [formData, setFormData] = useState({});
-
-  const handleTheFormChange = event => {
-    const object = { [event.target.name]: event.target.value };
-    setFormData({ ...formData, ...object });
-  };
-
   const handleTheNewExam = async () => {
     console.log('clicked on create button');
   };
-
-  const yearOptions = [
-    {
-      title: 'First Year',
-      year: 1
-    },
-    {
-      title: 'Second Year',
-      year: 2
-    },
-    {
-      title: 'Third Year',
-      year: 3
-    },
-    {
-      title: 'Fourth Year',
-      year: 4
-    }
-  ];
-
-  const blockOptions = [
-    {
-      title: 'North Block',
-      block: 'N'
-    },
-    {
-      title: 'South Block',
-      block: 'S'
-    },
-    {
-      title: 'Central Block',
-      block: 'C'
-    },
-    {
-      title: 'East Block',
-      block: 'E'
-    }
-  ];
 
   const jsonViewStyles = {
     base00: 'white',
@@ -185,301 +137,9 @@ const DetailedDocumentDialog = props => {
                 </Tabs>
               </AppBar>
             </Grid>
-            <Grid item xs sm lg={12} md xl>
+            <Grid item xs sm lg={12} md={12} xl={12}>
               {view === 0 ? (
-                <div
-                  style={{
-                    position: 'Relative',
-                    height: '425px',
-                    overflow: 'auto'
-                  }}
-                >
-                  <div className="form">
-                    <div className="form__form-group">
-                      <span className="form__form-group-label typography-message">
-                        Exam Type
-                      </span>
-                      <div className="form__form-group-field">
-                        <FormControl
-                          size={'small'}
-                          variant="outlined"
-                          fullWidth
-                        >
-                          <Select
-                            native
-                            type="text"
-                            name="examType"
-                            required
-                            value={'value '}
-                            onChange={handleTheFormChange}
-                          >
-                            <option value={'mid'}>Mid</option>
-                          </Select>
-                        </FormControl>
-                      </div>
-                    </div>
-                    <div className="form__form-group">
-                      <span className="form__form-group-label typography-message">
-                        Type of Exam Number
-                      </span>
-                      <div className="form__form-group-field">
-                        <FormControl
-                          size={'small'}
-                          variant="outlined"
-                          fullWidth
-                        >
-                          <Select
-                            native
-                            type="text"
-                            name="midType"
-                            required
-                            value={'1'}
-                            onChange={handleTheFormChange}
-                          >
-                            <option value={'1'}>1</option>
-                            <option value={'2'}>2</option>
-                          </Select>
-                        </FormControl>
-                      </div>
-                    </div>
-                    <div className="form__form-group">
-                      <span className="form__form-group-label typography-message">
-                        Type of Semester
-                      </span>
-                      <div className="form__form-group-field">
-                        <FormControl
-                          size={'small'}
-                          variant="outlined"
-                          fullWidth
-                        >
-                          <Select
-                            native
-                            type="text"
-                            name="semType"
-                            required
-                            value={'1'}
-                            onChange={handleTheFormChange}
-                          >
-                            <option value={'1'}>First Semester</option>
-                            <option value={'2'}>Second Semester</option>
-                          </Select>
-                        </FormControl>
-                      </div>
-                    </div>
-
-                    <div className="form__form-group">
-                      <span className="form__form-group-label">
-                        Student Year
-                      </span>
-                      <div className="form__form-group-field priority">
-                        <Autocomplete
-                          multiple
-                          id="fixed-tags-demo"
-                          options={yearOptions}
-                          onChange={(event, objects) => {
-                            const yearsObjectArray = [];
-                            objects.map(object => {
-                              yearsObjectArray.push(object.year);
-                            });
-                            console.log(yearsObjectArray);
-                            let updatedFormData = formData;
-                            updatedFormData.studentsYear = yearsObjectArray;
-                            setFormData(updatedFormData);
-                          }}
-                          size={'small'}
-                          fullWidth
-                          disableCloseOnSelect
-                          getOptionLabel={option => option.title}
-                          renderTags={(value, getTagProps) =>
-                            value.map((option, index) => (
-                              <Chip
-                                label={option.title}
-                                {...getTagProps({ index })}
-                              />
-                            ))
-                          }
-                          style={{ width: '100%' }}
-                          renderInput={params => (
-                            <TextField
-                              {...params}
-                              variant="outlined"
-                              placeholder="Year"
-                              fullWidth
-                            />
-                          )}
-                        />
-                      </div>
-                    </div>
-                    <div className="form__form-group">
-                      <span className="form__form-group-label">
-                        Blocks For Exam
-                      </span>
-                      <div className="form__form-group-field priority">
-                        <Autocomplete
-                          multiple
-                          id="fixed-tags-demo"
-                          options={blockOptions}
-                          onChange={(event, objects) => {
-                            const blocksObjectArray = [];
-                            objects.map(object => {
-                              blocksObjectArray.push(object.block);
-                            });
-                            let updatedFormData = formData;
-                            updatedFormData.blocks = blocksObjectArray;
-                            setFormData(updatedFormData);
-                          }}
-                          size={'small'}
-                          fullWidth
-                          disableCloseOnSelect
-                          getOptionLabel={option => option.title}
-                          renderTags={(value, getTagProps) =>
-                            value.map((option, index) => (
-                              <Chip
-                                label={option.title}
-                                {...getTagProps({ index })}
-                              />
-                            ))
-                          }
-                          style={{ width: '100%' }}
-                          renderInput={params => (
-                            <TextField
-                              {...params}
-                              variant="outlined"
-                              placeholder="Block"
-                              fullWidth
-                            />
-                          )}
-                        />
-                      </div>
-                    </div>
-                    <div className="form__form-group">
-                      <span className="form__form-group-label">
-                        Blocks For Exam
-                      </span>
-                      <div className="form__form-group-field priority">
-                        <Autocomplete
-                          multiple
-                          id="fixed-tags-demo"
-                          options={blockOptions}
-                          onChange={(event, objects) => {
-                            const blocksObjectArray = [];
-                            objects.map(object => {
-                              blocksObjectArray.push(object.block);
-                            });
-                            let updatedFormData = formData;
-                            updatedFormData.blocks = blocksObjectArray;
-                            setFormData(updatedFormData);
-                          }}
-                          size={'small'}
-                          fullWidth
-                          disableCloseOnSelect
-                          getOptionLabel={option => option.title}
-                          renderTags={(value, getTagProps) =>
-                            value.map((option, index) => (
-                              <Chip
-                                label={option.title}
-                                {...getTagProps({ index })}
-                              />
-                            ))
-                          }
-                          style={{ width: '100%' }}
-                          renderInput={params => (
-                            <TextField
-                              {...params}
-                              variant="outlined"
-                              placeholder="Block"
-                              fullWidth
-                            />
-                          )}
-                        />
-                      </div>
-                    </div>
-                    <div className="form__form-group">
-                      <span className="form__form-group-label">
-                        Blocks For Exam
-                      </span>
-                      <div className="form__form-group-field priority">
-                        <Autocomplete
-                          multiple
-                          id="fixed-tags-demo"
-                          options={blockOptions}
-                          onChange={(event, objects) => {
-                            const blocksObjectArray = [];
-                            objects.map(object => {
-                              blocksObjectArray.push(object.block);
-                            });
-                            let updatedFormData = formData;
-                            updatedFormData.blocks = blocksObjectArray;
-                            setFormData(updatedFormData);
-                          }}
-                          size={'small'}
-                          fullWidth
-                          disableCloseOnSelect
-                          getOptionLabel={option => option.title}
-                          renderTags={(value, getTagProps) =>
-                            value.map((option, index) => (
-                              <Chip
-                                label={option.title}
-                                {...getTagProps({ index })}
-                              />
-                            ))
-                          }
-                          style={{ width: '100%' }}
-                          renderInput={params => (
-                            <TextField
-                              {...params}
-                              variant="outlined"
-                              placeholder="Block"
-                              fullWidth
-                            />
-                          )}
-                        />
-                      </div>
-                    </div>
-                    <div className="form__form-group">
-                      <span className="form__form-group-label">
-                        Blocks For Exam
-                      </span>
-                      <div className="form__form-group-field priority">
-                        <Autocomplete
-                          multiple
-                          id="fixed-tags-demo"
-                          options={blockOptions}
-                          onChange={(event, objects) => {
-                            const blocksObjectArray = [];
-                            objects.map(object => {
-                              blocksObjectArray.push(object.block);
-                            });
-                            let updatedFormData = formData;
-                            updatedFormData.blocks = blocksObjectArray;
-                            setFormData(updatedFormData);
-                          }}
-                          size={'small'}
-                          fullWidth
-                          disableCloseOnSelect
-                          getOptionLabel={option => option.title}
-                          renderTags={(value, getTagProps) =>
-                            value.map((option, index) => (
-                              <Chip
-                                label={option.title}
-                                {...getTagProps({ index })}
-                              />
-                            ))
-                          }
-                          style={{ width: '100%' }}
-                          renderInput={params => (
-                            <TextField
-                              {...params}
-                              variant="outlined"
-                              placeholder="Block"
-                              fullWidth
-                            />
-                          )}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <FormComponent document={document} />
               ) : view === 1 ? (
                 <div
                   style={{
@@ -553,6 +213,68 @@ const DetailedDocumentDialog = props => {
         </Button>
       </DialogActions>
     </Dialog>
+  );
+};
+
+const FormComponent = ({ document }) => {
+  const [formData, setFormData] = useState({});
+  const prediction = document['prediction'];
+
+  const handleTheFormChange = event => {
+    const object = { [event.target.name]: event.target.value };
+    setFormData({ ...formData, ...object });
+  };
+
+  return (
+    <div className="form">
+      <Box mb={2} style={{ width: '100%' }}>
+        <h4>Provider Information</h4>
+        <Box my={1} style={{ width: '100%' }}>
+          <Grid container spacing={1} direction={'column'}>
+            <Grid item container spacing={1}>
+              <Grid item xs={12} sm md lg={6} xl={6}>
+                <div className="form__form-group">
+                  <span className="form__form-group-label typography-message">
+                    Healthcare Organization Name
+                  </span>
+                  <div className="form__form-group-field">
+                    <TextField
+                      size={'small'}
+                      variant="outlined"
+                      fullWidth
+                      type="text"
+                      name="provider.name"
+                      required
+                      value={prediction.provider.healthCare}
+                      onChange={handleTheFormChange}
+                    />
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={12} sm md lg={6} xl={6}>
+                <div className="form__form-group">
+                  <span className="form__form-group-label typography-message">
+                    Provider Name
+                  </span>
+                  <div className="form__form-group-field">
+                    <TextField
+                      size={'small'}
+                      variant="outlined"
+                      fullWidth
+                      type="text"
+                      name="examType"
+                      required
+                      value={prediction.provider.name}
+                      onChange={handleTheFormChange}
+                    />
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </div>
   );
 };
 
