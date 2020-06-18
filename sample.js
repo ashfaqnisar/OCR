@@ -1,7 +1,7 @@
 export default {
   provider: {
     healthCare: 'Treejoy HealthCare',
-    providerName: ' Vamshi',
+    providerName: 'Vamshi',
     NPI: 1417960428,
     address: 'Gachibowli',
     city: 'Hyderabad',
@@ -15,7 +15,7 @@ export default {
     dateOfOrder: ''
   },
   patient: {
-    patientId: '12345',
+    id: '12345',
     firstName: 'Ashfaq',
     lastName: 'Nisar',
     dob: '05/19/1999',
@@ -34,11 +34,11 @@ export default {
       state: 'Telangana',
       zip: 500006
     },
-    hispanicLatinoOrigin: false,
+    isHispanicLatinoOrigin: false,
     race: 'Asian'
   },
   billing: {
-    esInsurance: true,
+    isESInsurance: true,
     policyHolder: {
       name: 'Ashfaq',
       dob: '05/19/1999',
