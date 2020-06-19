@@ -53,8 +53,6 @@ const DetailedDocumentDialog = props => {
     base0F: '#794dff'
   };
 
-  const [view, setView] = useState(0);
-  const handleViewChange = (event, newView) => setView(newView);
   const classes = useStyles();
   const [tooltip, setTooltip] = useState(false);
   const [value, setValue] = React.useState(0);
@@ -600,7 +598,7 @@ const FormComponent = ({ document }) => {
                         type="text"
                         name="examType"
                         required
-                        value={prediction.patient.languagePreference}
+                        value={prediction.patient.language}
                         onChange={handleTheFormChange}
                       />
                     </div>
