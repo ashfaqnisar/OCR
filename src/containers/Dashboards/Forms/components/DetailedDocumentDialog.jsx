@@ -57,6 +57,11 @@ const DetailedDocumentDialog = props => {
   const handleViewChange = (event, newView) => setView(newView);
   const classes = useStyles();
   const [tooltip, setTooltip] = useState(false);
+  const [value, setValue] = React.useState(0);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   const closeTooltip = () => {
     if (tooltip) {
       setTooltip(!tooltip);
@@ -73,6 +78,27 @@ const DetailedDocumentDialog = props => {
       .writeText(JSON.stringify(document['prediction']))
       .then(() => openTooltip());
   };
+
+  const TabPanel = ({ children, value, index, ...other }) => {
+    return (
+      <div
+        role={'tabpanel'}
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && children}
+      </div>
+    );
+  };
+
+  function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`
+    };
+  }
 
   return (
     <Dialog open={open} onClose={toggleDialog} fullWidth={true} maxWidth="lg">
@@ -125,15 +151,15 @@ const DetailedDocumentDialog = props => {
             <Grid item xs sm lg={12} md={12} xl={12}>
               <AppBar position="sticky" color="default">
                 <Tabs
-                  value={view}
-                  onChange={handleViewChange}
+                  value={value}
+                  onChange={handleChange}
                   textColor={'primary'}
                   indicatorColor="primary"
                   variant="fullWidth"
                 >
-                  <Tab label={'Form'} />
-                  <Tab label={'Table'} />
-                  <Tab label={'JSON'} />
+                  <Tab label={'Form'} {...a11yProps(0)} />
+                  <Tab label={'Table'} {...a11yProps(1)} />
+                  <Tab label={'JSON'} {...a11yProps(2)} />
                 </Tabs>
               </AppBar>
             </Grid>
@@ -146,9 +172,10 @@ const DetailedDocumentDialog = props => {
               xl={12}
               style={{ marginRight: '10px !important' }}
             >
-              {view === 0 ? (
+              <TabPanel value={value} index={0}>
                 <FormComponent document={document} />
-              ) : view === 1 ? (
+              </TabPanel>
+              <TabPanel value={value} index={1}>
                 <div
                   style={{
                     position: 'relative',
@@ -158,7 +185,8 @@ const DetailedDocumentDialog = props => {
                 >
                   Table
                 </div>
-              ) : (
+              </TabPanel>
+              <TabPanel value={value} index={2}>
                 <Grid container direction={'column'} spacing={1}>
                   <Grid
                     item
@@ -210,7 +238,7 @@ const DetailedDocumentDialog = props => {
                     </div>
                   </Grid>
                 </Grid>
-              )}
+              </TabPanel>
             </Grid>
           </Grid>
         </Grid>
@@ -1015,123 +1043,6 @@ const FormComponent = ({ document }) => {
             </Grid>
           </Box>
         </Box>
-
-        {/*
-        <Box mb={2} style={{ width: '100%' }}>
-          <h4>Patient Insurance / Billing</h4>
-          <Box my={1} style={{ width: '100%' }}>
-            <Grid container direction={'column'} spacing={1}>
-              <Grid item container spacing={2}>
-                <Grid item xs={12} sm md lg={6} xl={6}>
-                  <div className="form__form-group">
-                    <span className="form__form-group-label typography-message">
-                      Policyholder Name
-                    </span>
-                    <div className="form__form-group-field">
-                      <TextField
-                        size={'small'}
-                        variant="outlined"
-                        fullWidth
-                        type="text"
-                        name="provider.name"
-                        required
-                        value={prediction.billing.policyHolder.name}
-                        onChange={handleTheFormChange}
-                      />
-                    </div>
-                  </div>
-                </Grid>
-                <Grid item xs={12} sm md lg={6} xl={6}>
-                  <div className="form__form-group">
-                    <span className="form__form-group-label typography-message">
-                      PolicyHolder DOB
-                    </span>
-                    <div className="form__form-group-field">
-                      <TextField
-                        size={'small'}
-                        variant="outlined"
-                        fullWidth
-                        type="text"
-                        name="examType"
-                        required
-                        value={prediction.billing.policyHolder.dob}
-                        onChange={handleTheFormChange}
-                      />
-                    </div>
-                  </div>
-                </Grid>
-              <Grid container spacing={1}>
-                <Grid item container spacing={2}>
-                  <Grid item xs={12} sm md lg={6} xl={6}>
-                    <div className="form__form-group">
-                      <span className="form__form-group-label typography-message">
-                        Realtionship to Patient
-                      </span>
-                      <div className="form__form-group-field">
-                        <TextField
-                          size={'small'}
-                          variant="outlined"
-                          fullWidth
-                          type="text"
-                          name="examType"
-                          required
-                          value={
-                            prediction.billing.policyHolder
-                              .relationshipToPatient
-                          }
-                          onChange={handleTheFormChange}
-                        />
-                      </div>
-                    </div>
-                  </Grid>
-                  <Grid item xs={12} sm md lg={6} xl={6}>
-                    <div className="form__form-group">
-                      <span className="form__form-group-label typography-message">
-                        Patient wish Exact Sciences to bill their insurance?
-                      </span>
-                      <div className="form__form-group-field">
-                        <TextField
-                          size={'small'}
-                          variant="outlined"
-                          fullWidth
-                          type="text"
-                          name="provider.name"
-                          required
-                          value={
-                            prediction.billing.isESInsurance ? 'Yes' : 'No'
-                          }
-                          onChange={handleTheFormChange}
-                        />
-                      </div>
-                    </div>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid container spacing={1}>
-              </Grid>
-              <Grid item xs={12} sm md lg={12} xl={12}>
-                <div className="form__form-group">
-                  <span className="form__form-group-label typography-message">
-                    Claims Submission Address
-                  </span>
-                  <div className="form__form-group-field">
-                    <TextField
-                      size={'small'}
-                      variant="outlined"
-                      fullWidth
-                      type="text"
-                      name="examType"
-                      required
-                      value={prediction.billing.claimsSubmissionAddress}
-                      onChange={handleTheFormChange}
-                    />
-                  </div>
-                </div>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-*/}
       </div>
     </div>
   );
