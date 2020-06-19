@@ -18,6 +18,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { DetailedDocumentDialog, NewDocumentForm } from './components';
 import { useHistory } from 'react-router';
 import none from '../../../shared/img/other/none.png';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 const useStyles = makeStyles(theme => ({
   documentForm: {
@@ -49,7 +50,22 @@ const useStyles = makeStyles(theme => ({
     backgroundPosition: 'center'
   },
   gridListTile: {
-    height: '300px !important',
+    [theme.breakpoints.down('xs')]: {
+      height: '330px !important',
+      width: '80% !important'
+    },
+    [theme.breakpoints.up('md')]: {
+      height: '300px !important'
+    },
+    [theme.breakpoints.up('sm')]: {
+      height: '210px !important'
+    },
+    [theme.breakpoints.up('lg')]: {
+      height: '265px !important'
+    },
+    [theme.breakpoints.up('xl')]: {
+      height: '350px !important'
+    },
     margin: theme.spacing(2),
     border: `solid ${theme.palette.primary.main}`,
     borderRadius: '5px',
@@ -57,15 +73,36 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const DocumentsForm = ({ documents, toggleDialog, setDocument }) => {
+const DocumentsForm = ({ documents, toggleDialog, setDocument, width }) => {
   const classes = useStyles();
+  const getGridListCols = () => {
+    if (isWidthUp('xl', width)) {
+      return 6;
+    }
 
+    if (isWidthUp('lg', width)) {
+      return 6;
+    }
+
+    if (isWidthUp('md', width)) {
+      return 2;
+    }
+    if (isWidthUp('sm', width)) {
+      return 3;
+    }
+
+    if (isWidthUp('xs', width)) {
+      return 1;
+    }
+
+    return 1;
+  };
   return (
     <GridList
       cellHeight={200}
       spacing={1}
       className={classes.gridList}
-      cols={6}
+      cols={getGridListCols()}
     >
       {documents.map(doc => (
         <GridListTile
@@ -96,7 +133,7 @@ const DocumentsForm = ({ documents, toggleDialog, setDocument }) => {
   );
 };
 
-const Forms = () => {
+const Forms = ({ width }) => {
   const classes = useStyles();
   const { uid } = useSelector(state => state.firebase.auth);
   const fetcher = url => axios({ method: 'get', url: url });
@@ -195,6 +232,7 @@ const Forms = () => {
                     direction="row"
                   >
                     <DocumentsForm
+                      width={width}
                       documents={documents.data}
                       toggleDialog={toggleDetailedDocumentDialog}
                       setDocument={setDocumentData}
@@ -216,4 +254,4 @@ const Forms = () => {
   );
 };
 
-export default Forms;
+export default withWidth()(Forms);
