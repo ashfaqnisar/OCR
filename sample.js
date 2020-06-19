@@ -8,7 +8,8 @@ export default {
     state: 'Telangana',
     zip: 500006,
     number: 8328277518,
-    faxNumber: 1234567890
+    faxNumber: 1234567890,
+    languagePreference: 'English'
   },
   order: {
     icdCode: '',
