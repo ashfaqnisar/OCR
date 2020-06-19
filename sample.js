@@ -43,10 +43,10 @@ export default {
     policyHolder: {
       name: 'Ashfaq',
       dob: '05/19/1999',
-      relationshipToPatient: 'self'
+      relationship: 'self'
     },
-    primaryInsuranceCarrier: 'Bajaj',
-    type: 'private',
+    primaryInsurance: 'Bajaj',
+    primaryInsuranceType: 'Private',
     claimsSubmissionAddress:
       'Second Floor, Bajaj Insurance, Hi Tech city, Hyderabad',
     policyNumber: '12345',

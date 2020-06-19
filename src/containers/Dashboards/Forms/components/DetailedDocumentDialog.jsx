@@ -242,7 +242,7 @@ const FormComponent = ({ document }) => {
       }}
     >
       <div className="form" style={{ marginRight: '12px' }}>
-        <Box mb={2} style={{ width: '100%', marginRight: '20px !important' }}>
+        <Box mb={2} style={{ width: '100%' }}>
           <h4>Provider Information</h4>
           <Box my={1} style={{ width: '100%' }}>
             <Grid container direction={'column'} spacing={1}>
@@ -326,7 +326,6 @@ const FormComponent = ({ document }) => {
                   </div>
                 </Grid>
               </Grid>
-
               <Grid item container spacing={2}>
                 <Grid item xs={12} sm md lg={4} xl={4}>
                   <div className="form__form-group">
@@ -389,6 +388,54 @@ const FormComponent = ({ document }) => {
             </Grid>
           </Box>
         </Box>
+        <Box mb={2} style={{ width: '100%' }}>
+          <h4>Order Information</h4>
+          <Box my={1} style={{ width: '100%' }}>
+            <Grid container direction={'column'} spacing={1}>
+              <Grid item container spacing={2}>
+                <Grid item xs={12} sm md lg={6} xl={6}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      ICD Code
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="provider.name"
+                        required
+                        value={prediction.order.icdCode}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm md lg={6} xl={6}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      Date of Order
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="examType"
+                        required
+                        value={prediction.order.dateOfOrder}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+
         <Box mb={2} style={{ width: '100%' }}>
           <h4>Patient Information</h4>
           <Box my={1} style={{ width: '100%' }}>
@@ -473,7 +520,6 @@ const FormComponent = ({ document }) => {
                   </div>
                 </Grid>
               </Grid>
-
               <Grid item container spacing={2}>
                 <Grid item xs={12} sm md lg={4} xl={4}>
                   <div className="form__form-group">
@@ -533,7 +579,6 @@ const FormComponent = ({ document }) => {
                   </div>
                 </Grid>
               </Grid>
-
               <Grid item xs={12} sm md lg={12} xl={12}>
                 <div className="form__form-group">
                   <span className="form__form-group-label typography-message">
@@ -553,7 +598,6 @@ const FormComponent = ({ document }) => {
                   </div>
                 </div>
               </Grid>
-
               <Grid item container spacing={2}>
                 <Grid item xs={12} sm md lg={4} xl={4}>
                   <div className="form__form-group">
@@ -613,7 +657,6 @@ const FormComponent = ({ document }) => {
                   </div>
                 </Grid>
               </Grid>
-
               <Grid item xs={12} sm md lg={12} xl={12}>
                 <div className="form__form-group">
                   <span className="form__form-group-label typography-message">
@@ -633,7 +676,6 @@ const FormComponent = ({ document }) => {
                   </div>
                 </div>
               </Grid>
-
               <Grid item container spacing={2}>
                 <Grid item xs={12} sm md lg={4} xl={4}>
                   <div className="form__form-group">
@@ -696,6 +738,400 @@ const FormComponent = ({ document }) => {
             </Grid>
           </Box>
         </Box>
+        <Box mb={2} style={{ width: '100%' }}>
+          <h4>Patient Ethnicity</h4>
+          <Box my={1} style={{ width: '100%' }}>
+            <Grid container direction={'column'} spacing={1}>
+              <Grid item container spacing={2}>
+                <Grid item xs={12} sm md lg={6} xl={6}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      Is patient hispanic or latin origin
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="provider.name"
+                        required
+                        value={
+                          prediction.patient.isHispanicLatinoOrigin
+                            ? 'Yes'
+                            : 'No'
+                        }
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm md lg={6} xl={6}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      Patient Race
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="examType"
+                        required
+                        value={prediction.patient.race}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+        <Box mb={2} style={{ width: '100%' }}>
+          <h4>Patient Insurance /Billing</h4>
+          <Box my={1} style={{ width: '100%' }}>
+            <Grid container direction={'column'} spacing={1}>
+              <Grid item container spacing={2}>
+                <Grid item xs={12} sm md lg={6} xl={6}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      Policyholder Name
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="provider.name"
+                        required
+                        value={prediction.billing.policyHolder.name}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm md lg={6} xl={6}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      PolicyHolder DOB
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="examType"
+                        required
+                        value={prediction.billing.policyHolder.dob}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+              </Grid>
+              <Grid item container spacing={2}>
+                <Grid item xs={12} sm md lg={6} xl={6}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      Relationship to Patient
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="examType"
+                        required
+                        value={prediction.billing.policyHolder.relationship}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm md lg={6} xl={6}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      Patient wish Exact Sciences to bill their insurance?
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="provider.name"
+                        required
+                        value={prediction.billing.isESInsurance ? 'Yes' : 'No'}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+              </Grid>
+              <Grid item container spacing={2}>
+                <Grid item xs={12} sm md lg={6} xl={6}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      Primary Insurance Carrier
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="examType"
+                        required
+                        value={prediction.billing.primaryInsurance}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm md lg={6} xl={6}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      Primary Insurance Carrier Type
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="provider.name"
+                        required
+                        value={prediction.billing.primaryInsuranceType}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} sm md lg={12} xl={12}>
+                <div className="form__form-group">
+                  <span className="form__form-group-label typography-message">
+                    Claims Submission Address
+                  </span>
+                  <div className="form__form-group-field">
+                    <TextField
+                      size={'small'}
+                      variant="outlined"
+                      fullWidth
+                      type="text"
+                      name="examType"
+                      required
+                      value={prediction.billing.claimsSubmissionAddress}
+                      onChange={handleTheFormChange}
+                    />
+                  </div>
+                </div>
+              </Grid>
+              <Grid item container spacing={2}>
+                <Grid item xs={12} sm md lg={4} xl={4}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      Subscriber Id/ Policy Number
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="examType"
+                        required
+                        value={prediction.billing.policyNumber}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm md lg={4} xl={4}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      Group Number
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="provider.name"
+                        required
+                        value={prediction.billing.groupNumber}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm md lg={4} xl={4}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      Plan
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="provider.name"
+                        required
+                        value={prediction.billing.plan}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+              </Grid>
+              <Grid item container spacing={2}>
+                <Grid item xs={12} sm md lg={6} xl={6}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      Prior-Authorization Code (Optional)
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="examType"
+                        required
+                        value={prediction.billing.priorAuthorizationCode}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+
+        {/*
+        <Box mb={2} style={{ width: '100%' }}>
+          <h4>Patient Insurance / Billing</h4>
+          <Box my={1} style={{ width: '100%' }}>
+            <Grid container direction={'column'} spacing={1}>
+              <Grid item container spacing={2}>
+                <Grid item xs={12} sm md lg={6} xl={6}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      Policyholder Name
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="provider.name"
+                        required
+                        value={prediction.billing.policyHolder.name}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm md lg={6} xl={6}>
+                  <div className="form__form-group">
+                    <span className="form__form-group-label typography-message">
+                      PolicyHolder DOB
+                    </span>
+                    <div className="form__form-group-field">
+                      <TextField
+                        size={'small'}
+                        variant="outlined"
+                        fullWidth
+                        type="text"
+                        name="examType"
+                        required
+                        value={prediction.billing.policyHolder.dob}
+                        onChange={handleTheFormChange}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+              <Grid container spacing={1}>
+                <Grid item container spacing={2}>
+                  <Grid item xs={12} sm md lg={6} xl={6}>
+                    <div className="form__form-group">
+                      <span className="form__form-group-label typography-message">
+                        Realtionship to Patient
+                      </span>
+                      <div className="form__form-group-field">
+                        <TextField
+                          size={'small'}
+                          variant="outlined"
+                          fullWidth
+                          type="text"
+                          name="examType"
+                          required
+                          value={
+                            prediction.billing.policyHolder
+                              .relationshipToPatient
+                          }
+                          onChange={handleTheFormChange}
+                        />
+                      </div>
+                    </div>
+                  </Grid>
+                  <Grid item xs={12} sm md lg={6} xl={6}>
+                    <div className="form__form-group">
+                      <span className="form__form-group-label typography-message">
+                        Patient wish Exact Sciences to bill their insurance?
+                      </span>
+                      <div className="form__form-group-field">
+                        <TextField
+                          size={'small'}
+                          variant="outlined"
+                          fullWidth
+                          type="text"
+                          name="provider.name"
+                          required
+                          value={
+                            prediction.billing.isESInsurance ? 'Yes' : 'No'
+                          }
+                          onChange={handleTheFormChange}
+                        />
+                      </div>
+                    </div>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid container spacing={1}>
+              </Grid>
+              <Grid item xs={12} sm md lg={12} xl={12}>
+                <div className="form__form-group">
+                  <span className="form__form-group-label typography-message">
+                    Claims Submission Address
+                  </span>
+                  <div className="form__form-group-field">
+                    <TextField
+                      size={'small'}
+                      variant="outlined"
+                      fullWidth
+                      type="text"
+                      name="examType"
+                      required
+                      value={prediction.billing.claimsSubmissionAddress}
+                      onChange={handleTheFormChange}
+                    />
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+*/}
       </div>
     </div>
   );
