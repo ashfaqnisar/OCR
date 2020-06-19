@@ -156,35 +156,15 @@ const DetailedDocumentDialog = props => {
                   variant="fullWidth"
                 >
                   <Tab label={'Form'} {...a11yProps(0)} />
-                  <Tab label={'Table'} {...a11yProps(1)} />
-                  <Tab label={'JSON'} {...a11yProps(2)} />
+                  <Tab label={'JSON'} {...a11yProps(1)} />
                 </Tabs>
               </AppBar>
             </Grid>
-            <Grid
-              item
-              xs
-              sm
-              lg={12}
-              md={12}
-              xl={12}
-              style={{ marginRight: '10px !important' }}
-            >
+            <Grid item xs sm lg={12} md={12} xl={12}>
               <TabPanel value={value} index={0}>
                 <FormComponent document={document} />
               </TabPanel>
               <TabPanel value={value} index={1}>
-                <div
-                  style={{
-                    position: 'relative',
-                    height: '425px',
-                    overflow: 'auto'
-                  }}
-                >
-                  Table
-                </div>
-              </TabPanel>
-              <TabPanel value={value} index={2}>
                 <Grid container direction={'column'} spacing={1}>
                   <Grid
                     item
