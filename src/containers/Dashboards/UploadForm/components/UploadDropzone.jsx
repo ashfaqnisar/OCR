@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { makeStyles } from '@material-ui/core/styles';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,8 +34,23 @@ const useStyles = makeStyles(theme => ({
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)'
   },
-  image: {
-    height: '325px !important',
+  gridItem: {
+    [theme.breakpoints.down('xs')]: {
+      height: '330px !important',
+      width: '80% !important'
+    },
+    [theme.breakpoints.up('md')]: {
+      height: '300px !important'
+    },
+    [theme.breakpoints.up('sm')]: {
+      height: '210px !important'
+    },
+    [theme.breakpoints.up('lg')]: {
+      height: '265px !important'
+    },
+    [theme.breakpoints.up('xl')]: {
+      height: '350px !important'
+    },
     position: 'relative',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
@@ -61,7 +77,30 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DropZoneMultipleField = props => {
-  const { name, value, onChange } = props;
+  const { name, value, onChange, width } = props;
+
+  const getGridListCols = () => {
+    if (isWidthUp('xl', width)) {
+      return 6;
+    }
+
+    if (isWidthUp('lg', width)) {
+      return 6;
+    }
+
+    if (isWidthUp('md', width)) {
+      return 2;
+    }
+    if (isWidthUp('sm', width)) {
+      return 3;
+    }
+
+    if (isWidthUp('xs', width)) {
+      return 1;
+    }
+
+    return 1;
+  };
 
   const onDrop = files => {
     onChange(
@@ -114,21 +153,20 @@ const DropZoneMultipleField = props => {
             </Grid>
 
             <GridList
-              cols={6}
+              cols={getGridListCols()}
               style={{
                 display: 'flex',
                 width: '100%',
                 justifyContent: 'space-evenly',
                 overflow: 'auto',
                 maxHeight: '550px',
-
                 border: '1px dashed black '
               }}
             >
               {files.map((file, index) => (
                 <GridListTile
                   key={index}
-                  className={classes.image}
+                  className={classes.gridItem}
                   style={{ backgroundImage: `url(${file.preview})` }}
                 >
                   <GridListTileBar
@@ -154,8 +192,8 @@ const DropZoneMultipleField = props => {
 };
 
 const renderDropZoneMultipleField = props => {
-  const { input } = props;
-  return <DropZoneMultipleField {...input} />;
+  const { input, width } = props;
+  return <DropZoneMultipleField {...input} width={width} />;
 };
 
-export default renderDropZoneMultipleField;
+export default withWidth()(renderDropZoneMultipleField);
