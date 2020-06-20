@@ -178,7 +178,7 @@ const DetailedDocumentDialog = props => {
                     spacing={1}
                   >
                     <Grid item>
-                      <h4>Response: </h4>
+                      <Typography variant={'subtitle1'}>Response</Typography>
                     </Grid>
                     <Grid item>
                       <Tooltip
@@ -206,7 +206,7 @@ const DetailedDocumentDialog = props => {
                         name={'prediction'}
                         enableClipboard={false}
                         iconStyle={'square'}
-                        style={{ fontSize: '0.9rem' }}
+                        style={{ fontFamily: 'Roboto', fontSize: '0.9rem' }}
                         collapsed={false}
                         collapseStringsAfterLength={10}
                         displayDataTypes={false}
@@ -249,7 +249,7 @@ const FormComponent = ({ document }) => {
     >
       <div className="form" style={{ marginRight: '12px' }}>
         <Box mb={2} style={{ width: '100%' }}>
-          <h4>Provider Information</h4>
+          <Typography variant={'subtitle1'}>Provider Information</Typography>
           <Box my={1} style={{ width: '100%' }}>
             <Grid container direction={'column'} spacing={1}>
               <Grid item container spacing={2}>
@@ -395,7 +395,7 @@ const FormComponent = ({ document }) => {
           </Box>
         </Box>
         <Box mb={2} style={{ width: '100%' }}>
-          <h4>Order Information</h4>
+          <Typography variant={'subtitle1'}>Order Information</Typography>
           <Box my={1} style={{ width: '100%' }}>
             <Grid container direction={'column'} spacing={1}>
               <Grid item container spacing={2}>
@@ -441,9 +441,8 @@ const FormComponent = ({ document }) => {
             </Grid>
           </Box>
         </Box>
-
         <Box mb={2} style={{ width: '100%' }}>
-          <h4>Patient Information</h4>
+          <Typography variant={'subtitle1'}>Patient Information</Typography>
           <Box my={1} style={{ width: '100%' }}>
             <Grid container direction={'column'} spacing={1}>
               <Grid item container spacing={2}>
@@ -745,7 +744,7 @@ const FormComponent = ({ document }) => {
           </Box>
         </Box>
         <Box mb={2} style={{ width: '100%' }}>
-          <h4>Patient Ethnicity</h4>
+          <Typography variant={'subtitle1'}>Patient Ethnicity</Typography>
           <Box my={1} style={{ width: '100%' }}>
             <Grid container direction={'column'} spacing={1}>
               <Grid item container spacing={2}>
@@ -796,7 +795,9 @@ const FormComponent = ({ document }) => {
           </Box>
         </Box>
         <Box mb={2} style={{ width: '100%' }}>
-          <h4>Patient Insurance /Billing</h4>
+          <Typography variant={'subtitle1'}>
+            Patient Insurance /Billing
+          </Typography>
           <Box my={1} style={{ width: '100%' }}>
             <Grid container direction={'column'} spacing={1}>
               <Grid item container spacing={2}>

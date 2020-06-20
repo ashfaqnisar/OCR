@@ -1,11 +1,11 @@
 import React from 'react';
-import { Grid, Container } from '@material-ui/core';
+import { Grid, Container, Typography } from '@material-ui/core';
 
 const Home = () => {
   return (
     <Container maxWidth={'xl'}>
       <Grid container justify={'flex-start'} alignItems={'center'}>
-        <h3 className="page-title">Home</h3>
+        <Typography variant={'h4'}>Home</Typography>
       </Grid>
     </Container>
   );

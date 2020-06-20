@@ -10,7 +10,8 @@ import {
   Grid,
   GridList,
   GridListTile,
-  GridListTileBar
+  GridListTileBar,
+  Typography
 } from '@material-ui/core';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -168,7 +169,7 @@ const Forms = ({ width }) => {
           spacing={1}
         >
           <Grid item xs sm md lg xl>
-            <h3 className="page-title">Application Forms</h3>
+            <Typography variant={'h4'}>Application Forms</Typography>
           </Grid>
           <Grid item>
             <Button

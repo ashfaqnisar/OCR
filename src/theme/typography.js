@@ -36,7 +36,7 @@ export default {
     lineHeight: '20px'
   },
   subtitle1: {
-    fontSize: '16px',
+    fontSize: '18px',
     letterSpacing: '-0.05px',
     lineHeight: '25px'
   },
