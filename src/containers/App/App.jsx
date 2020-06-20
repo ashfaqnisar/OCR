@@ -12,7 +12,7 @@ import { isLoaded, ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { createFirestoreInstance } from 'redux-firestore';
 import { firebase } from '../../config';
 import { SWRConfig } from 'swr';
-import theme from '../../theme';
+import theme from '../../theme/index';
 
 const App = () => {
   const rrfConfig = {
