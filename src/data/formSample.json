@@ -1,0 +1,56 @@
+{
+  "provider": {
+    "healthCare": "",
+    "providerName": "",
+    "NPI": null,
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": null,
+    "number": null,
+    "faxNumber": null,
+    "languagePreference": ""
+  },
+  "order": {
+    "icdCode": "",
+    "dateOfOrder": ""
+  },
+  "patient": {
+    "id": "",
+    "firstName": "",
+    "lastName": "",
+    "dob": "",
+    "sex": "",
+    "number": null,
+    "language": "",
+    "shippingAddress": {
+      "address": "",
+      "city": "",
+      "state": "",
+      "zip": null
+    },
+    "billingAddress": {
+      "address": "",
+      "city": "",
+      "state": "",
+      "zip": null
+    },
+    "isHispanicLatinoOrigin": null,
+    "race": ""
+  },
+  "billing": {
+    "isESInsurance": null,
+    "policyHolder": {
+      "name": "",
+      "dob": "",
+      "relationship": ""
+    },
+    "primaryInsurance": "",
+    "primaryInsuranceType": "",
+    "claimsSubmissionAddress": "",
+    "policyNumber": "",
+    "groupNumber": "",
+    "plan": "",
+    "priorAuthorizationCode": ""
+  }
+}
