@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Container } from '@material-ui/core';
+import { Box, Container, Typography, Grid, Button } from '@material-ui/core';
 import { DropFilesDropzone } from './components';
-import Button from '@material-ui/core/Button';
 import { useSelector } from 'react-redux';
 import { axios } from '../../../config';
-import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router';
 
 const UploadForm = () => {
@@ -43,7 +41,7 @@ const UploadForm = () => {
 
   return (
     <Container maxWidth={'xl'}>
-      <h3 className="page-title">Upload Form</h3>
+      <Typography variant={'h4'}>Upload Form</Typography>
       <Box my={2}>
         <DropFilesDropzone />
       </Box>
@@ -59,9 +57,9 @@ const UploadForm = () => {
         <Box my={2}>
           <Grid container direction={'column'} justify={'center'}>
             <Grid item>
-              <h4>
+              <Typography variant={'subtitle1'}>
                 {processingStatus} {processingFileCount} of {files.length}
-              </h4>
+              </Typography>
             </Grid>
           </Grid>
         </Box>

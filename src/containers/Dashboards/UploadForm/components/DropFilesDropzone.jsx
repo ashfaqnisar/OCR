@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import renderDropZoneMultipleField from './UploadDropzone';
 
-const DropFilesDropzone = ({ handleSubmit }) => {
+const DropFilesDropzone = () => {
   return <Field name={'files'} component={renderDropZoneMultipleField} />;
 };
 

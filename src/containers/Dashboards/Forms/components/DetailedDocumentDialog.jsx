@@ -13,18 +13,25 @@ import {
   Tabs,
   TextField,
   Tooltip,
-  Typography
+  Typography,
+  Box
 } from '@material-ui/core';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
+import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 
 import ReactJson from 'react-json-view';
-import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
-  root: {}
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    color: theme.palette.grey[500]
+  }
 }));
 
 const DetailedDocumentDialog = props => {
@@ -101,9 +108,17 @@ const DetailedDocumentDialog = props => {
   return (
     <Dialog open={open} onClose={toggleDialog} fullWidth={true} maxWidth="lg">
       <DialogTitle>
-        <Typography variant="h6">
+        <Typography variant="h5">
           Document: {document['uploadedFile']}
         </Typography>
+        <IconButton
+          size={'small'}
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={toggleDialog}
+        >
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent dividers>
         <Grid
@@ -178,7 +193,7 @@ const DetailedDocumentDialog = props => {
                     spacing={1}
                   >
                     <Grid item>
-                      <h4>Response: </h4>
+                      <Typography variant={'subtitle1'}>Response</Typography>
                     </Grid>
                     <Grid item>
                       <Tooltip
@@ -206,7 +221,7 @@ const DetailedDocumentDialog = props => {
                         name={'prediction'}
                         enableClipboard={false}
                         iconStyle={'square'}
-                        style={{ fontSize: '0.9rem' }}
+                        style={{ fontFamily: 'Roboto', fontSize: '0.9rem' }}
                         collapsed={false}
                         collapseStringsAfterLength={10}
                         displayDataTypes={false}
@@ -249,7 +264,7 @@ const FormComponent = ({ document }) => {
     >
       <div className="form" style={{ marginRight: '12px' }}>
         <Box mb={2} style={{ width: '100%' }}>
-          <h4>Provider Information</h4>
+          <Typography variant={'subtitle1'}>Provider Information</Typography>
           <Box my={1} style={{ width: '100%' }}>
             <Grid container direction={'column'} spacing={1}>
               <Grid item container spacing={2}>
@@ -395,7 +410,7 @@ const FormComponent = ({ document }) => {
           </Box>
         </Box>
         <Box mb={2} style={{ width: '100%' }}>
-          <h4>Order Information</h4>
+          <Typography variant={'subtitle1'}>Order Information</Typography>
           <Box my={1} style={{ width: '100%' }}>
             <Grid container direction={'column'} spacing={1}>
               <Grid item container spacing={2}>
@@ -441,9 +456,8 @@ const FormComponent = ({ document }) => {
             </Grid>
           </Box>
         </Box>
-
         <Box mb={2} style={{ width: '100%' }}>
-          <h4>Patient Information</h4>
+          <Typography variant={'subtitle1'}>Patient Information</Typography>
           <Box my={1} style={{ width: '100%' }}>
             <Grid container direction={'column'} spacing={1}>
               <Grid item container spacing={2}>
@@ -745,7 +759,7 @@ const FormComponent = ({ document }) => {
           </Box>
         </Box>
         <Box mb={2} style={{ width: '100%' }}>
-          <h4>Patient Ethnicity</h4>
+          <Typography variant={'subtitle1'}>Patient Ethnicity</Typography>
           <Box my={1} style={{ width: '100%' }}>
             <Grid container direction={'column'} spacing={1}>
               <Grid item container spacing={2}>
@@ -796,7 +810,9 @@ const FormComponent = ({ document }) => {
           </Box>
         </Box>
         <Box mb={2} style={{ width: '100%' }}>
-          <h4>Patient Insurance /Billing</h4>
+          <Typography variant={'subtitle1'}>
+            Patient Insurance /Billing
+          </Typography>
           <Box my={1} style={{ width: '100%' }}>
             <Grid container direction={'column'} spacing={1}>
               <Grid item container spacing={2}>

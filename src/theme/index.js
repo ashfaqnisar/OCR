@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import typography from './typography';
 
 const PURPLE = '#794dff'; //exact sciences purple
 const DARKPURPLE = '#6736fc';
@@ -32,7 +33,8 @@ const theme = createMuiTheme({
       hover: colors.primaryDark
     }
   },
-  colors
+  colors,
+  typography
 });
 
 export default theme;
