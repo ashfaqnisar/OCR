@@ -6,7 +6,8 @@ import {
   GridListTile,
   GridListTileBar,
   IconButton,
-  Paper
+  Paper,
+  Typography
 } from '@material-ui/core';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { makeStyles } from '@material-ui/core/styles';
@@ -133,7 +134,7 @@ const DropZoneMultipleField = props => {
           <div {...getRootProps()} className="dropzone__input">
             {(!files || files.length === 0) && (
               <Paper variant={'outlined'} className={classes.paper}>
-                <h4>Drop Files Here!</h4>
+                <Typography variant={'subtitle1'}>Drop Files Here!</Typography>
               </Paper>
             )}
             <input {...getInputProps()} />
@@ -149,7 +150,7 @@ const DropZoneMultipleField = props => {
             direction={'column'}
           >
             <Grid item className={classes.heading}>
-              <h3>Drop files here</h3>
+              <Typography variant={'subtitle1'}>Drop Files Here!</Typography>
             </Grid>
 
             <GridList
