@@ -13,18 +13,25 @@ import {
   Tabs,
   TextField,
   Tooltip,
-  Typography
+  Typography,
+  Box
 } from '@material-ui/core';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
+import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 
 import ReactJson from 'react-json-view';
-import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
-  root: {}
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    color: theme.palette.grey[500]
+  }
 }));
 
 const DetailedDocumentDialog = props => {
@@ -101,9 +108,17 @@ const DetailedDocumentDialog = props => {
   return (
     <Dialog open={open} onClose={toggleDialog} fullWidth={true} maxWidth="lg">
       <DialogTitle>
-        <Typography variant="h6">
+        <Typography variant="h5">
           Document: {document['uploadedFile']}
         </Typography>
+        <IconButton
+          size={'small'}
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={toggleDialog}
+        >
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent dividers>
         <Grid
