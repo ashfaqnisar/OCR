@@ -91,17 +91,17 @@ const Register = () => {
             <h3>Create an Account</h3>
             <h5>Please provide the below details to continue</h5>
           </Grid>
-          {!isBlank(error) ? (
+
+          {!isBlank(error) && (
             <Grid item container justify={'center'}>
               <Alert variant={'filled'} severity={'error'}>
                 {error}
               </Alert>
             </Grid>
-          ) : (
-            <></>
           )}
+
           <Grid item container direction={'column'}>
-            <RegisterForm handleSubmit={createNewUser} />
+            <RegisterForm createNewUser={createNewUser} />
           </Grid>
           <Grid item>
             <h5>

@@ -39,7 +39,7 @@ const Login = () => {
   const firebase = useFirebase();
   const classes = useStyles();
 
-  const signInWithGoogle = (email, password) => {
+  const signInUser = (email, password) => {
     setLoading(true);
     firebase
       .login({
@@ -58,7 +58,7 @@ const Login = () => {
 
   const onSubmitFireBase = ({ email, password }) => {
     event.preventDefault();
-    signInWithGoogle(email, password);
+    signInUser(email, password);
   };
 
   return loading ? (
@@ -109,7 +109,7 @@ const Login = () => {
             <></>
           )}
           <Grid item container direction={'column'}>
-            <LoginForm handleSubmit={onSubmitFireBase} />
+            <LoginForm handleUserLogin={onSubmitFireBase} />
           </Grid>
           <Grid item>
             <h5>
