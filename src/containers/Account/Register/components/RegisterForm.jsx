@@ -10,21 +10,22 @@ import {
   OutlinedInput,
   TextField
 } from '@material-ui/core';
-import { Formik } from 'formik';
+import get from 'lodash.get';
 import * as Yup from 'yup';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { useForm } from 'react-hook-form';
 
-const RegisterForm = ({ handleSubmit }) => {
-  const loginValidationSchema = Yup.object().shape({
+const RegisterForm = ({ createNewUser }) => {
+  const registrationValidationSchema = Yup.object().shape({
     firstName: Yup.string().required('Required'),
     lastName: Yup.string().required('Required'),
     email: Yup.string()
       .email('Invalid Email Address')
       .required('Required'),
     password: Yup.string()
-      .min(5, 'Password Too Short')
-      .max(20, 'Password Too Long')
       .required('Required')
+      .min(6, 'Password Too Short')
+      .max(20, 'Password Too Long')
   });
   const [passwordView, setPasswordView] = useState(false);
 
@@ -32,132 +33,94 @@ const RegisterForm = ({ handleSubmit }) => {
     setPasswordView(!passwordView);
   }
 
+  const { register, handleSubmit, errors } = useForm({
+    mode: 'onBlur',
+    validationSchema: registrationValidationSchema
+  });
+
   return (
-    <Formik
-      initialValues={{ firstName: '', lastName: '', email: '', password: '' }}
-      validationSchema={loginValidationSchema}
-      onSubmit={values => {
-        handleSubmit(values);
-      }}
-    >
-      {props => {
-        const {
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit
-        } = props;
-        return (
-          <form onSubmit={handleSubmit}>
-            <Grid
-              container
-              direction={'column'}
-              spacing={2}
-              alignItems="flex-start"
-            >
-              <Grid item container spacing={2}>
-                <Grid item xs={12} lg={6} xl={6}>
-                  <TextField
-                    id={'firstName'}
-                    name={'firstName'}
-                    helperText={
-                      errors.firstName && touched.firstName && errors.firstName
-                    }
-                    error={errors.firstName && touched.firstName}
-                    variant={'outlined'}
-                    label={'First Name'}
-                    type={'name'}
-                    size={'small'}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.firstName}
-                    fullWidth
-                  />
-                </Grid>
-                <Grid item xs={12} lg={6} xl={6}>
-                  <TextField
-                    id={'lastName'}
-                    name={'lastName'}
-                    helperText={
-                      errors.lastName && touched.lastName && errors.lastName
-                    }
-                    error={errors.lastName && touched.lastName}
-                    variant={'outlined'}
-                    label={'Last Name'}
-                    type={'name'}
-                    size={'small'}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.lastName}
-                    fullWidth
-                  />
-                </Grid>
-              </Grid>
-              <Grid item container>
-                <TextField
-                  id={'email'}
-                  name={'email'}
-                  helperText={errors.email && touched.email && errors.email}
-                  error={errors.email && touched.email}
-                  variant={'outlined'}
-                  label={'Email'}
-                  type={'email'}
-                  size={'small'}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email}
-                  fullWidth
-                />
-              </Grid>
-              <Grid item container>
-                <FormControl variant="outlined" fullWidth size={'small'}>
-                  <InputLabel htmlFor="outlined-adornment-password">
-                    Password
-                  </InputLabel>
-                  <OutlinedInput
-                    id={'password'}
-                    name={'password'}
-                    variant={'outlined'}
-                    error={errors.password && touched.password}
-                    label={'Password'}
-                    onBlur={handleBlur}
-                    type={passwordView ? 'text' : 'password'}
-                    value={values.password}
-                    onChange={handleChange}
-                    fullWidth
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={togglePassword}
-                          edge="end"
-                        >
-                          {passwordView ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                  <FormHelperText error={errors.password && touched.password}>
-                    {errors.password && touched.password && errors.password}
-                  </FormHelperText>
-                </FormControl>
-              </Grid>
-              <Grid item>
-                <Button
-                  variant={'contained'}
-                  color={'primary'}
-                  onClick={handleSubmit}
-                >
-                  Sign Up
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        );
-      }}
-    </Formik>
+    <form onSubmit={handleSubmit(createNewUser)}>
+      <Grid container direction={'column'} spacing={2} alignItems="flex-start">
+        <Grid item container spacing={2}>
+          <Grid item xs={12} lg={6} xl={6}>
+            <TextField
+              name={'firstName'}
+              helperText={get(errors, 'firstName.message')}
+              error={get(errors, 'firstName')}
+              variant={'outlined'}
+              label={'First Name'}
+              type={'name'}
+              size={'small'}
+              inputRef={register}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} lg={6} xl={6}>
+            <TextField
+              id={'lastName'}
+              name={'lastName'}
+              helperText={get(errors, 'lastName.message')}
+              error={get(errors, 'lastName')}
+              variant={'outlined'}
+              label={'Last Name'}
+              type={'name'}
+              size={'small'}
+              inputRef={register}
+              fullWidth
+            />
+          </Grid>
+        </Grid>
+        <Grid item container>
+          <TextField
+            id={'email'}
+            name={'email'}
+            helperText={get(errors, 'email.message')}
+            error={get(errors, 'email')}
+            variant={'outlined'}
+            label={'Email'}
+            inputRef={register}
+            type={'email'}
+            size={'small'}
+            fullWidth
+          />
+        </Grid>
+        <Grid item container>
+          <FormControl variant="outlined" fullWidth size={'small'}>
+            <InputLabel htmlFor="outlined-adornment-password">
+              Password
+            </InputLabel>
+            <OutlinedInput
+              name={'password'}
+              variant={'outlined'}
+              error={get(errors, 'password')}
+              label={'Password'}
+              type={passwordView ? 'text' : 'password'}
+              inputRef={register}
+              fullWidth
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={togglePassword}
+                    edge="end"
+                  >
+                    {passwordView ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+            <FormHelperText error={get(errors, 'password')}>
+              {get(errors, 'password.message')}
+            </FormHelperText>
+          </FormControl>
+        </Grid>
+        <Grid item>
+          <Button variant={'contained'} color={'primary'} type={'submit'}>
+            Sign Up
+          </Button>
+        </Grid>
+      </Grid>
+    </form>
   );
 };
 
