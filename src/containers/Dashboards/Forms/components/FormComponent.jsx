@@ -27,7 +27,6 @@ const FormComponent = ({ document }) => {
           overflow: 'auto'
         }}
       >
-        {console.log('Errors: ', errors)}
         <div className="form" style={{ marginRight: '12px' }}>
           <Box mb={2} style={{ width: '100%' }}>
             <Typography variant={'subtitle1'}>Provider Information</Typography>

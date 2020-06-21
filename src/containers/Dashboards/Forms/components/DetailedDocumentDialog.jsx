@@ -11,10 +11,8 @@ import {
   Paper,
   Tab,
   Tabs,
-  TextField,
   Tooltip,
-  Typography,
-  Box
+  Typography
 } from '@material-ui/core';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -22,7 +20,6 @@ import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 import FormComponent from './FormComponent';
-
 import ReactJson from 'react-json-view';
 
 const useStyles = makeStyles(theme => ({
@@ -37,10 +34,6 @@ const useStyles = makeStyles(theme => ({
 
 const DetailedDocumentDialog = props => {
   const { open, toggleDialog, document } = props;
-
-  const handleTheNewExam = async () => {
-    console.log('clicked on create button');
-  };
 
   const jsonViewStyles = {
     base00: 'white',
@@ -238,7 +231,7 @@ const DetailedDocumentDialog = props => {
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus color="primary" onClick={handleTheNewExam}>
+        <Button autoFocus color="primary" type={'submit'}>
           Create
         </Button>
       </DialogActions>
