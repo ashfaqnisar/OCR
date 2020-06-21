@@ -1,198 +1,250 @@
-import React, { useState } from 'react';
-import { Box, Grid, TextField, Typography } from '@material-ui/core';
-import { Formik } from 'formik';
+import React from 'react';
+import { Box, Button, Grid, TextField, Typography } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import formSample from '../../../../data/formSample.json';
+import get from 'lodash.get';
+import documentDialog from '../../../../shared/validation/documentDialog';
 
 const FormComponent = ({ document }) => {
-  const [formData, setFormData] = useState({});
-  const prediction = document['prediction'];
+  const schema = Yup.object().shape(documentDialog);
 
-  const handleTheFormChange = event => {
-    const object = { [event.target.name]: event.target.value };
-    setFormData({ ...formData, ...object });
-  };
+  const { register, handleSubmit, errors, watch } = useForm({
+    mode: 'onBlur',
+    validationSchema: schema
+  });
 
-  const handleSubmit = values => {
-    console.log(values);
-  };
+  const onSubmit = data => console.log(data);
 
-  const validationSchema = {};
+  console.log(watch);
 
   return (
-    <Formik
-      initialValues={formSample}
-      onSubmit={values => handleSubmit(values)}
-    >
-      {props => {
-        const {
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit
-        } = props;
-        return (
-          <form onSubmit={handleSubmit}>
-            <div
-              style={{
-                position: 'relative',
-                height: '425px',
-                overflow: 'auto'
-              }}
-            >
-              <div className="form" style={{ marginRight: '12px' }}>
-                <Box mb={2} style={{ width: '100%' }}>
-                  <Typography variant={'subtitle1'}>
-                    Provider Information
-                  </Typography>
-                  <Box my={1} style={{ width: '100%' }}>
-                    <Grid container direction={'column'} spacing={1}>
-                      <Grid item container spacing={2}>
-                        <Grid item xs={12} sm md lg={6} xl={6}>
-                          <div className="form__form-group">
-                            <span className="form__form-group-label typography-message">
-                              Healthcare Organization Name
-                            </span>
-                            <div className="form__form-group-field">
-                              <TextField
-                                size={'small'}
-                                variant="outlined"
-                                fullWidth
-                                type="text"
-                                name="provider.name"
-                                required
-                                onBlur={handleBlur}
-                                value={prediction.provider.healthCare}
-                                onChange={handleChange}
-                              />
-                            </div>
-                          </div>
-                        </Grid>
-                        <Grid item xs={12} sm md lg={6} xl={6}>
-                          <div className="form__form-group">
-                            <span className="form__form-group-label typography-message">
-                              Provider Name
-                            </span>
-                            <div className="form__form-group-field">
-                              <TextField
-                                size={'small'}
-                                variant="outlined"
-                                fullWidth
-                                type="text"
-                                name="examType"
-                                required
-                                value={prediction.provider.name}
-                                onChange={handleTheFormChange}
-                              />
-                            </div>
-                          </div>
-                        </Grid>
-                      </Grid>
-                      <Grid item container spacing={2}>
-                        <Grid item xs={12} sm md lg={6} xl={6}>
-                          <div className="form__form-group">
-                            <span className="form__form-group-label typography-message">
-                              Location Address
-                            </span>
-                            <div className="form__form-group-field">
-                              <TextField
-                                size={'small'}
-                                variant="outlined"
-                                fullWidth
-                                type="text"
-                                name="provider.name"
-                                required
-                                value={prediction.provider.address}
-                                onChange={handleTheFormChange}
-                              />
-                            </div>
-                          </div>
-                        </Grid>
-                        <Grid item xs={12} sm md lg={6} xl={6}>
-                          <div className="form__form-group">
-                            <span className="form__form-group-label typography-message">
-                              NPI
-                            </span>
-                            <div className="form__form-group-field">
-                              <TextField
-                                size={'small'}
-                                variant="outlined"
-                                fullWidth
-                                type="text"
-                                name="examType"
-                                required
-                                value={prediction.provider.NPI}
-                                onChange={handleTheFormChange}
-                              />
-                            </div>
-                          </div>
-                        </Grid>
-                      </Grid>
-                      <Grid item container spacing={2}>
-                        <Grid item xs={12} sm md lg={4} xl={4}>
-                          <div className="form__form-group">
-                            <span className="form__form-group-label typography-message">
-                              City
-                            </span>
-                            <div className="form__form-group-field">
-                              <TextField
-                                size={'small'}
-                                variant="outlined"
-                                fullWidth
-                                type="text"
-                                name="examType"
-                                required
-                                value={prediction.provider.city}
-                                onChange={handleTheFormChange}
-                              />
-                            </div>
-                          </div>
-                        </Grid>
-                        <Grid item xs={12} sm md lg={4} xl={4}>
-                          <div className="form__form-group">
-                            <span className="form__form-group-label typography-message">
-                              State
-                            </span>
-                            <div className="form__form-group-field">
-                              <TextField
-                                size={'small'}
-                                variant="outlined"
-                                fullWidth
-                                type="text"
-                                name="provider.name"
-                                required
-                                value={prediction.provider.state}
-                                onChange={handleTheFormChange}
-                              />
-                            </div>
-                          </div>
-                        </Grid>
-                        <Grid item xs={12} sm md lg={4} xl={4}>
-                          <div className="form__form-group">
-                            <span className="form__form-group-label typography-message">
-                              Zip
-                            </span>
-                            <div className="form__form-group-field">
-                              <TextField
-                                size={'small'}
-                                variant="outlined"
-                                fullWidth
-                                type="text"
-                                name="provider.name"
-                                required
-                                value={prediction.provider.zip}
-                                onChange={handleTheFormChange}
-                              />
-                            </div>
-                          </div>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </Box>
-                </Box>
-                <Box mb={2} style={{ width: '100%' }}>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div
+        style={{
+          position: 'relative',
+          height: '425px',
+          overflow: 'auto'
+        }}
+      >
+        {console.log('Errors: ', errors)}
+        <div className="form" style={{ marginRight: '12px' }}>
+          <Box mb={2} style={{ width: '100%' }}>
+            <Typography variant={'subtitle1'}>Provider Information</Typography>
+            <Box my={1} style={{ width: '100%' }}>
+              <Grid container direction={'column'} spacing={1}>
+                <Grid item container spacing={2}>
+                  <Grid item xs={12} sm md lg={6} xl={6}>
+                    <div className="form__form-group">
+                      <span className="form__form-group-label typography-message">
+                        Healthcare Organization Name
+                      </span>
+                      <div className="form__form-group-field">
+                        <TextField
+                          size={'small'}
+                          variant="outlined"
+                          fullWidth
+                          type="text"
+                          inputRef={register}
+                          name={'provider.healthCare'}
+                          helperText={get(
+                            errors,
+                            'provider.healthCare.message'
+                          )}
+                          error={get(errors, 'provider.healthCare')}
+                        />
+                      </div>
+                    </div>
+                  </Grid>
+                  <Grid item xs={12} sm md lg={6} xl={6}>
+                    <div className="form__form-group">
+                      <span className="form__form-group-label typography-message">
+                        Provider Name
+                      </span>
+                      <div className="form__form-group-field">
+                        <TextField
+                          size={'small'}
+                          variant={'outlined'}
+                          fullWidth
+                          type="text"
+                          name="provider.name"
+                          inputRef={register}
+                          helperText={get(errors, 'provider.name.message')}
+                          error={get(errors, 'provider.name')}
+                        />
+                      </div>
+                    </div>
+                  </Grid>
+                </Grid>
+                <Grid item container spacing={2}>
+                  <Grid item xs={12} sm md lg={6} xl={6}>
+                    <div className="form__form-group">
+                      <span className="form__form-group-label typography-message">
+                        Location Address
+                      </span>
+                      <div className="form__form-group-field">
+                        <TextField
+                          size={'small'}
+                          variant="outlined"
+                          fullWidth
+                          type="text"
+                          name="provider.address"
+                          required
+                          inputRef={register}
+                          helperText={get(errors, 'provider.address.message')}
+                          error={get(errors, 'provider.address')}
+                        />
+                      </div>
+                    </div>
+                  </Grid>
+                  <Grid item xs={12} sm md lg={6} xl={6}>
+                    <div className="form__form-group">
+                      <span className="form__form-group-label typography-message">
+                        NPI
+                      </span>
+                      <div className="form__form-group-field">
+                        <TextField
+                          size={'small'}
+                          variant="outlined"
+                          fullWidth
+                          type="text"
+                          name="provider.NPI"
+                          inputRef={register}
+                          helperText={get(errors, 'provider.NPI.message')}
+                          error={get(errors, 'provider.NPI')}
+                        />
+                      </div>
+                    </div>
+                  </Grid>
+                </Grid>
+                <Grid item container spacing={2}>
+                  <Grid item xs={12} sm md lg={4} xl={4}>
+                    <div className="form__form-group">
+                      <span className="form__form-group-label typography-message">
+                        City
+                      </span>
+                      <div className="form__form-group-field">
+                        <TextField
+                          size={'small'}
+                          variant="outlined"
+                          fullWidth
+                          type="text"
+                          name="provider.city"
+                          inputRef={register}
+                          helperText={get(errors, 'provider.city.message')}
+                          error={get(errors, 'provider.city')}
+                        />
+                      </div>
+                    </div>
+                  </Grid>
+                  <Grid item xs={12} sm md lg={4} xl={4}>
+                    <div className="form__form-group">
+                      <span className="form__form-group-label typography-message">
+                        State
+                      </span>
+                      <div className="form__form-group-field">
+                        <TextField
+                          size={'small'}
+                          variant="outlined"
+                          fullWidth
+                          type="text"
+                          name="provider.state"
+                          required
+                          inputRef={register}
+                          helperText={get(errors, 'provider.state.message')}
+                          error={get(errors, 'provider.state')}
+                        />
+                      </div>
+                    </div>
+                  </Grid>
+                  <Grid item xs={12} sm md lg={4} xl={4}>
+                    <div className="form__form-group">
+                      <span className="form__form-group-label typography-message">
+                        Zip
+                      </span>
+                      <div className="form__form-group-field">
+                        <TextField
+                          size={'small'}
+                          variant="outlined"
+                          fullWidth
+                          type="text"
+                          name="provider.zip"
+                          required
+                          inputRef={register}
+                          helperText={get(errors, 'provider.zip.message')}
+                          error={get(errors, 'provider.zip')}
+                        />
+                      </div>
+                    </div>
+                  </Grid>
+                </Grid>
+                <Grid item container spacing={2}>
+                  <Grid item xs={12} sm md lg={4} xl={4}>
+                    <div className="form__form-group">
+                      <span className="form__form-group-label typography-message">
+                        Number
+                      </span>
+                      <div className="form__form-group-field">
+                        <TextField
+                          size={'small'}
+                          variant="outlined"
+                          fullWidth
+                          type="text"
+                          name="provider.number"
+                          inputRef={register}
+                          helperText={get(errors, 'provider.number.message')}
+                          error={get(errors, 'provider.number')}
+                        />
+                      </div>
+                    </div>
+                  </Grid>
+                  <Grid item xs={12} sm md lg={4} xl={4}>
+                    <div className="form__form-group">
+                      <span className="form__form-group-label typography-message">
+                        Fax Number
+                      </span>
+                      <div className="form__form-group-field">
+                        <TextField
+                          size={'small'}
+                          variant="outlined"
+                          fullWidth
+                          type="text"
+                          name="provider.faxNumber"
+                          required
+                          inputRef={register}
+                          helperText={get(errors, 'provider.faxNumber.message')}
+                          error={get(errors, 'provider.faxNumber')}
+                        />
+                      </div>
+                    </div>
+                  </Grid>
+                  <Grid item xs={12} sm md lg={4} xl={4}>
+                    <div className="form__form-group">
+                      <span className="form__form-group-label typography-message">
+                        Language Preference
+                      </span>
+                      <div className="form__form-group-field">
+                        <TextField
+                          size={'small'}
+                          variant="outlined"
+                          fullWidth
+                          type="text"
+                          name="provider.languagePreference"
+                          required
+                          inputRef={register}
+                          helperText={get(
+                            errors,
+                            'provider.languagePreference.message'
+                          )}
+                          error={get(errors, 'provider.languagePreference')}
+                        />
+                      </div>
+                    </div>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+          {/*<Box mb={2} style={{ width: '100%' }}>
                   <Typography variant={'subtitle1'}>
                     Order Information
                   </Typography>
@@ -834,13 +886,10 @@ const FormComponent = ({ document }) => {
                       </Grid>
                     </Grid>
                   </Box>
-                </Box>
-              </div>
-            </div>
-          </form>
-        );
-      }}
-    </Formik>
+                </Box>*/}
+        </div>
+      </div>
+    </form>
   );
 };
 
