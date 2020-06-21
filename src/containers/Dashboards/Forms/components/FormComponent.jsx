@@ -10,7 +10,8 @@ const FormComponent = ({ document }) => {
 
   const { register, handleSubmit, errors, watch } = useForm({
     mode: 'onBlur',
-    validationSchema: schema
+    validationSchema: schema,
+    defaultValues: document['prediction']
   });
 
   const onSubmit = data => console.log(data);
