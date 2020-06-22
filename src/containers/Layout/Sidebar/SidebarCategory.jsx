@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Collapse } from 'reactstrap';
+import { Collapse } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -28,7 +28,7 @@ const SidebarCategory = props => {
         </p>
         <span className="sidebar__category-icon lnr lnr-chevron-right" />
       </button>
-      <Collapse isOpen={collapse} className="sidebar__submenu-wrap">
+      <Collapse in={collapse} className="sidebar__submenu-wrap">
         <ul className="sidebar__submenu">
           <div>{children}</div>
         </ul>

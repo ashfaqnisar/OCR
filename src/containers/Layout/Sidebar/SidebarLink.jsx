@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Badge } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import Badge from '@material-ui/core/Badge';
 
 const SidebarLink = ({ title, icon, newLink, route, onClick }) => (
   <NavLink to={route} onClick={onClick} activeClassName="sidebar__link-active">
