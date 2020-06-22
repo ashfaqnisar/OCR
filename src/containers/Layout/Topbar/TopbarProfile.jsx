@@ -4,7 +4,7 @@ import { Person } from '@material-ui/icons';
 import ExitFromAppIcon from '@material-ui/icons/ExitToApp';
 import { useSelector } from 'react-redux';
 import { isBlank } from '../../../shared/components/Beautifier';
-import { Avatar, IconButton } from '@material-ui/core';
+import { Avatar, IconButton, Hidden } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   avatar: {
@@ -42,13 +42,15 @@ const TopbarProfile = () => {
         <p className="topbar__avatar-name">
           {auth.displayName || profile.name || 'User'}
         </p>
-        <IconButton
-          color={'primary'}
-          className={classes.logoutButton}
-          onClick={() => console.log('Logout')}
-        >
-          <ExitFromAppIcon />
-        </IconButton>
+        <Hidden lgDown>
+          <IconButton
+            color={'primary'}
+            className={classes.logoutButton}
+            onClick={() => console.log('Logout')}
+          >
+            <ExitFromAppIcon />
+          </IconButton>
+        </Hidden>
       </div>
     </div>
   );
