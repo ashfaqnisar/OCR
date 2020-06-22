@@ -14,7 +14,6 @@ const Topbar = props => {
             changeMobileSidebarVisibility={changeMobileSidebarVisibility}
             changeSidebarVisibility={changeSidebarVisibility}
           />
-          <Link className="topbar__logo" to="/home" />
         </div>
         <div className="topbar__right">
           <TopbarProfile />
