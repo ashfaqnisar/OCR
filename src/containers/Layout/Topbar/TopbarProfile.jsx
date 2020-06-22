@@ -1,30 +1,29 @@
-import React, { useState } from 'react';
-import { Collapse } from 'reactstrap';
-import TopbarMenuLink from './TopbarMenuLink';
-import Avatar from '@material-ui/core/Avatar';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Person, KeyboardArrowDownOutlined } from '@material-ui/icons';
+import { Person } from '@material-ui/icons';
+import ExitFromAppIcon from '@material-ui/icons/ExitToApp';
 import { useSelector } from 'react-redux';
 import { isBlank } from '../../../shared/components/Beautifier';
+import { Avatar, IconButton } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   avatar: {
     backgroundColor: theme.palette.primary.main
+  },
+  logoutButton: {
+    margin: 'auto',
+    marginLeft: theme.spacing(1)
   }
 }));
 
 const TopbarProfile = () => {
   const classes = useStyles();
-  const [isCollapseOpen, SetCollapse] = useState(false);
-  const toggleCollapse = () => {
-    SetCollapse(!isCollapseOpen);
-  };
 
   const { profile, auth } = useSelector(state => state.firebase);
 
   return (
     <div className="topbar__profile">
-      <button className="topbar__avatar" type="button" onClick={toggleCollapse}>
+      <div className="topbar__avatar">
         {!isBlank(auth.photoURL) ? (
           <Avatar
             className={'topbar__avatar-img'}
@@ -43,32 +42,14 @@ const TopbarProfile = () => {
         <p className="topbar__avatar-name">
           {auth.displayName || profile.name || 'User'}
         </p>
-        <KeyboardArrowDownOutlined className="topbar__icon" />
-      </button>
-      {isCollapseOpen && (
-        <button
-          className="topbar__back"
-          type="button"
-          onClick={toggleCollapse}
-        />
-      )}
-      <Collapse isOpen={isCollapseOpen} className="topbar__menu-wrap">
-        <div className="topbar__menu">
-          <TopbarMenuLink
-            title="Account Settings"
-            icon="cog"
-            path="/settings"
-            onClick={toggleCollapse}
-          />
-
-          <TopbarMenuLink
-            title="Log Out"
-            icon="exit"
-            path="/login"
-            onClick={() => console.log('logout')}
-          />
-        </div>
-      </Collapse>
+        <IconButton
+          color={'primary'}
+          className={classes.logoutButton}
+          onClick={() => console.log('Logout')}
+        >
+          <ExitFromAppIcon />
+        </IconButton>
+      </div>
     </div>
   );
 };
