@@ -3,6 +3,7 @@ import MenuIcon from '@material-ui/icons/MenuRounded';
 import { makeStyles } from '@material-ui/core/styles';
 import { Hidden, Grid } from '@material-ui/core';
 import withWidth from '@material-ui/core/withWidth';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles(theme => ({
   headingPurple: {
@@ -22,6 +23,7 @@ const TopbarSidebarButton = props => {
     changeSidebarVisibility,
     width
   } = props;
+  const history = useHistory();
 
   return (
     <div>
@@ -40,9 +42,14 @@ const TopbarSidebarButton = props => {
         </Grid>
         <Grid item>
           <Hidden mdDown>
-            <h1 className={classes.headingPurple}>
-              <span className={classes.headingBlack}>ES</span>OCR
-            </h1>
+            <div
+              style={{ cursor: 'pointer' }}
+              onClick={() => history.push('/home')}
+            >
+              <h2 className={classes.headingPurple}>
+                <span className={classes.headingBlack}>ES</span>OCR
+              </h2>
+            </div>
           </Hidden>
         </Grid>
       </Grid>
