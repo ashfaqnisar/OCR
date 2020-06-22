@@ -1,2 +1,2 @@
 # ESOCR
-This repo contains the code for the OCR application
+This repo contains the code for the ESOCR application
