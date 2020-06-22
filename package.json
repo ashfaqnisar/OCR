@@ -48,8 +48,6 @@
     "react-big-calendar": "^0.22.0",
     "react-datepicker": "^2.1.0",
     "react-dev-utils": "^7.0.3",
-    "react-dnd": "^7.0.2",
-    "react-dnd-html5-backend": "^7.0.2",
     "react-dom": "^16.13.1",
     "react-dotdotdot": "^1.2.3",
     "react-dropzone": "^9.0.0",
