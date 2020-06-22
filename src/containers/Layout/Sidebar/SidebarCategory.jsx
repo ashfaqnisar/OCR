@@ -28,7 +28,7 @@ const SidebarCategory = props => {
         </p>
         <span className="sidebar__category-icon lnr lnr-chevron-right" />
       </button>
-      <Collapse in={collapse} className="sidebar__submenu-wrap">
+      <Collapse in={collapse} className="sidebar__submenu-wrap" addEndListener>
         <ul className="sidebar__submenu">
           <div>{children}</div>
         </ul>
