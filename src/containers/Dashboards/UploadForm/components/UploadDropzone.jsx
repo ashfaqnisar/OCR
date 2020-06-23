@@ -12,6 +12,7 @@ import {
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { makeStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+import classnames from 'classnames';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -70,6 +71,14 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%'
+  },
+  dropzone: {
+    border: '2px dashed black',
+    borderRadius: '4px'
+  },
+  dropzoneActive: {
+    border: `2px dashed ${theme.colors.primary}`,
+    borderRadius: '4px'
   },
   deleteIcon: {
     color: theme.colors.white,
@@ -130,8 +139,14 @@ const DropZoneMultipleField = props => {
           onDrop(value ? value.concat(filesToUpload) : filesToUpload);
         }}
       >
-        {({ getRootProps, getInputProps }) => (
-          <div {...getRootProps()} className="dropzone__input">
+        {({ getRootProps, getInputProps, isDragActive }) => (
+          <div
+            {...getRootProps()}
+            className={classnames(
+              isDragActive ? classes.dropzoneActive : classes.dropzone,
+              'dropzone__input'
+            )}
+          >
             {(!files || files.length === 0) && (
               <Paper variant={'outlined'} className={classes.paper}>
                 <Typography variant={'subtitle1'}>Drop Files Here!</Typography>
@@ -153,6 +168,7 @@ const DropZoneMultipleField = props => {
               <Typography variant={'subtitle1'}>Drop Files Here!</Typography>
             </Grid>
 
+
             <GridList
               cols={getGridListCols()}
               style={{
@@ -160,8 +176,7 @@ const DropZoneMultipleField = props => {
                 width: '100%',
                 justifyContent: 'space-evenly',
                 overflow: 'auto',
-                maxHeight: '550px',
-                border: '1px dashed black '
+                maxHeight: '550px'
               }}
             >
               {files.map((file, index) => (
