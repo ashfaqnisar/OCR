@@ -11,7 +11,8 @@
 
 //components...
 @import './component/alert';                    // components/Alert.js ('reactstrap')
-@import './component/btn';                      // Button from 'reactstrap'
+@import './component/btn';
+@import "./component/page";
 @import './component/calendar';               // components/Calendar.js  ('react-big-calendar')
 @import './component/card';                   // Card, CardBody from 'reactstrap'
 @import './component/carousel';               // components/carousel/* ('react-slick')

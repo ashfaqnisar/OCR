@@ -13,6 +13,8 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { makeStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import classnames from 'classnames';
+import { Document, Page } from 'react-pdf/dist/entry.webpack';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -91,6 +93,16 @@ const useStyles = makeStyles(theme => ({
     minHeight: '400px',
     [theme.breakpoints.down('lg')]: {
       minHeight: '300px'
+    }
+  },
+  page: {
+    svg: {
+      width: '100%',
+      height: '100%',
+      '& svg': {
+        width: '100%',
+        height: '100%'
+      }
     }
   }
 }));
@@ -184,6 +196,20 @@ const DropZoneMultipleField = props => {
                   className={classes.gridItem}
                   style={{ backgroundImage: `url(${file.preview})` }}
                 >
+                  {file.type === 'application/pdf' && (
+                    <Document
+                      file={file.preview}
+                      renderMode={'svg'}
+                      style={{ width: '100%', height: '100%' }}
+                      loading={<CircularProgress color={'primary'} />}
+                    >
+                      <Page
+                        pageNumber={1}
+                        renderTextLayer={false}
+                        className={'react-pdf__Page__svg'}
+                      />
+                    </Document>
+                  )}
                   <GridListTileBar
                     title={file.name}
                     classes={{
