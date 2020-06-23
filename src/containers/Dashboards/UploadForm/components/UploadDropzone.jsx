@@ -13,7 +13,7 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { makeStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import classnames from 'classnames';
-import { Document, Page } from 'react-pdf/dist/entry.webpack';
+import { Document, Page } from 'react-pdf';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
