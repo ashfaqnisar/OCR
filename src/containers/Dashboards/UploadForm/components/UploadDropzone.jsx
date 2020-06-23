@@ -83,6 +83,12 @@ const useStyles = makeStyles(theme => ({
   deleteIcon: {
     color: theme.colors.white,
     '&:hover': { color: theme.colors.error }
+  },
+  dropzoneMultiple: {
+    minHeight: '400px',
+    [theme.breakpoints.down('lg')]: {
+      minHeight: '300px'
+    }
   }
 }));
 
@@ -131,7 +137,7 @@ const DropZoneMultipleField = props => {
   const classes = useStyles();
 
   return (
-    <div className="dropzone dropzone--multiple">
+    <div className={classnames('dropzone', classes.dropzoneMultiple)}>
       <Dropzone
         className="dropzone__input"
         name={name}
