@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     overflow: 'auto',
     maxHeight: '550px',
     [theme.breakpoints.down('lg')]: {
-      maxHeight: '450px'
+      maxHeight: '425px'
     },
     width: '100%'
   },
