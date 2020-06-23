@@ -168,7 +168,6 @@ const DropZoneMultipleField = props => {
               <Typography variant={'subtitle1'}>Drop Files Here!</Typography>
             </Grid>
 
-
             <GridList
               cols={getGridListCols()}
               style={{
