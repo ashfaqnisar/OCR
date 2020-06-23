@@ -12,6 +12,9 @@ import {
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { makeStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+import classnames from 'classnames';
+import { Document, Page } from 'react-pdf/dist/entry.webpack';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,10 +26,13 @@ const useStyles = makeStyles(theme => ({
   },
   gridList: {
     display: 'flex',
+    width: '100%',
     justifyContent: 'space-evenly',
     overflow: 'auto',
-    maxHeight: '600px',
-    border: '1px dashed black '
+    maxHeight: '550px',
+    [theme.breakpoints.down('lg')]: {
+      maxHeight: '400px'
+    }
   },
   title: {
     color: theme.colors.white
@@ -71,9 +77,33 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     width: '100%'
   },
+  dropzone: {
+    border: '2px dashed black',
+    borderRadius: '4px'
+  },
+  dropzoneActive: {
+    border: `2px dashed ${theme.colors.primary}`,
+    borderRadius: '4px'
+  },
   deleteIcon: {
     color: theme.colors.white,
     '&:hover': { color: theme.colors.error }
+  },
+  dropzoneMultiple: {
+    minHeight: '400px',
+    [theme.breakpoints.down('lg')]: {
+      minHeight: '300px'
+    }
+  },
+  page: {
+    svg: {
+      width: '100%',
+      height: '100%',
+      '& svg': {
+        width: '100%',
+        height: '100%'
+      }
+    }
   }
 }));
 
@@ -122,7 +152,7 @@ const DropZoneMultipleField = props => {
   const classes = useStyles();
 
   return (
-    <div className="dropzone dropzone--multiple">
+    <div className={classnames('dropzone', classes.dropzoneMultiple)}>
       <Dropzone
         className="dropzone__input"
         name={name}
@@ -130,8 +160,14 @@ const DropZoneMultipleField = props => {
           onDrop(value ? value.concat(filesToUpload) : filesToUpload);
         }}
       >
-        {({ getRootProps, getInputProps }) => (
-          <div {...getRootProps()} className="dropzone__input">
+        {({ getRootProps, getInputProps, isDragActive }) => (
+          <div
+            {...getRootProps()}
+            className={classnames(
+              isDragActive ? classes.dropzoneActive : classes.dropzone,
+              'dropzone__input'
+            )}
+          >
             {(!files || files.length === 0) && (
               <Paper variant={'outlined'} className={classes.paper}>
                 <Typography variant={'subtitle1'}>Drop Files Here!</Typography>
@@ -153,23 +189,27 @@ const DropZoneMultipleField = props => {
               <Typography variant={'subtitle1'}>Drop Files Here!</Typography>
             </Grid>
 
-            <GridList
-              cols={getGridListCols()}
-              style={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'space-evenly',
-                overflow: 'auto',
-                maxHeight: '550px',
-                border: '1px dashed black '
-              }}
-            >
+            <GridList cols={getGridListCols()} className={classes.gridList}>
               {files.map((file, index) => (
                 <GridListTile
                   key={index}
                   className={classes.gridItem}
                   style={{ backgroundImage: `url(${file.preview})` }}
                 >
+                  {file.type === 'application/pdf' && (
+                    <Document
+                      file={file.preview}
+                      renderMode={'svg'}
+                      style={{ width: '100%', height: '100%' }}
+                      loading={<CircularProgress color={'primary'} />}
+                    >
+                      <Page
+                        pageNumber={1}
+                        renderTextLayer={false}
+                        className={'react-pdf__Page__svg'}
+                      />
+                    </Document>
+                  )}
                   <GridListTileBar
                     title={file.name}
                     classes={{
