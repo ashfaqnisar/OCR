@@ -34,8 +34,10 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-evenly',
     overflow: 'auto',
     maxHeight: '550px',
-    width: '100%',
-    backgroundColor: theme.palette.background.paper
+    [theme.breakpoints.down('lg')]: {
+      maxHeight: '450px'
+    },
+    width: '100%'
   },
   title: {
     color: theme.colors.white

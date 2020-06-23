@@ -24,10 +24,13 @@ const useStyles = makeStyles(theme => ({
   },
   gridList: {
     display: 'flex',
+    width: '100%',
     justifyContent: 'space-evenly',
     overflow: 'auto',
-    maxHeight: '600px',
-    border: '1px dashed black '
+    maxHeight: '550px',
+    [theme.breakpoints.down('lg')]: {
+      maxHeight: '400px'
+    }
   },
   title: {
     color: theme.colors.white
@@ -174,16 +177,7 @@ const DropZoneMultipleField = props => {
               <Typography variant={'subtitle1'}>Drop Files Here!</Typography>
             </Grid>
 
-            <GridList
-              cols={getGridListCols()}
-              style={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'space-evenly',
-                overflow: 'auto',
-                maxHeight: '550px'
-              }}
-            >
+            <GridList cols={getGridListCols()} className={classes.gridList}>
               {files.map((file, index) => (
                 <GridListTile
                   key={index}
