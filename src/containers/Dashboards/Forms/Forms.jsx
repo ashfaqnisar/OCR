@@ -126,13 +126,13 @@ const DocumentsForm = ({
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <LazyLoadImage
               className={classes.image}
-              alt={doc['fileId']}
+              alt={doc['gcsFile']}
               effect={'blur'}
-              src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${doc['fileId']}.jpeg?or=0&w=280`}
+              src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${doc['gcsFile']}?fm=jpg&or=0&h=300&w=250&page=1`}
               // src={`https://esocr.imgix.net/${uid}/${doc['fileId']}?fm=jpg&or=0&h=300&w=250`}
             />
             {console.log(
-              `https://esocr.imgix.net/${uid}/${doc['file']}?fm=jpg&or=0&h=300&w=250&page=1`
+              `https://esocr.imgix.net/${uid}/${doc['gcsFile']}?fm=jpg&or=0&h=300&w=250&page=1`
             )}
           </div>
 
