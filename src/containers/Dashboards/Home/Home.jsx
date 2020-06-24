@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Container, Typography } from '@material-ui/core';
-import { Status } from './components';
+import { LatestFormsTable, Status } from './components';
 import UpdateIcon from '@material-ui/icons/Update';
 import FlipCameraAndroidIcon from '@material-ui/icons/FlipCameraAndroid';
 import TimelineIcon from '@material-ui/icons/Timeline';
@@ -30,14 +30,14 @@ const Home = () => {
             <Status
               title={'Processing'}
               value={values.processing}
-              icon={<UpdateIcon />}
+              icon={<FlipCameraAndroidIcon />}
             />
           </Grid>
           <Grid item xs={12} sm={6} lg={3} xl={3}>
             <Status
               title={'Processed'}
               value={values.processed}
-              icon={<FlipCameraAndroidIcon />}
+              icon={<UpdateIcon />}
             />
           </Grid>
           <Grid item xs={12} sm={6} lg={3} xl={3}>
@@ -53,6 +53,11 @@ const Home = () => {
               value={values.cancelled}
               icon={<CancelPresentationIcon />}
             />
+          </Grid>
+        </Grid>
+        <Grid item container>
+          <Grid item xs={12} sm md lg xl={12}>
+            <LatestFormsTable />
           </Grid>
         </Grid>
       </Grid>
