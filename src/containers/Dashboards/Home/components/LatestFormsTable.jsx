@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import truncate from 'truncate';
 import {
   Card,
   CardActions,
@@ -17,12 +18,15 @@ import {
   TableRow,
   Tooltip,
   TableSortLabel,
-  TableContainer
+  TableContainer,
+  Chip
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 import mockData from '../../../../data/sampleTableData';
 import { useHistory } from 'react-router';
+import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
 // import { StatusBullet } from 'components';
 
 const useStyles = makeStyles(theme => ({
@@ -44,6 +48,9 @@ const useStyles = makeStyles(theme => ({
   },
   actions: {
     justifyContent: 'flex-end'
+  },
+  statusFont: {
+    fontSize: '0.7rem'
   }
 }));
 
@@ -54,7 +61,7 @@ const statusColors = {
 };
 
 const LatestFormsTable = props => {
-  const { className, ...rest } = props;
+  const { className, documents, ...rest } = props;
 
   const classes = useStyles();
 
@@ -83,8 +90,8 @@ const LatestFormsTable = props => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Order Ref</TableCell>
-                <TableCell>Customer</TableCell>
+                <TableCell>File Id</TableCell>
+                <TableCell>Uploaded File</TableCell>
                 <TableCell sortDirection="desc">
                   <Tooltip enterDelay={300} title="Sort">
                     <TableSortLabel active direction="desc">
@@ -96,22 +103,27 @@ const LatestFormsTable = props => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {orders.map(order => (
-                <TableRow hover key={order.ref}>
-                  <TableCell>{order.ref}</TableCell>
-                  <TableCell>{order.customer.name}</TableCell>
+              {documents.map(document => (
+                <TableRow key={document.gcsFile}>
                   <TableCell>
-                    {moment(order.createdAt).format('DD/MM/YYYY')}
+                    <Typography noWrap variant={'body2'}>
+                      {truncate(document.gcsFile.split('.')[0])}
+                    </Typography>
                   </TableCell>
                   <TableCell>
-                    <div className={classes.statusContainer}>
-                      {/*<StatusBullet*/}
-                      {/*  className={classes.status}*/}
-                      {/*  color={statusColors[order.status]}*/}
-                      {/*  size="sm"*/}
-                      {/*/>*/}
-                      {order.status}
-                    </div>
+                    <Link href={document.gcsFileLink} color={'primary'}>
+                      {truncate(document.uploadedFile, 13)}
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    {moment(document.processedAt).format('DD/MM/YYYY')}
+                  </TableCell>
+                  <TableCell>
+                    <Chip
+                      label={'Processed'}
+                      size={'small'}
+                      color={'primary'}
+                    />
                   </TableCell>
                 </TableRow>
               ))}

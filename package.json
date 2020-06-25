@@ -84,6 +84,7 @@
     "swr": "^0.2.2",
     "terser-webpack-plugin": "^1.2.3",
     "text-mask-addons": "^3.8.0",
+    "truncate": "^2.1.0",
     "url-loader": "^1.1.2",
     "yup": "^0.29.1"
   },
