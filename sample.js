@@ -1,7 +1,7 @@
 export default {
   provider: {
     healthCare: 'Treejoy HealthCare',
-    providerName: 'Vamshi',
+    name: 'Vamshi',
     NPI: 1417960428,
     address: 'Gachibowli',
     city: 'Hyderabad',
