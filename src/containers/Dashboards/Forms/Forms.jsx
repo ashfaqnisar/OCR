@@ -128,7 +128,7 @@ const DocumentsForm = ({
               className={classes.image}
               alt={doc['gcsFile']}
               effect={'blur'}
-              src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${doc['gcsFile']}?fm=jpg&or=0&h=300&w=250&page=1`}
+              src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${doc['gcsFile']}?fm=jpg&or=0&w=280&page=1`}
               // src={`https://esocr.imgix.net/${uid}/${doc['fileId']}?fm=jpg&or=0&h=300&w=250`}
             />
             {console.log(
