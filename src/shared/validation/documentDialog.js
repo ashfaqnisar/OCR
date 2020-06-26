@@ -40,7 +40,7 @@ export default {
     number: Yup.number()
       .required('Required')
       .typeError('Provide a valid phone number'),
-    language: Yup.string().required('Required'),
+    languagePreference: Yup.string(),
     shippingAddress: Yup.object().shape({
       address: Yup.string().required('Required'),
       city: Yup.string().required('Required'),
@@ -73,6 +73,6 @@ export default {
     policyNumber: Yup.string().required('Required'),
     groupNumber: Yup.string().required('Required'),
     plan: Yup.string().required('Required'),
-    priorAuthorizationCode: Yup.string().required('Required')
+    priorAuthorizationCode: Yup.string()
   })
 };
