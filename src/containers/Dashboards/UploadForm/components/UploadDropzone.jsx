@@ -13,9 +13,10 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { makeStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import classnames from 'classnames';
-import { Document, Page } from 'react-pdf';
+import { Document, Page, pdfjs } from 'react-pdf';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -148,6 +149,17 @@ const DropZoneMultipleField = props => {
     onChange(value.filter((val, i) => i !== index));
   };
 
+  const PDFLoading = () => (
+    <div
+      style={{
+        padding: '8px',
+        margin: 'auto'
+      }}
+    >
+      <CircularProgress color={'primary'} />
+    </div>
+  );
+
   const files = value;
   const classes = useStyles();
 
@@ -201,7 +213,7 @@ const DropZoneMultipleField = props => {
                       file={file.preview}
                       renderMode={'svg'}
                       style={{ width: '100%', height: '100%' }}
-                      loading={<CircularProgress color={'primary'} />}
+                      loading={<PDFLoading />}
                     >
                       <Page
                         pageNumber={1}
