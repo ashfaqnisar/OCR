@@ -84,7 +84,7 @@ const DocumentsForm = ({
   uid
 }) => {
   const classes = useStyles();
-
+  console.log(documents);
   const getGridListCols = () => {
     if (isWidthUp('xl', width)) {
       return 6;
@@ -107,6 +107,9 @@ const DocumentsForm = ({
 
     return 1;
   };
+  const getFileId = id => {
+    return id.split('.')[0];
+  };
   return (
     <GridList
       cellHeight={200}
@@ -128,11 +131,15 @@ const DocumentsForm = ({
               className={classes.image}
               alt={doc['gcsFile']}
               effect={'blur'}
-              src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${doc['gcsFile']}?fm=jpg&or=0&w=280&page=1`}
+              src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${getFileId(
+                doc['gcsFile']
+              )}.jpeg?fm=jpg&or=0&w=280&page=1`}
               // src={`https://esocr.imgix.net/${uid}/${doc['fileId']}?fm=jpg&or=0&h=300&w=250`}
             />
             {console.log(
-              `https://esocr.imgix.net/${uid}/${doc['gcsFile']}?fm=jpg&or=0&h=300&w=250&page=1`
+              `https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${getFileId(
+                doc['gcsFile']
+              )}.jpeg?fm=jpg&or=0&w=280&page=1`
             )}
           </div>
 
