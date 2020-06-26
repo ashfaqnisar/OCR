@@ -153,10 +153,7 @@ const DropZoneMultipleField = props => {
     <div
       style={{
         padding: '8px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%'
+        margin: 'auto',
       }}
     >
       <CircularProgress color={'primary'} />
