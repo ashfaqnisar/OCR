@@ -22,6 +22,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import FormComponent from './FormComponent';
 import ReactJson from 'react-json-view';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
+import useSWR from 'swr';
 
 const useStyles = makeStyles(theme => ({
   closeButton: {
@@ -104,6 +106,13 @@ const DetailedDocumentDialog = props => {
 
   const getFileId = id => {
     return id ? id.split('.')[0] : id;
+  };
+
+  const updateForm = data => {
+    const fetcher = url => axios({ method: 'put', url: url, data: data });
+    const { data: documents, error } = useSWR(`/ocr/?uid=${uid}`, fetcher, {
+      refreshInterval: 10000
+    });
   };
 
   return (
@@ -239,11 +248,6 @@ const DetailedDocumentDialog = props => {
           </Grid>
         </Grid>
       </DialogContent>
-      <DialogActions>
-        <Button autoFocus color="primary" type={'submit'}>
-          Create
-        </Button>
-      </DialogActions>
     </Dialog>
   );
 };

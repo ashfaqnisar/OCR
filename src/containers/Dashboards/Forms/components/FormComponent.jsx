@@ -4,26 +4,51 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import get from 'lodash.get';
 import documentDialog from '../../../../shared/validation/documentDialog';
+import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+
+const useStyles = makeStyles(theme => ({
+  buttonGrid: {
+    marginTop: theme.spacing(1)
+  }
+}));
 
 const FormComponent = ({ document }) => {
+  const classes = useStyles();
   const schema = Yup.object().shape(documentDialog);
 
-  const { register, handleSubmit, errors, watch } = useForm({
+  const { register, handleSubmit, errors, formState } = useForm({
     mode: 'onBlur',
     validationSchema: schema,
     defaultValues: document['prediction']
   });
+  const { uid } = useSelector(state => state.firebase.auth);
 
-  const onSubmit = data => console.log(data);
+  const updateForm = updatedData => {
+    document.prediction = updatedData;
+    axios({
+      method: 'put',
+      url: `/ocr/${document.id}/?uid=${uid}`,
+      data: document
+    })
+      .then(() => {})
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  const { isSubmitted, isValid } = formState;
 
-  console.log(watch);
+  const onSubmit = data => updateForm(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div
         style={{
           position: 'relative',
-          height: '425px',
+          height: '390px',
           overflow: 'auto'
         }}
       >
@@ -148,7 +173,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="provider.state"
-                          required
                           inputRef={register}
                           helperText={get(errors, 'provider.state.message')}
                           error={get(errors, 'provider.state')}
@@ -168,7 +192,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="provider.zip"
-                          required
                           inputRef={register}
                           helperText={get(errors, 'provider.zip.message')}
                           error={get(errors, 'provider.zip')}
@@ -209,7 +232,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="provider.faxNumber"
-                          required
                           inputRef={register}
                           helperText={get(errors, 'provider.faxNumber.message')}
                           error={get(errors, 'provider.faxNumber')}
@@ -229,7 +251,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="provider.languagePreference"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -327,7 +348,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="patient.dob"
-                          required
                           inputRef={register}
                           helperText={get(errors, 'patient.dob.message')}
                           error={get(errors, 'patient.dob')}
@@ -349,7 +369,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="patient.firstName"
-                          required
                           inputRef={register}
                           helperText={get(errors, 'patient.firstName.message')}
                           error={get(errors, 'patient.firstName')}
@@ -369,7 +388,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="patient.lastName"
-                          required
                           inputRef={register}
                           helperText={get(errors, 'patient.lastName.message')}
                           error={get(errors, 'patient.lastName')}
@@ -391,7 +409,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="patient.number"
-                          required
                           inputRef={register}
                           helperText={get(errors, 'patient.number.message')}
                           error={get(errors, 'patient.number')}
@@ -411,7 +428,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="patient.sex"
-                          required
                           inputRef={register}
                           helperText={get(errors, 'patient.sex.message')}
                           error={get(errors, 'patient.sex')}
@@ -431,7 +447,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="patient.language"
-                          required
                           inputRef={register}
                           helperText={get(errors, 'patient.language.message')}
                           error={get(errors, 'patient.language')}
@@ -452,7 +467,6 @@ const FormComponent = ({ document }) => {
                         fullWidth
                         type="text"
                         name="patient.shippingAddress.address"
-                        required
                         inputRef={register}
                         helperText={get(
                           errors,
@@ -476,7 +490,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="patient.shippingAddress.city"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -499,7 +512,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="patient.shippingAddress.state"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -522,7 +534,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="patient.shippingAddress.zip"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -546,7 +557,6 @@ const FormComponent = ({ document }) => {
                         fullWidth
                         type="text"
                         name="patient.billingAddress.address"
-                        required
                         inputRef={register}
                         helperText={get(
                           errors,
@@ -570,7 +580,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="patient.billingAddress.city"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -593,7 +602,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="patient.billingAddress.state"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -616,7 +624,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="patient.billingAddress.zip"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -649,7 +656,6 @@ const FormComponent = ({ document }) => {
                           type="text"
                           inputRef={register}
                           name="patient.isHispanicLatinoOrigin"
-                          required
                           helperText={get(
                             errors,
                             'patient.isHispanicLatinoOrigin.message'
@@ -672,7 +678,6 @@ const FormComponent = ({ document }) => {
                           type="text"
                           inputRef={register}
                           name="patient.race"
-                          required
                           helperText={get(errors, 'patient.race.message')}
                           error={get(errors, 'patient.race')}
                         />
@@ -702,7 +707,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="billing.policyHolder.name"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -725,7 +729,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="billing.policyHolder.dob"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -750,7 +753,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="billing.policyHolder.relationship"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -777,7 +779,6 @@ const FormComponent = ({ document }) => {
                           type="text"
                           inputRef={register}
                           name="patient.billing.isESInsurance"
-                          required
                           helperText={get(
                             errors,
                             'billing.isESInsurance.message'
@@ -801,7 +802,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="billing.primaryInsurance"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -824,7 +824,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="billing.primaryInsuranceType"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -848,7 +847,6 @@ const FormComponent = ({ document }) => {
                         fullWidth
                         type="text"
                         name="billing.claimsSubmissionAddress"
-                        required
                         inputRef={register}
                         helperText={get(
                           errors,
@@ -873,7 +871,6 @@ const FormComponent = ({ document }) => {
                           inputRef={register}
                           type="text"
                           name="billing.policyNumber"
-                          required
                           helperText={get(
                             errors,
                             'billing.policyNumber.message'
@@ -895,7 +892,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="billing.groupNumber"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -918,7 +914,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="billing.plan"
-                          required
                           inputRef={register}
                           helperText={get(errors, 'billing.plan.message')}
                           error={get(errors, 'billing.plan')}
@@ -940,7 +935,6 @@ const FormComponent = ({ document }) => {
                           fullWidth
                           type="text"
                           name="billing.priorAuthorizationCode"
-                          required
                           inputRef={register}
                           helperText={get(
                             errors,
@@ -957,6 +951,25 @@ const FormComponent = ({ document }) => {
           </Box>
         </div>
       </div>
+      <Divider />
+      <Grid container className={classes.buttonGrid} alignItems={'center'}>
+        <Grid item xs sm md lg xl>
+          {isSubmitted ? (
+            !isValid && (
+              <Typography variant={'body2'} style={{ color: '#ed1c24' }}>
+                * Please resolve all the errors in form
+              </Typography>
+            )
+          ) : (
+            <></>
+          )}
+        </Grid>
+        <Grid item>
+          <Button type={'submit'} variant={'outlined'} color={'primary'}>
+            Update
+          </Button>
+        </Grid>
+      </Grid>
     </form>
   );
 };
