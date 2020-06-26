@@ -102,6 +102,10 @@ const DetailedDocumentDialog = props => {
 
   const { uid } = useSelector(state => state.firebase.auth);
 
+  const getFileId = id => {
+    return id ? id.split('.')[0] : id;
+  };
+
   return (
     <Dialog open={open} onClose={toggleDialog} fullWidth={true} maxWidth="lg">
       <DialogTitle>
@@ -141,7 +145,9 @@ const DetailedDocumentDialog = props => {
                 <LazyLoadImage
                   alt={document['gcsFile']}
                   effect={'blur'}
-                  src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${document['gcsFile']}.jpeg?or=0&w=380`}
+                  src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${getFileId(
+                    document['gcsFile']
+                  )}.jpeg?or=0&w=380`}
                   // src={`https://esocr.imgix.net/${uid}/${document['gcsFile']}?fm=jpg&or=0&w=380`}
                 />
               </Paper>
