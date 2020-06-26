@@ -114,9 +114,9 @@ const DocumentsForm = ({
       className={classes.gridList}
       cols={getGridListCols()}
     >
-      {documents.map(doc => (
+      {documents.map((doc, index) => (
         <GridListTile
-          key={doc.id}
+          key={index}
           className={classes.gridListTile}
           onClick={() => {
             setDocument(doc);
