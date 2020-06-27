@@ -168,7 +168,8 @@ const Login = () => {
               style={{ color: 'white' }}
               align={'center'}
             >
-              Developed with ♥ for Exact Sciences
+              Developed with <span className={'love'}> ♥ </span> for Exact
+              Sciences
             </Typography>
           </Grid>
         </Grid>
