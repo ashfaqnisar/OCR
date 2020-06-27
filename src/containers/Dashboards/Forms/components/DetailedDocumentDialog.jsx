@@ -23,8 +23,8 @@ import FormComponent from './FormComponent';
 import ReactJson from 'react-json-view';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import useSWR from 'swr';
 import { useSnackbar } from 'notistack';
+import isEqual from 'lodash.isequal';
 
 const useStyles = makeStyles(theme => ({
   closeButton: {
@@ -112,24 +112,29 @@ const DetailedDocumentDialog = props => {
   const { enqueueSnackbar } = useSnackbar();
 
   const updateForm = documentData => {
-    console.log(documentData);
-    axios({
-      method: 'put',
-      url: `/ocr/${document.id}/?uid=${uid}`,
-      data: documentData
-    })
-      .then(() => {
-        enqueueSnackbar('Successfully Updated the data', {
-          variant: 'success'
-        });
-        setDocument(documentData);
+    if (!isEqual(document, documentData)) {
+      axios({
+        method: 'put',
+        url: `/ocr/${document.id}/?uid=${uid}`,
+        data: documentData
       })
-      .catch(err => {
-        console.log(err);
-        enqueueSnackbar('Error updating the data', {
-          variant: 'error'
+        .then(() => {
+          enqueueSnackbar('Successfully Updated the data', {
+            variant: 'success'
+          });
+          setDocument(documentData);
+        })
+        .catch(err => {
+          console.log(err);
+          enqueueSnackbar('Error updating the data', {
+            variant: 'error'
+          });
         });
+    } else {
+      enqueueSnackbar('There are no changes', {
+        variant: 'info'
       });
+    }
   };
 
   return (

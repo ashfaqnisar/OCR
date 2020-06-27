@@ -41,7 +41,7 @@ const App = () => {
           <MuiThemeProvider theme={theme}>
             <AuthIsLoaded>
               <SnackbarProvider
-                maxSnack={3}
+                maxSnack={1}
                 anchorOrigin={{
                   vertical: 'bottom',
                   horizontal: 'right'
