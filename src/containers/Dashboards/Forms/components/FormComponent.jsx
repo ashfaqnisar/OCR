@@ -7,8 +7,6 @@ import documentDialog from '../../../../shared/validation/documentDialog';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   buttonGrid: {
@@ -16,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const FormComponent = ({ document }) => {
+const FormComponent = ({ document, updateForm }) => {
   const classes = useStyles();
   const schema = Yup.object().shape(documentDialog);
 
@@ -25,23 +23,10 @@ const FormComponent = ({ document }) => {
     validationSchema: schema,
     defaultValues: document['prediction']
   });
-  const { uid } = useSelector(state => state.firebase.auth);
 
-  const updateForm = updatedData => {
-    document.prediction = updatedData;
-    axios({
-      method: 'put',
-      url: `/ocr/${document.id}/?uid=${uid}`,
-      data: document
-    })
-      .then(() => {})
-      .catch(err => {
-        console.log(err);
-      });
-  };
   const { isSubmitted, isValid } = formState;
 
-  const onSubmit = data => updateForm(data);
+  const onSubmit = data => updateForm({ ...document, prediction: data });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

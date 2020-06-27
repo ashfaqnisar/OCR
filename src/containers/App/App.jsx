@@ -13,6 +13,7 @@ import { createFirestoreInstance } from 'redux-firestore';
 import { firebase } from '../../config';
 import { SWRConfig } from 'swr';
 import theme from '../../theme/index';
+import { SnackbarProvider } from 'notistack';
 
 const App = () => {
   const rrfConfig = {
@@ -39,9 +40,17 @@ const App = () => {
         <ConnectedRouter history={history}>
           <MuiThemeProvider theme={theme}>
             <AuthIsLoaded>
-              <SWRConfig value={{ refreshInterval: 5000 }}>
-                <Router />
-              </SWRConfig>
+              <SnackbarProvider
+                maxSnack={1}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right'
+                }}
+              >
+                <SWRConfig value={{ refreshInterval: 5000 }}>
+                  <Router />
+                </SWRConfig>
+              </SnackbarProvider>
             </AuthIsLoaded>
           </MuiThemeProvider>
         </ConnectedRouter>

@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { LoginForm } from './components';
 import { Alert } from '@material-ui/lab';
 import { isBlank } from '../../../shared/components/Beautifier';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -116,6 +117,18 @@ const Login = () => {
               Don't have an account? <Link to={'/register'}>Register</Link>
             </h5>
           </Grid>
+          <Hidden only={['lg', 'xl']}>
+            <Grid
+              item
+              style={{ marginTop: '10px' }}
+              container
+              justify={'center'}
+            >
+              <Typography variant={'subtitle1'} align={'center'}>
+                Developed with ♥ for Exact Sciences
+              </Typography>
+            </Grid>
+          </Hidden>
         </Grid>
       </Grid>
       <Hidden only={['xs', 'sm', 'md']}>
@@ -130,11 +143,34 @@ const Login = () => {
           container
           justify={'center'}
           alignItems={'center'}
+          direction={'column'}
         >
+          <Grid
+            item
+            xs
+            sm
+            md
+            lg={9}
+            xl={9}
+            container
+            alignItems={'center'}
+            justify={'center'}
+          >
+            <Grid item>
+              <h1 className={classes.heading}>
+                <span className={classes.headingBlack}>ES</span>OCR
+              </h1>
+            </Grid>
+          </Grid>
           <Grid item>
-            <h1 className={classes.heading}>
-              <span className={classes.headingBlack}>ES</span>OCR
-            </h1>
+            <Typography
+              variant={'subtitle1'}
+              style={{ color: 'white' }}
+              align={'center'}
+            >
+              Developed with <span className={'love'}> ♥ </span> for Exact
+              Sciences
+            </Typography>
           </Grid>
         </Grid>
       </Hidden>
