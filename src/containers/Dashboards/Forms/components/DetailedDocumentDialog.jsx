@@ -24,6 +24,7 @@ import ReactJson from 'react-json-view';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import useSWR from 'swr';
+import { useSnackbar } from 'notistack';
 
 const useStyles = makeStyles(theme => ({
   closeButton: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DetailedDocumentDialog = props => {
-  const { open, toggleDialog, document } = props;
+  const { open, toggleDialog, document, setDocument } = props;
 
   const jsonViewStyles = {
     base00: 'white',
@@ -108,11 +109,27 @@ const DetailedDocumentDialog = props => {
     return id ? id.split('.')[0] : id;
   };
 
-  const updateForm = data => {
-    const fetcher = url => axios({ method: 'put', url: url, data: data });
-    const { data: documents, error } = useSWR(`/ocr/?uid=${uid}`, fetcher, {
-      refreshInterval: 10000
-    });
+  const { enqueueSnackbar } = useSnackbar();
+
+  const updateForm = documentData => {
+    console.log(documentData);
+    axios({
+      method: 'put',
+      url: `/ocr/${document.id}/?uid=${uid}`,
+      data: documentData
+    })
+      .then(() => {
+        enqueueSnackbar('Successfully Updated the data', {
+          variant: 'success'
+        });
+        setDocument(documentData);
+      })
+      .catch(err => {
+        console.log(err);
+        enqueueSnackbar('Error updating the data', {
+          variant: 'error'
+        });
+      });
   };
 
   return (
@@ -189,7 +206,7 @@ const DetailedDocumentDialog = props => {
             </Grid>
             <Grid item xs sm lg={12} md={12} xl={12}>
               <TabPanel value={value} index={0}>
-                <FormComponent document={document} />
+                <FormComponent updateForm={updateForm} document={document} />
               </TabPanel>
               <TabPanel value={value} index={1}>
                 <Grid container direction={'column'} spacing={1}>

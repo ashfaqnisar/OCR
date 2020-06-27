@@ -260,6 +260,7 @@ const Forms = ({ width }) => {
       </Grid>
       <DetailedDocumentDialog
         open={isDetailedDocumentOpen}
+        setDocument={setDocumentData}
         toggleDialog={toggleDetailedDocumentDialog}
         document={documentData}
       />
