@@ -31,7 +31,7 @@
   <a href="#installation">Installation</a> •
   <a href="#objective">Objectives</a> •
   <a href="#features">Features</a> •
-  <a href="#binds">Binds</a> 
+  <a href="#technology">Technology Stack</a> 
 
 </p>
 
@@ -39,7 +39,15 @@
 ## Demo
 ### <a href="https://esocr" target="_blank">ESOCR Frontend Demo</a> • <a href="https://github.com/ashfaqnisar/esocr-api" target="_blank">ESOCR API Repo</a> • <a href="https://github.com/ashfaqnisar/ESOCR-DATASET-GENERATOR" target="_blank">ESOCR Dataset Generator Repo</a>
 
+## About
 
+## Installation
+
+## Objective
+
+## Features
+
+## Technology Stack 
 
 
 
