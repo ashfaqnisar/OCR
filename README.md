@@ -3,7 +3,7 @@
   <a href="https://github.com/ashfaqnisar/ESOCR.git"><img src="https://i.imgur.com/tJ4s0sJ.png" alt="ESOCR"></a>
 </h1>
 
-<h4 align="center">Exact Sciences Optical Character Recognition</h4>
+<h3 align="center">Exact Sciences Optical Character Recognition</h4>
 
 <p align="center">
     <a href="https://github.com/ashfaqnisar/ESOCR/master">
@@ -23,3 +23,23 @@
          alt="GitHub pull requests">
    
 </p>
+
+
+<p align="center"> 
+  <a href="#demo">Demo</a> •
+  <a href="#about">About</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#objective">Objectives</a> •
+  <a href="#features">Features</a> •
+  <a href="#binds">Binds</a> 
+
+</p>
+
+---
+## Demo
+### <a href="https://esocr" target="_blank">ESOCR Frontend Demo</a> • <a href="https://github.com/ashfaqnisar/esocr-api" target="_blank">ESOCR API Repo</a> • <a href="https://github.com/ashfaqnisar/ESOCR-DATASET-GENERATOR" target="_blank">ESOCR Dataset Generator Repo</a>
+
+
+
+
+
