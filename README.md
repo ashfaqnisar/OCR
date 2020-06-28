@@ -31,7 +31,7 @@
   <a href="#installation">Installation</a> •
   <a href="#objective">Objectives</a> •
   <a href="#features">Features</a> •
-  <a href="#technology">Technology Stack</a> 
+  <a href="#technology stack">Technology Stack</a> 
 
 </p>
 
