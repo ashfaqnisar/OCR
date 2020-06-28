@@ -63,7 +63,7 @@ We built an <a href="https://github.com/ashfaqnisar/ESOCR-API" target="_blank">A
 As, provided in problem statement the data recieved from the OCR should be sent to a digital form. So, we started working on building the frontend for the project 
 >**Note**: Later on in the call with exact sciences, was verified that they just need an pure API. But, until then, we had already built the frontend!
 
-Coming to the front-end, we created a dashboard from which the user can upload the scanned files to the API which would then be processed and results will be provided to the user  in a digital form. The user can also update the data from the digital form. 
+Coming to the front-end, we created a dashboard from which the user can upload the scanned files to the API which would then be processed and results will be provided to the user  in a digital form. The user can also update the data from the digital form. In the dashboard, the users can also see the different statistics about the number of forms which are processed.
 
 
 ## Milestones
