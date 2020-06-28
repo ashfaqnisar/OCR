@@ -104,14 +104,14 @@ const LatestFormsTable = props => {
             </TableHead>
             <TableBody>
               {documents.map(document => (
-                <TableRow key={document.gcsFile}>
+                <TableRow key={document.id}>
                   <TableCell>
                     <Typography noWrap variant={'body2'}>
-                      {truncate(document.gcsFile.split('.')[0])}
+                      {truncate(document.fileId.split('.')[0])}
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Link href={document.gcsFileLink} color={'primary'}>
+                    <Link href={document.fileLink} color={'primary'}>
                       {truncate(document.uploadedFile, 13)}
                     </Link>
                   </TableCell>
