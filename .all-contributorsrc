@@ -16,9 +16,19 @@
         "infra",
         "doc"
       ]
-    }
+    },
+    {
+      "login": "vamshikrishnaginna",
+      "name": "Vamshi Krishna",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/35305744?v=4",
+      "profile": "https://github.com/vamshikrishnaginna",
+      "contributions": [
+        "ideas",
+        "design 
+      ]
+    },
   ],
-  "contributorsPerLine": 7,
+  "contributorsPerLine": 5,
   "projectName": "ESOCR",
   "projectOwner": "ashfaqnisar",
   "repoType": "github",
