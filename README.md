@@ -111,7 +111,7 @@ We can easily customize the field and also add new fields in the nanonets easily
 ### Cost-Efficient Solution:
 At present to extract one text field from the form,  it is cost around $0.0099. If there are 100 fields in a form it would cost $0.0099x100=$0.99/Document. In order to process around 100 documents, it would cost around $99. This cost is for creating the model, training and providing the model as an API. 
 
-If we are daily processing around 1000 documents per day, it would cost us a  huge amount of money. But, there is a solution to this issue.  We had a call with the Nanonets sales team and after telling them all of our requirements. They would be willing to provide us with the whole model & API as a docker container which can be hosted on any preferred cloud. By doing so we can avoid recurring payments to Nanonets
+If we are daily processing around 1000 documents per day, it would cost us a  huge amount of money. But, there is a solution to this issue.  We had a call with the Nanonets sales team and after telling them all of our requirements. They would be willing to provide us with the whole model & API as a docker container which can be hosted on any preferred cloud.
 
 
 
