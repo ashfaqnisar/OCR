@@ -174,12 +174,12 @@ const DetailedDocumentDialog = props => {
             <Grid item>
               <Paper variant={'outlined'}>
                 <LazyLoadImage
-                  alt={document['gcsFile']}
+                  alt={document['id']}
                   effect={'blur'}
-                  src={`https://nanonets.imgix.net/uploadedfiles/56766bad-b6f8-4e0a-9036-28c6d831fbf4/ImageSets/${getFileId(
-                    document['gcsFile']
+                  src={`https://nanonets.imgix.net/uploadedfiles/4ed6dcd3-d1e4-424d-9780-e4acfde58c78/PredictionImages/${getFileId(
+                    document['fileId']
                   )}.jpeg?or=0&w=380`}
-                  // src={`https://esocr.imgix.net/${uid}/${document['gcsFile']}?fm=jpg&or=0&w=380`}
+                  // src={`https://esocr.imgix.net/${uid}/${document['fileId']}?fm=jpg&or=0&w=380`}
                 />
               </Paper>
             </Grid>
