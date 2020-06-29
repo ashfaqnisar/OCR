@@ -21,8 +21,12 @@
       <a href="https://github.com/ashfaqnisar/ESOCR/pulls?q=is%3Apr+is%3Aclosed">
     <img src="https://img.shields.io/github/issues-pr-closed/ashfaqnisar/ESOCR?style=flat-square&logo=github&logoColor=white"
          alt="GitHub pull requests">
-    [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+        <a href="https://github.com/ashfaqnisar/ESOCR/"></>
+    <img src="https://img.shields.io/github/contributors/ashfaqnisar/esocr?label=all%20contributors&style=flat-square&logo=github&logoColor=white"
+         alt="GitHub pull requests">
 </p>
+      
+
 
 
 <p align="center"> 
@@ -184,9 +188,7 @@ We used **redux to handle the complex states** of the application and thunk to m
 #### SASS/SCSS:
 SASS is **way powerful** than generic CSS. We have opted to **build the styles in SCSS** for the application.
 
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+## Contributors ✨: 
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
