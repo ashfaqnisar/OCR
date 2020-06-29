@@ -27,11 +27,12 @@
 
 <p align="center"> 
   <a href="#demo">Demo</a> •
-  <a href="#about">About</a> •
+    <a href="#demo">Problem Statement</a> •
+  <a href="#objectives">Objectives</a> •
+  <a href="#solution">Solution</a> •
+  <a href="#features">Features</a> •
   <a href="#milestones">Milestones</a> •
   <a href="#installation">Installation</a> •
-  <a href="#objective">Objectives</a> •
-  <a href="#features">Features</a> •
   <a href="#stack">Stack</a> 
 
 </p>
@@ -40,13 +41,26 @@
 ## Demo
 ### <a href="https://esocr" target="_blank">ESOCR Frontend Demo</a> • <a href="https://github.com/ashfaqnisar/esocr-api" target="_blank">ESOCR API Repo</a> • <a href="https://github.com/ashfaqnisar/ESOCR-DATASET-GENERATOR" target="_blank">ESOCR Dataset Generator Repo</a>
 
-## About
-### Problem Statement: 
+## Problem Statement: 
 Building a **highly accurate OCR solution** that will take **manually filled form** as an **input** and provide the **data in the digital form**. 
 
 As the exact sciences company process thousands of the forms every week recieved from the fax. The  data recieved in the form should be digitalized.  But, manually digitalizing the form would contain human error & time consuming.  So, they would like to automate this process by placing ocr system. The exact sciences already has an ocr system in place but is some what less accurate and takes more time.
 
-### Solution: 
+## Objectives
+####  • Building an OCR system, which would be more faster and accurate compared to the already present OCR system.
+####  • Developing  the API  in a manner that it can be easily be customized and scaled according to the requirements.
+ 
+####  • The OCR system should also be able to handle handwritten form provided by user.
+  
+####  • Ability to handle different types of file format such as the images, PDF & TIFF.
+
+####  • The response received  from the API, should be displayed in a digital form.
+
+####  • The whole project should meet the industrail coding standards.
+
+#### • Staying in Budget, while utilizing the COTS OCR solutions.
+
+## Solution: 
 As exact sciences already has an OCR system in place, we had to build an system which would be more accurate  and less time consuming  than the present OCR  system.  Mostly of the forms received by the company are in handwritten by the user. So, we had to take that constraint in mind too. We were allowed to use the COTS(Commercially Off the Shelf  ) OCR solution but we had to stay in the budget and not go overboard : ).
 
 After making extensive research and chatting with different COTS OCR solutions, we were impressed with the Nanonets OCR Solution. As, it was very simple and straightforward and they were using the CRNN(Convolutional Recurrent Neural Network) &  DRAM (Deep Recurrent Attention Model)  and many more to create an OCR detection model. Coming to the pricing, we would be charged by the number of API calls made to the model.
@@ -58,21 +72,31 @@ We built <a href="https://github.com/ashfaqnisar/ESOCR-DATASET-GENERATOR" target
 Once, we uploaded the images to the nanonets, we started annotating the images one by one manually in nanonets. We then started training the model, once the model was trained. We were able to predict the text from the uploaded image.
 
 We built an <a href="https://github.com/ashfaqnisar/ESOCR-API" target="_blank">API </a>to interact with the Nanonets API. So, if we were to send an file to the API, the file will be processed by the model & provide us the response. The API would then beautify and store the response in firebase and upload the file to the Google Cloud. 
-> Note: API  can easily be configured to upload the data to any cloud.
+> Note: API  can easily be configured to upload the data to any preffered cloud.
 
 As, provided in problem statement the data recieved from the OCR should be sent to a digital form. So, we started working on building the frontend for the project 
 >**Note**: Later on in the call with exact sciences, was verified that they just need an pure API. But, until then, we had already built the frontend!
 
-Coming to the front-end, we created a dashboard from which the user can upload the scanned files to the API which would then be processed and results will be provided to the user  in a digital form. The user can also update the data from the digital form. In the dashboard, the users can also see the different statistics about the number of forms which are processed.
-
+Coming to the front-end, we created a dashboard from which the user can upload the scanned files to the API which would then be processed and results will be provided to the user  in a digital form. The user can also update the data from the digital form. 
 
 
 ## Milestones
 
 #### 1. We automatiically generated and manually annotated over 150 images for training the model.
-#### 2. We were able to predict the text in the sample form which was sent to the API for processing. 
+#### 2. We were able to predict the handwritten text in the sample form which was sent to the API for processing. 
 #### 3. We built the API which would store responses as well as data in the firestore firebase and Google cloud respectively recieved from the model.
 #### 4. We were successfully in hosting the API at  heroku.
 #### 5. We built an thorough documentation of the API.
 #### 6. Able to make the frontend talk with the firestore database using the API as middleman
 #### 7. For the frontend , we were able to format all the different file types into JPEG's on the fly without any file conversion of the input file using the imgix.
+
+
+## Installation
+
+
+
+
+
+## Features
+
+## Stack 
