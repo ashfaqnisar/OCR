@@ -75,14 +75,11 @@ After making extensive research and **chatting with different COTS OCR solutions
 We **created a model** in the nanonets but **in order to train the model**. We required a **dataset of images** and we were provided with two files(**Sample Form  & Blank form**). To process the model, we needed over **150  files** and **manually filling these forms** would have been a **very time-effective process**. 
 
 We built <a href="https://github.com/ashfaqnisar/ESOCR-DATASET-GENERATOR" target="_blank">**ESOCR Dataset Generator Repo**</a>,  which would **contain a script** which would take **data** from the **fake JSON** and place the **data over PSD** and **save the final output file**. In this manner, we were easily able to **generate around 150 images** for the dataset.
-
 Once, we **uploaded the images to the nanonets**, we started **annotating the images one by one manually** in nanonets. We then **started training the model**, once the **model was trained**. We were able to **predict the text** from the **uploaded image**.
 
-We built an <a href="https://github.com/ashfaqnisar/ESOCR-API" target="_blank">**API** </a>to **interact with the Nanonets API**. So, if we were to **send a file to the API**, the **file will be processed** by the model & **provide us with the response**. The API would then **beautify and store the response** in **firebase** and **upload** the file to the **Google Cloud**. 
-> Note: API  can easily be configured to upload the data to any preferred cloud.
-
-As **provided in the problem statement** the data received from the OCR should be sent to a **digital form**. So, we started **working on building the frontend** for the project 
->**Note**: Later on in the call with exact sciences, was verified that they just need a pure API. But, until then, we had already built the frontend!
+We built an <a href="https://github.com/ashfaqnisar/ESOCR-API" target="_blank">**API** </a>to **interact with the Nanonets API**. So, if we were to **send a file to the API**, the **file will be processed** by the model & **provide us with the response**. The API would then **beautify and store the response** in **firebase** and **upload** the file to the **Google Cloud**. API  can easily be configured to upload the data to any **preferred cloud**. As **provided in the problem statement** ,the data received from the OCR should be sent to a **digital form**. So, we started **working on building the frontend** for the project 
+>**Note**: . Later on in the call with exact sciences, it was verified that they are mainly looking for an pure API solution. But, until then, we had already built the frontend!
+<br/>
 
 Coming to the **<a href="https://esocr.now.sh">frontend</a>**, we created a **dashboard** from which the **user can upload the scanned files** to the API which would then be processed and **results will be provided to the user in a digital form**. The user can also **update the data from the digital form.** 
 
