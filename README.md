@@ -70,7 +70,7 @@ After making extensive research and **chatting with different COTS OCR solutions
 
 We **created a model** in the nanonets but **in order to train the model**. We required a **dataset of images** and we were provided with two files(**Sample Form  & Blank form**). To process the model, we needed over **150  files** and **manually filling these forms** would have been a **very time-effective process**. 
 
-We built <a href="https://github.com/ashfaqnisar/ESOCR-DATASET-GENERATOR" target="_blank">ESOCR Dataset Generator Repo</a>,  which would **contain a script** which would take **data** from the **fake JSON** and place the **data over PSD** and **save the final output file**. In this manner, we were easily able to **generate around 150 images** for the dataset.
+We built <a href="https://github.com/ashfaqnisar/ESOCR-DATASET-GENERATOR" target="_blank">**ESOCR Dataset Generator Repo**</a>,  which would **contain a script** which would take **data** from the **fake JSON** and place the **data over PSD** and **save the final output file**. In this manner, we were easily able to **generate around 150 images** for the dataset.
 
 Once, we **uploaded the images to the nanonets**, we started **annotating the images one by one manually** in nanonets. We then **started training the model**, once the **model was trained**. We were able to **predict the text** from the **uploaded image**.
 
@@ -91,6 +91,7 @@ In order **to achieve this**, we had to **train our model** with  **different ty
 ### Quick response time:
 Screenshots of the response time
 Coming to **response time**, we were able to **process the whole document** under **22 sec** for this file. **Time may differ** based on the **quality of the file**,  **size of the file** and the **type of file**.
+> Note: The response time can be **decreased by hosting** the **docker container** on our cloud and providing **more processing power**.
 
 ### Process OCR even with the deviated alignment of the form:
 Screenshot
