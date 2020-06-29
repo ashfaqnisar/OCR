@@ -105,6 +105,8 @@ Coming to **response time**, we were able to **process the whole document** unde
 |:-------------------------:|:-------------------------:|
 |<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://i.imgur.com/97opSZO.jpg">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://i.imgur.com/imSR8DY.jpg">|
 
+<img src="https://i.imgur.com/hGd7GWB.jpg" />
+
 The front end of the Esocr is **very simple** and **straight forward** and **can be customized easily ** according to our requirements.  All of the **processed forms** of the user are available in the **ESOCR Web App**. 
 
 ### Customizable Response:
