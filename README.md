@@ -80,6 +80,9 @@ As, provided in problem statement the data recieved from the OCR should be sent 
 Coming to the front-end, we created a dashboard from which the user can upload the scanned files to the API which would then be processed and results will be provided to the user  in a digital form. The user can also update the data from the digital form. 
 
 
+## Features
+
+
 ## Milestones
 
 #### 1. We automatiically generated and manually annotated over 150 images for training the model.
@@ -92,11 +95,5 @@ Coming to the front-end, we created a dashboard from which the user can upload t
 
 
 ## Installation
-
-
-
-
-
-## Features
 
 ## Stack 
