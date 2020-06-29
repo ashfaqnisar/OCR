@@ -66,4 +66,13 @@ As, provided in problem statement the data recieved from the OCR should be sent 
 Coming to the front-end, we created a dashboard from which the user can upload the scanned files to the API which would then be processed and results will be provided to the user  in a digital form. The user can also update the data from the digital form. In the dashboard, the users can also see the different statistics about the number of forms which are processed.
 
 
+
 ## Milestones
+
+#### 1. We automatiically generated and manually annotated over 150 images for training the model.
+#### 2. We were able to predict the text in the sample form which was sent to the API for processing. 
+#### 3. We built the API which would store responses as well as data in the firestore firebase and Google cloud respectively recieved from the model.
+#### 4. We were successfully in hosting the API at  heroku.
+#### 5. We built an thorough documentation of the API.
+#### 6. Able to make the frontend talk with the firestore database using the API as middleman
+#### 7. For the frontend , we were able to format all the different file types into JPEG's on the fly without any file conversion of the input file using the imgix.
