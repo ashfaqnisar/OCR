@@ -22,7 +22,7 @@
     <img src="https://img.shields.io/github/issues-pr-closed/ashfaqnisar/ESOCR?style=flat-square&logo=github&logoColor=white"
          alt="GitHub pull requests">
         <a href="https://github.com/ashfaqnisar/ESOCR/"></>
-    <img src="https://img.shields.io/github/contributors/ashfaqnisar/esocr?label=all%20contributors&style=flat-square&logo=github&logoColor=white"
+    <img src="https://img.shields.io/github/all-contributors/ashfaqnisar/esocr?style=flat-square&logo=github&logoColor=white"
          alt="GitHub pull requests">
 </p>
       
