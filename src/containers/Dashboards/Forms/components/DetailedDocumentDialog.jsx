@@ -176,10 +176,10 @@ const DetailedDocumentDialog = props => {
                 <LazyLoadImage
                   alt={document['id']}
                   effect={'blur'}
-                  src={`https://nanonets.imgix.net/uploadedfiles/4ed6dcd3-d1e4-424d-9780-e4acfde58c78/PredictionImages/${getFileId(
-                    document['fileId']
-                  )}.jpeg?or=0&w=380`}
-                  // src={`https://esocr.imgix.net/${uid}/${document['fileId']}?fm=jpg&or=0&w=380`}
+                  // src={`https://nanonets.imgix.net/uploadedfiles/4ed6dcd3-d1e4-424d-9780-e4acfde58c78/PredictionImages/${getFileId(
+                  //   document['fileId']
+                  // )}.jpeg?or=0&w=380`}
+                  src={`https://esocr.imgix.net/${uid}/${document['fileId']}?fm=jpg&or=0&w=380`}
                 />
               </Paper>
             </Grid>
