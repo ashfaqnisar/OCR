@@ -10,7 +10,7 @@ export default {
       .test(
         'len',
         'Provide a valid NPI',
-        val => val && val.toString().length === 8
+        val => val && val.toString().length === 10
       ),
     // .min(8, 'Provided an valid NPI '),
     address: Yup.string().required('Required'),
@@ -19,12 +19,8 @@ export default {
     zip: Yup.number()
       .required('Required')
       .typeError('Provide a valid Zip Code'),
-    number: Yup.number()
-      .required('Required')
-      .typeError('Provide a valid phone number'),
-    faxNumber: Yup.number()
-      .required('Required')
-      .typeError('Provide a valid Fax Number'),
+    number: Yup.string().required('Required'),
+    faxNumber: Yup.string().required('Required'),
     languagePreference: Yup.string()
   }),
   order: Yup.object().shape({
@@ -37,9 +33,7 @@ export default {
     lastName: Yup.string().required('Required'),
     dob: Yup.string().required('Required'),
     sex: Yup.string().required('Required'),
-    number: Yup.number()
-      .required('Required')
-      .typeError('Provide a valid phone number'),
+    number: Yup.string().required('Required'),
     languagePreference: Yup.string(),
     shippingAddress: Yup.object().shape({
       address: Yup.string().required('Required'),
