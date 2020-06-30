@@ -203,7 +203,7 @@ If we are **daily processing around 1000 documents** per day, it would cost us a
 As all of the **processed data is available** in the **firebase**. We can **update the data** and **fix any wrong predictions** from the **form available in the ESOCR Web App**.
 
 ### Process multiple forms at a time:
-<img width="1604" src="https://i.imgur.com/fzjtxOM.gif">
+<img src="https://storage.googleapis.com/esocr-app/multiple.jpg"/>
 
 We can make **multiple requests to the API** to process multiple forms **simultaneously** and **increase the overall performance** of the app and **decrease the time required** for the **processing** of the multiple files. 
 
