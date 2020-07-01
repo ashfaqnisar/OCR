@@ -186,7 +186,7 @@ const FormComponent = ({ document, updateForm }) => {
                   </Grid>
                 </Grid>
                 <Grid item container spacing={2}>
-                  <Grid item xs={12} sm md lg={4} xl={4}>
+                  <Grid item xs={12} sm md lg={6} xl={6}>
                     <div className="form__form-group">
                       <span className="form__form-group-label typography-message">
                         Number
@@ -205,7 +205,7 @@ const FormComponent = ({ document, updateForm }) => {
                       </div>
                     </div>
                   </Grid>
-                  <Grid item xs={12} sm md lg={4} xl={4}>
+                  <Grid item xs={12} sm md lg={6} xl={6}>
                     <div className="form__form-group">
                       <span className="form__form-group-label typography-message">
                         Fax Number
@@ -422,33 +422,60 @@ const FormComponent = ({ document, updateForm }) => {
                   </Grid>
                 </Grid>
                 <Grid item xs={12} sm md lg={12} xl={12}>
-                  <div className="form__form-group">
-                    <span className="form__form-group-label typography-message">
-                      Shipping Address
-                    </span>
-                    <div className="form__form-group-field">
-                      <TextField
-                        size={'small'}
-                        variant="outlined"
-                        fullWidth
-                        type="text"
-                        name="patient.shippingAddress.address"
-                        inputRef={register}
-                        helperText={get(
-                          errors,
-                          'patient.shippingAddress.address.message'
-                        )}
-                        error={get(errors, 'patient.shippingAddress.address')}
-                      />
-                    </div>
-                  </div>
+                  <Typography variant={'subtitle2'}>
+                    Shipping Address
+                  </Typography>
+                  <Grid container spacing={2}>
+                    <Grid item xs sm md lg xl>
+                      <div className="form__form-group">
+                        <span className="form__form-group-label typography-message">
+                          Line 1
+                        </span>
+                        <div className="form__form-group-field">
+                          <TextField
+                            size={'small'}
+                            variant="outlined"
+                            fullWidth
+                            type="text"
+                            name="patient.shippingAddress.line1"
+                            inputRef={register}
+                            helperText={get(
+                              errors,
+                              'patient.shippingAddress.line1.message'
+                            )}
+                            error={get(errors, 'patient.shippingAddress.line1')}
+                          />
+                        </div>
+                      </div>
+                    </Grid>
+                    <Grid item xs sm md lg xl>
+                      <div className="form__form-group">
+                        <span className="form__form-group-label typography-message">
+                          Line 2
+                        </span>
+                        <div className="form__form-group-field">
+                          <TextField
+                            size={'small'}
+                            variant="outlined"
+                            fullWidth
+                            type="text"
+                            name="patient.shippingAddress.line2"
+                            inputRef={register}
+                            helperText={get(
+                              errors,
+                              'patient.shippingAddress.line2.message'
+                            )}
+                            error={get(errors, 'patient.shippingAddress.line2')}
+                          />
+                        </div>
+                      </div>
+                    </Grid>
+                  </Grid>
                 </Grid>
                 <Grid item container spacing={2}>
                   <Grid item xs={12} sm md lg={4} xl={4}>
                     <div className="form__form-group">
-                      <span className="form__form-group-label typography-message">
-                        City
-                      </span>
+                      <Typography variant={'body1'}>City</Typography>
                       <div className="form__form-group-field">
                         <TextField
                           size={'small'}
@@ -512,27 +539,55 @@ const FormComponent = ({ document, updateForm }) => {
                   </Grid>
                 </Grid>
                 <Grid item xs={12} sm md lg={12} xl={12}>
-                  <div className="form__form-group">
-                    <span className="form__form-group-label typography-message">
-                      Billing Address
-                    </span>
-                    <div className="form__form-group-field">
-                      <TextField
-                        size={'small'}
-                        variant="outlined"
-                        fullWidth
-                        type="text"
-                        name="patient.billingAddress.address"
-                        inputRef={register}
-                        helperText={get(
-                          errors,
-                          'patient.billingAddress.address.message'
-                        )}
-                        error={get(errors, 'patient.billingAddress.address')}
-                      />
-                    </div>
-                  </div>
+                  <Typography variant={'subtitle2'}>Billing Address</Typography>
+                  <Grid container spacing={2}>
+                    <Grid item xs sm md lg xl>
+                      <div className="form__form-group">
+                        <span className="form__form-group-label typography-message">
+                          Line 1
+                        </span>
+                        <div className="form__form-group-field">
+                          <TextField
+                            size={'small'}
+                            variant="outlined"
+                            fullWidth
+                            type="text"
+                            name="patient.billingAddress.line1"
+                            inputRef={register}
+                            helperText={get(
+                              errors,
+                              'patient.billingAddress.line1.message'
+                            )}
+                            error={get(errors, 'patient.billingAddress.line1')}
+                          />
+                        </div>
+                      </div>
+                    </Grid>
+                    <Grid item xs sm md lg xl>
+                      <div className="form__form-group">
+                        <span className="form__form-group-label typography-message">
+                          Line 2
+                        </span>
+                        <div className="form__form-group-field">
+                          <TextField
+                            size={'small'}
+                            variant="outlined"
+                            fullWidth
+                            type="text"
+                            name="patient.billingAddress.line2"
+                            inputRef={register}
+                            helperText={get(
+                              errors,
+                              'patient.billingAddress.line2.message'
+                            )}
+                            error={get(errors, 'patient.billingAddress.line2')}
+                          />
+                        </div>
+                      </div>
+                    </Grid>
+                  </Grid>
                 </Grid>
+
                 <Grid item container spacing={2}>
                   <Grid item xs={12} sm md lg={4} xl={4}>
                     <div className="form__form-group">
