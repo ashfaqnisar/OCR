@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Container, Typography, Grid, Button } from '@material-ui/core';
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Button,
+  CircularProgress
+} from '@material-ui/core';
 import { DropFilesDropzone } from './components';
 import { useSelector } from 'react-redux';
 import { axios } from '../../../config';
@@ -14,6 +21,7 @@ const UploadForm = () => {
       ? state.form.drop_files_form.values.files
       : []
   );
+  const [err, setError] = useState('');
   const { uid } = useSelector(state => state.firebase.auth);
   useEffect(() => {
     if (files.length > 0 && files.length === processingFileCount) {
@@ -33,9 +41,13 @@ const UploadForm = () => {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-      }).then(() => {
-        setProcessingFileCount(++index);
-      });
+      })
+        .then(() => {
+          setProcessingFileCount(++index);
+        })
+        .catch(err => {
+          setError(err.message);
+        });
     });
   };
 
@@ -58,7 +70,12 @@ const UploadForm = () => {
           <Grid container direction={'column'} justify={'center'}>
             <Grid item>
               <Typography variant={'subtitle1'}>
-                {processingStatus} {processingFileCount} of {files.length}
+                {processingStatus === 'Processing' && (
+                  <CircularProgress color="primary" />
+                )}
+                {err === ''
+                  ? `${processingStatus} ${processingFileCount} of ${files.length}`
+                  : err.message}
               </Typography>
             </Grid>
           </Grid>
