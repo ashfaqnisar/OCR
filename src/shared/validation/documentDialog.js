@@ -20,7 +20,7 @@ export default {
       .required('Required')
       .typeError('Provide a valid Zip Code'),
     number: Yup.string().required('Required'),
-    faxNumber: Yup.string().required('Required'),
+    faxNumber: Yup.string().required('Required')
   }),
   order: Yup.object().shape({
     icdCode: Yup.string().required('Required'),
