@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import {
   AppBar,
-  Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
   Grid,

@@ -20,8 +20,7 @@ export default {
       .required('Required')
       .typeError('Provide a valid Zip Code'),
     number: Yup.string().required('Required'),
-    faxNumber: Yup.string().required('Required'),
-    languagePreference: Yup.string()
+    faxNumber: Yup.string().required('Required')
   }),
   order: Yup.object().shape({
     icdCode: Yup.string().required('Required'),
@@ -36,7 +35,8 @@ export default {
     number: Yup.string().required('Required'),
     languagePreference: Yup.string(),
     shippingAddress: Yup.object().shape({
-      address: Yup.string().required('Required'),
+      line1: Yup.string().required('Required'),
+      line2: Yup.string(),
       city: Yup.string().required('Required'),
       state: Yup.string().required('Required'),
       zip: Yup.number()
@@ -44,25 +44,24 @@ export default {
         .typeError('Provide a valid Zip Code')
     }),
     billingAddress: Yup.object().shape({
-      address: Yup.string().required('Required'),
+      line1: Yup.string().required('Required'),
+      line2: Yup.string(),
       city: Yup.string().required('Required'),
       state: Yup.string().required('Required'),
       zip: Yup.number()
         .required('Required')
         .typeError('Provide a valid Zip Code')
     }),
-    // isHispanicLatinoOrigin: Yup.boolean(),
     race: Yup.string()
   }),
   billing: Yup.object().shape({
-    // isESInsurance: Yup.boolean(),
     policyHolder: Yup.object().shape({
       name: Yup.string().required('Required'),
       dob: Yup.string().required('Required'),
       relationship: Yup.string().required('Required')
     }),
     primaryInsurance: Yup.string().required('Required'),
-    primaryInsuranceType: Yup.string().required('Required'),
+    primaryInsuranceType: Yup.string(),
     claimsSubmissionAddress: Yup.string().required('Required'),
     policyNumber: Yup.string().required('Required'),
     groupNumber: Yup.string().required('Required'),
