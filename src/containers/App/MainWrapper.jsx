@@ -13,10 +13,6 @@ const MainWrapper = ({ children }) => {
     wrapper: true
   });
 
-  if (isLoaded(auth) && !isEmpty(auth)) {
-    history.push('/home');
-  }
-
   const direction = 'ltr';
 
   return (
